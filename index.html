@@ -38,7 +38,7 @@
 <body class="antialiased selection:bg-cyan-500 selection:text-white pb-20 md:pb-0">
 
   <!-- ================= 1. ÜST KURUMSAL BİLGİ BARI ================= -->
-  <div class="bg-[#020A14] text-slate-300 text-xs border-b border-cyan-500/20">
+  <div id="topCorpBar" class="bg-[#020A14] text-slate-300 text-xs border-b border-cyan-500/20">
     <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-5">
         <span class="flex items-center gap-1.5 text-cyan-400 font-semibold">
@@ -1739,13 +1739,31 @@
       return { temp: '24–27°C', ph: '6.8–7.6', minL: '40L+', temper: 'Barışçıl Akvaryum Balığı', compat: 'Lepistes, Moli, Plati, Tetra, Çöpçü, Vatoz' };
     }
 
-    // 4. KATALOG VERİSİNİ YÜKLE
+    // 4. KATALOG VERİSİNİ YÜKLE (APK İÇİN CANLI SENKRONİZASYON + OFFLINE YEDEK)
     async function loadStoreCatalog() {
+      // Android APK WebView içinde çalışıyorsa üst bildirim çubuğu boşluğu ekle
+      if (window.AndroidNative || /wv|Capacitor/i.test(navigator.userAgent)) {
+        const topBar = document.getElementById('topCorpBar');
+        if (topBar) topBar.style.paddingTop = '28px';
+      }
       applyStoreConfigToDOM();
       updateWizardLiters(60);
       try {
-        const res = await fetch('data/catalog.json');
-        const raw = await res.json();
+        let raw = null;
+        const isApkLocal = Boolean(window.AndroidNative) || location.hostname === 'localhost';
+        if (isApkLocal && navigator.onLine) {
+          try {
+            const ctrl = new AbortController();
+            const tid = setTimeout(() => ctrl.abort(), 3500);
+            const liveRes = await fetch('https://turkuaz-akvaryum.github.io/magaza/data/catalog.json?t=' + Date.now(), { signal: ctrl.signal });
+            clearTimeout(tid);
+            if (liveRes.ok) raw = await liveRes.json();
+          } catch (e) {}
+        }
+        if (!raw) {
+          const res = await fetch('data/catalog.json');
+          raw = await res.json();
+        }
         const sources = ['fish', 'petshop', 'aquariums', 'equipment', 'yemler', 'lighting', 'stone_products', 'plant_products', 'plants', 'health', 'aksesuarlar'];
         const list = [...customProducts];
 
