@@ -1,6 +1,66 @@
 {
   "fish": [
     {
+      "code": "BLK-094",
+      "name": "BLOODY MARY / KİRAZ KARİDES (NEOCARİDİNA)",
+      "type": "Tatlı Su",
+      "category": "KARİDES & SALYANGOZ",
+      "subcategory": "KARİDES & SALYANGOZ",
+      "price": 65,
+      "note": "Adet",
+      "img": "img/ency-karides.jpg",
+      "outOfStock": false,
+      "desc": "Bitkili nano akvaryumlarda yosun ve yem artıklarını temizleyen koyu ateş kırmızısı Bloody Mary / Kiraz tatlı su karidesi."
+    },
+    {
+      "code": "BLK-093",
+      "name": "HALFMOON BETTA (ÖZEL FORM KAVGACI SİYAM)",
+      "type": "Tatlı Su",
+      "category": "BETTA TÜRLERİ",
+      "subcategory": "BETTA TÜRLERİ",
+      "price": 250,
+      "note": "Adet",
+      "img": "img/ency-betta.jpg",
+      "outOfStock": false,
+      "desc": "180 derece yarım ay (Halfmoon) kuyruk açılımına sahip seçkin erkek Betta splendens. Nano bitkili akvaryumlarda tek olarak beslenir."
+    },
+    {
+      "code": "BLK-092",
+      "name": "ORANDA JAPON BALIĞI (GOLD & RED CAP XL)",
+      "type": "Tatlı Su",
+      "category": "JAPON BALIKLARI",
+      "subcategory": "JAPON BALIKLARI",
+      "price": 220,
+      "note": "Adet",
+      "img": "img/ency-japon.jpg",
+      "outOfStock": false,
+      "desc": "Gösterişli kafa (wen) yapısına ve tül kuyruğa sahip seçkin Oranda Japon balığı. 18–22 °C serin sularda diğer Japon varyeteleriyle uyumlu yaşar."
+    },
+    {
+      "code": "BLK-091",
+      "name": "MELEK BALIĞI (ANGEL FİSH - GÜMÜŞ & TRİCOLOR)",
+      "type": "Tatlı Su",
+      "category": "MELEK TÜRLERİ",
+      "subcategory": "MELEK TÜRLERİ",
+      "price": 180,
+      "note": "Adet",
+      "img": "img/ency-melek.jpg",
+      "outOfStock": false,
+      "desc": "Yüksek yüzgeçli, bitkili akvaryumların en zarif türlerinden biri olan Melek Balığı (Pterophyllum scalare). 25–28 °C suda barışçıl karma tanklara uyumludur."
+    },
+    {
+      "code": "BLK-090",
+      "name": "TURKUAZ ROYAL BLUE DİSCUS (L BOY)",
+      "type": "Tatlı Su",
+      "category": "DİSCUS TÜRLERİ",
+      "subcategory": "DİSCUS TÜRLERİ",
+      "price": 950,
+      "note": "Adet",
+      "img": "img/ency-discus.jpg",
+      "outOfStock": false,
+      "desc": "Parlak turkuaz ve kobalt mavi desenli, karantinadan geçmiş sağlıklı Royal Blue Discus. 28–30 °C yumuşak ve temiz suda sürü halinde beslenmesi önerilir."
+    },
+    {
       "name": "ALBİNO FULL RED THAİLAND",
       "type": "Tatlı Su",
       "price": 600,

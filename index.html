@@ -379,22 +379,6 @@
     </div>
   </section>
 
-  <!-- ================= 4. ÖNE ÇIKAN VİTRİN ÜRÜNLERİ KAYAN ŞERİT ================= -->
-  <section id="kampanyaStripSection" class="bg-white border-b border-slate-200 py-5">
-    <div class="max-w-7xl mx-auto px-4 space-y-3">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2.5">
-          <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-cyan-600 to-teal-500 text-white text-[11px] font-black uppercase tracking-wider shadow-xs">Seçkin Vitrin</span>
-          <h2 class="text-sm sm:text-base font-black text-slate-900">Öne Çıkan Akvaryum & Ekipman Vitrini</h2>
-        </div>
-        <button onclick="selectCategory('kampanyali')" class="text-xs font-extrabold text-cyan-600 hover:text-cyan-700">
-          Tüm Vitrin Ürünlerini Gör →
-        </button>
-      </div>
-      <div id="campaignHorizontalList" class="flex gap-3 overflow-x-auto no-scrollbar pb-1"></div>
-    </div>
-  </section>
-
   <!-- ================= 5. 12 MODERN KATEGORİ KUTUSU (BENTO GRID) ================= -->
   <section id="kategoriler" class="max-w-7xl mx-auto px-4 pt-8 pb-4">
     <div class="flex items-end justify-between mb-4">
@@ -1422,7 +1406,7 @@
       if (savedCfg) storeConfig = { ...storeConfig, ...JSON.parse(savedCfg), showPrices: Boolean(JSON.parse(savedCfg).showPrices) };
     } catch (e) {}
 
-    // 2. AKVARYUM BALIKLARI ANSİKLOPEDİ VERİTABANI (12 ANA FAMİLYA & BAKIM REHBERİ)
+    // 2. AKVARYUM BALIKLARI ANSİKLOPEDİ VERİTABANI (12 ANA FAMİLYA & GERÇEK TÜR GÖRSELLERİ)
     const FISH_ENCYCLOPEDIA = [
       {
         id: 'lepistes',
@@ -1435,7 +1419,7 @@
         minLiter: '40 Litre+',
         lifespan: '2–3 Yıl • 4–6 cm',
         searchKey: 'lepistes',
-        img: 'img/hero-luxury.jpg',
+        img: 'img/ency-lepistes.jpg',
         summary: 'Rengârenk kuyruk varyeteleri (Albino Full Red, Blue Grass, Moscow, Koi, Dumbo Ear) ve yavrularını canlı doğurmasıyla akvaryum hobisinin en sevilen barışçıl sürü balığıdır.',
         compatible: 'Moli, Plati, Kılıçkuyruk, Neon Tetra, Çöpçü (Corydoras), Cüce Vatoz, Karides',
         incompatible: 'Malawi Cikletleri, Japon Balığı, Erkek Betta (tül kuyrukları ısırabilir)',
@@ -1452,7 +1436,7 @@
         minLiter: '200 Litre+',
         lifespan: '10–15 Yıl • 15–20 cm',
         searchKey: 'discus',
-        img: 'img/hero-luxury.jpg',
+        img: 'img/ency-discus.jpg',
         summary: 'Disk şeklindeki asil gövdesi ve büyüleyici turkuaz, kobalt ve kırmızı desenleriyle tatlı su akvaryumlarının kralı kabul edilir. Sıcak, yumuşak ve çok iyi filtrelenmiş su ister.',
         compatible: 'Kardinal Tetra, Rummy Nose (Kırmızı Burun) Tetra, Sterbai Çöpçü, L144 Vatoz, Ramirezi',
         incompatible: 'Sert su Malawi Cikletleri, Japon Balığı, hızlı ve agresif yemlenen balıklar',
@@ -1468,9 +1452,9 @@
         ph: '7.6 – 8.5',
         minLiter: '150 Litre+',
         lifespan: '7–10 Yıl • 10–20 cm',
-        searchKey: 'prenses',
-        img: 'img/hero-luxury.jpg',
-        summary: 'Sarı Prenses, Mavi Prenses, Yunus Ciklet, Iceman ve Demasoni gibi çok canlı renklere sahip, kayalık mağaraları ve silis kumlu akvaryumları seven enerjik Afrika cikletleridir.',
+        searchKey: 'ciklet',
+        img: 'img/ency-ciklet.jpg',
+        summary: 'İmparator Ciklet, Sarı Prenses, Yunus Ciklet, Şeker Pembe ve Demasoni gibi çok canlı renklere sahip, kayalık mağaraları ve silis kumlu akvaryumları seven enerjik Afrika cikletleridir.',
         compatible: 'Kendi boylarındaki diğer Malawi cikletleri ve sert zırhlı Vatozlar',
         incompatible: 'Lepistes, Neon Tetra, Karides, Japon Balığı, Bitkili Hassas Türler',
         diet: 'Cichlid granül yem, spirulina ağırlıklı bitkisel tablet ve sticks yemler.'
@@ -1486,16 +1470,16 @@
         minLiter: '60 Litre+',
         lifespan: '3–4 Yıl • 5–7 cm',
         searchKey: 'ramirezi',
-        img: 'img/hero-luxury.jpg',
-        summary: 'Elektrik Blue, Gold ve Balon Ramirezi varyeteleriyle bitkili akvaryumlarda beslenebilen nadir, barışçıl ve mücevher gibi parlayan Güney Amerika cüce cikletleridir.',
+        img: 'img/ency-ramirezi.jpg',
+        summary: 'Elektrik Blue, German Blue, Bolivian ve Balon Ramirezi varyeteleriyle bitkili akvaryumlarda beslenebilen nadir, barışçıl ve mücevher gibi parlayan Güney Amerika cüce cikletleridir.',
         compatible: 'Neon & Kardinal Tetra, Rasbora, Discus, Melek, Çöpçü, Cüce Vatoz',
         incompatible: 'Büyük ve sert Malawi cikletleri, soğuk su Japon balıkları',
         diet: 'Yavaş batan mikro granül yemler, artemia ve renk artırıcı astaksantinli yemler.'
       },
       {
         id: 'tetra',
-        name: 'Neon, Kardinal & Transgenetik Tetralar',
-        latin: 'Paracheirodon innesi • Gymnocorymbus',
+        name: 'Neon, Kardinal & Kırmızı Burun Tetralar',
+        latin: 'Paracheirodon innesi • Hemigrammus',
         group: 'Barışçıl',
         difficulty: 'Başlangıç (Kolay)',
         temp: '23°C – 27°C',
@@ -1503,7 +1487,7 @@
         minLiter: '45 Litre+',
         lifespan: '4–6 Yıl • 3–5 cm',
         searchKey: 'tetra',
-        img: 'img/hero-luxury.jpg',
+        img: 'img/ency-tetra.webp',
         summary: 'En az 6–10 adetlik sürüler halinde yüzdüklerinde bitkili akvaryumlarda muazzam bir görsel şölen sunan, fosforlu mavi-kırmızı çizgili barışçıl sürü balıklarıdır.',
         compatible: 'Lepistes, Rasbora, Ramirezi, Çöpçü, Vatoz, Karides, Discus (Kardinal Tetra ile)',
         incompatible: 'İri Cikletler ve büyük boy avcı balıklar',
@@ -1520,8 +1504,8 @@
         minLiter: '120 Litre+',
         lifespan: '8–10 Yıl • 12–15 cm (Yüksek)',
         searchKey: 'melek',
-        img: 'img/hero-luxury.jpg',
-        summary: 'Üçgen yelken yüzgeçleriyle yüksek camlı ve bitkili akvaryumların en zarif türlerinden biridir. Tricolor, Koi, Siyah Kadife ve Platin varyeteleri mevcuttur.',
+        img: 'img/ency-melek.jpg',
+        summary: 'Üçgen yelken yüzgeçleriyle yüksek camlı ve bitkili akvaryumların en zarif türlerinden biridir. Tricolor, Koi, Siyah Kadife ve Gümüş varyeteleri mevcuttur.',
         compatible: 'Orta boy Tetralar, Ramirezi, Gurami, Çöpçü (Corydoras), L144 Vatoz',
         incompatible: 'Ağzına sığabilecek çok küçük yavru balıklar/karidesler ve sert Malawi cikletleri',
         diet: 'Protein ve bitkisel dengeli pul/granül yemler, kurutulmuş kan kurdu.'
@@ -1537,8 +1521,8 @@
         minLiter: '60 Litre+',
         lifespan: '10–15 Yıl • 10–20 cm',
         searchKey: 'japon',
-        img: 'img/hero-luxury.jpg',
-        summary: 'Isıtıcı gerektirmeyen serin suları seven, sevimli yüzüşleri ve Red Cap Oranda, Ranchu, Teleskop, Tül Kuyruk varyeteleriyle bilinen klasik akvaryum balığıdır.',
+        img: 'img/ency-japon.jpg',
+        summary: 'Isıtıcı gerektirmeyen serin suları seven, sevimli yüzüşleri ve Red Cap Oranda, Gold Oranda, Ranchu, Teleskop, Tül Kuyruk varyeteleriyle bilinen klasik akvaryum balığıdır.',
         compatible: 'Diğer Japon balığı varyeteleri ve büyük Elma Salyangozları',
         incompatible: 'Isıtıcılı tropikal balıklar (Lepistes, Ciklet, Betta, Tetra ile aynı tankta bakılmaz!)',
         diet: 'Sindirim sistemini yormayan batan (sinking) Japon granül ve pond stick yemler.'
@@ -1554,7 +1538,7 @@
         minLiter: '20 Litre+',
         lifespan: '3–5 Yıl • 6–7 cm',
         searchKey: 'betta',
-        img: 'img/hero-luxury.jpg',
+        img: 'img/ency-betta.jpg',
         summary: 'Labirent solungaç yapısı sayesinde su yüzeyinden de nefes alabilen, ipek elbise gibi açılan muazzam yüzgeçlere sahip asil bir türdür. Erkekleri tek bakılmalıdır.',
         compatible: 'Tek başına veya sakin dip canlıları (Çöpçü, Nerite/Elma Salyangozu)',
         incompatible: 'İkinci bir erkek Betta, parlak kuyruklu erkek Lepistesler',
@@ -1571,8 +1555,8 @@
         minLiter: '50 Litre+',
         lifespan: '8–12 Yıl • 8–12 cm',
         searchKey: 'vatoz',
-        img: 'img/hero-luxury.jpg',
-        summary: 'Akvaryum camlarındaki, kayalardaki ve yapraklardaki yosunları temizleyen, L144 Mavi Göz Tül Kuyruk ve LDA16 varyeteleriyle hem faydalı hem çok estetik bir balıktır.',
+        img: 'img/ency-vatoz.jpg',
+        summary: 'Akvaryum camlarındaki, kayalardaki ve yapraklardaki yosunları temizleyen, L144 Mavi Göz Tül Kuyruk ve Süper Red varyeteleriyle hem faydalı hem çok estetik bir balıktır.',
         compatible: 'Hemen hemen tüm tatlı su akvaryum balıklarıyla %100 barışçıl yaşar',
         incompatible: 'Çok yüksek tuzluluk içeren acı su tankları',
         diet: 'Batan spirulina vatoz tabletleri (Wafer), doğal Yati/Mangrow kökü lifleri ve haşlanmış kabak.'
@@ -1588,7 +1572,7 @@
         minLiter: '45 Litre+',
         lifespan: '5–8 Yıl • 4–6 cm',
         searchKey: 'çöpçü',
-        img: 'img/hero-luxury.jpg',
+        img: 'img/ency-copcu.jpg',
         summary: 'Zemine düşen yem artıklarını temizleyerek suyun bozulmasını önleyen, bıyıkları zarar görmesin diye ince taneli kum zeminde en az 4–6 adetlik grup halinde beslenen sevimli dip balıklarıdır.',
         compatible: 'Lepistes, Tetra, Discus, Melek, Ramirezi, Vatoz, Karides',
         incompatible: 'İri ve agresif dip cikletleri, keskin kırıklı taban taşları',
@@ -1596,7 +1580,7 @@
       },
       {
         id: 'karides',
-        name: 'Tatlı Su Karidesleri (Bloody Mary, Mavi Melek, Sarı Ateş)',
+        name: 'Tatlı Su Karidesleri (Bloody Mary, Kiraz, Mavi Melek)',
         latin: 'Neocaridina davidi',
         group: 'Dip & Cam',
         difficulty: 'Orta',
@@ -1605,7 +1589,7 @@
         minLiter: '20 Litre+',
         lifespan: '1.5–2 Yıl • 2.5–3 cm',
         searchKey: 'karides',
-        img: 'img/hero-luxury.jpg',
+        img: 'img/ency-karides.jpg',
         summary: 'Bitkili nano akvaryumlarda yosun ve mikro atıkları gece gündüz temizleyen, parlak kırmızı, safir mavi ve neon sarı renkleriyle bitkilerin üzerinde mücevher gibi duran omurgasızlardır.',
         compatible: 'Neon/Ember Tetra, Lepistes, Otocinclus, Cüce Vatoz, Salyangozlar',
         incompatible: 'Cikletler, Melek, Betta, Japon (karidesleri yem olarak görebilir) ve bakırlı ilaçlar!',
@@ -1613,7 +1597,7 @@
       },
       {
         id: 'koi',
-        name: 'Moli, Plati, Kılıçkuyruk & Rasbora Grupları',
+        name: 'Molly (Balon / Ay Kuyruk), Plati & Rasbora Grupları',
         latin: 'Poecilia sphenops • Trigonostigma heteromorpha',
         group: 'Barışçıl',
         difficulty: 'Başlangıç (Çok Kolay)',
@@ -1621,20 +1605,19 @@
         ph: '7.0 – 7.8',
         minLiter: '50 Litre+',
         lifespan: '3–5 Yıl • 5–8 cm',
-        searchKey: 'moli',
-        img: 'img/hero-luxury.jpg',
-        summary: 'Balon Moli, Ay Kuyruk Siyah Moli, Kırmızı Kılıçkuyruk ve Harlequin Rasbora gibi hem yosun tırtıklayan hem de akvaryumun orta-üst katmanına sürekli hareket katan dayanıklı türlerdir.',
+        searchKey: 'molly',
+        img: 'img/ency-molly.jpg',
+        summary: 'Calico & Silver Balon Molly, Ay Kuyruk Platinum Molly, Black Molly ve Harlequin Rasbora gibi hem yosun tırtıklayan hem de akvaryuma sürekli hareket katan dayanıklı türlerdir.',
         compatible: 'Lepistes, Tetra türleri, Çöpçü, Vatoz, Gurami',
         incompatible: 'Sert Malawi cikletleri ve soğuk su Japon balıkları',
         diet: 'Bitkisel spirulina pul yemler ve karışık tropikal granül yemler.'
       }
     ];
 
-    // 3. KATEGORİ TANIMLARI (CANLI BALIKLAR & PETSHOP DAHİL 13 REYON)
+    // 3. KATEGORİ TANIMLARI (CANLI BALIKLAR & PETSHOP DAHİL 12 REYON)
     const CATEGORIES = [
       { id: 'all', title: 'Tüm Ürünler', icon: '🛍️', desc: 'Tüm mağaza kataloğu', filter: () => true },
-      { id: 'kampanyali', title: 'Öne Çıkanlar', icon: '🌟', desc: 'Seçkin vitrin ürünleri', filter: p => p.oldPrice && Number(p.oldPrice) > Number(p.price) },
-      { id: 'fish', title: 'Canlı Balıklar', icon: '🐠', desc: '87+ seçkin canlı balık ırkı', filter: p => p._src === 'fish' },
+      { id: 'fish', title: 'Canlı Balıklar', icon: '🐠', desc: '90+ seçkin canlı balık ırkı', filter: p => p._src === 'fish' },
       { id: 'petshop', title: 'Kedi · Kuş · Pet', icon: '🐾', desc: 'Kedi, kuş, köpek mama & aksesuar', filter: p => p._src === 'petshop' },
       { id: 'akvaryumlar', title: 'Akvaryumlar', icon: '🏠', desc: 'Ultra Clear & mobilyalı setler', filter: p => p._src === 'aquariums' },
       { id: 'filtreler', title: 'Filtreler', icon: '⚙️', desc: 'Dış, iç, askı ve pipo filtreler', filter: p => p._src === 'equipment' && ['dis_filtre','aski_filtre','ic_filtre','pipo_filtre','sunger_filtre','tepe_filtre','uv_filtre','filtre_malzeme'].includes(p.subcategory) },
@@ -1782,14 +1765,10 @@
 
         allProducts = list;
 
-        // Ansiklopedideki kart görsellerini katalogdaki gerçek balık fotoğraflarıyla zenginleştir
-        enrichEncyclopediaImages(raw.fish || []);
-
         document.getElementById('totalCatalogBadge').textContent = `${allProducts.length} Ürün & Canlı`;
         const fishCount = allProducts.filter(p => p._src === 'fish').length;
         document.getElementById('statFishCount').textContent = `${fishCount}+`;
 
-        renderCampaignStrip();
         renderCategoryBento();
         renderSubCategoryPills();
         renderProductsGrid();
@@ -1800,13 +1779,6 @@
         console.error('Katalog yükleme hatası:', err);
         renderEncyclopediaSpecies();
       }
-    }
-
-    function enrichEncyclopediaImages(fishList) {
-      FISH_ENCYCLOPEDIA.forEach(entry => {
-        const match = fishList.find(f => f.img && `${f.name} ${f.subcategory || ''} ${f.category || ''}`.toLocaleLowerCase('tr-TR').includes(entry.searchKey));
-        if (match && match.img) entry.img = match.img;
-      });
     }
 
     function applyStoreConfigToDOM() {
@@ -1931,9 +1903,14 @@
     function filterCatalogByFishKeyword(keyword) {
       activeCategory = 'fish';
       activeSubCategory = 'all';
+      searchQuery = (keyword || '').toLocaleLowerCase('tr-TR').trim();
+      const topInp = document.getElementById('topSearchInput');
+      if (topInp) topInp.value = keyword || '';
+      const mobInp = document.getElementById('mobileSearchInput');
+      if (mobInp) mobInp.value = keyword || '';
       visibleCount = 32;
       const catObj = CATEGORIES.find(c => c.id === 'fish');
-      document.getElementById('activeCategoryTitle').textContent = `${catObj.icon} ${catObj.title}`;
+      document.getElementById('activeCategoryTitle').textContent = `${catObj.icon} ${catObj.title} (${keyword.toUpperCase()})`;
       renderCategoryBento();
       renderSubCategoryPills();
       renderProductsGrid();
@@ -2003,6 +1980,11 @@
     function selectCategory(catId) {
       activeCategory = catId;
       activeSubCategory = 'all';
+      searchQuery = '';
+      const topInp = document.getElementById('topSearchInput');
+      if (topInp) topInp.value = '';
+      const mobInp = document.getElementById('mobileSearchInput');
+      if (mobInp) mobInp.value = '';
       visibleCount = 16;
       const catObj = CATEGORIES.find(c => c.id === catId) || CATEGORIES[0];
       document.getElementById('activeCategoryTitle').textContent = `${catObj.icon} ${catObj.title}`;
@@ -2676,7 +2658,6 @@
       if (spChk) storeConfig.showPrices = Boolean(spChk.checked);
       try { localStorage.setItem('turkuaz_magaza_cfg', JSON.stringify(storeConfig)); } catch (e) {}
       applyStoreConfigToDOM();
-      renderCampaignStrip();
       renderProductsGrid();
       updateCartUI();
       closeAdminModal();
