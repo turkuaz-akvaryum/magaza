@@ -4,108 +4,168 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Turkuaz Akvaryum & PetShop | Rami · Eyüpsultan · İstanbul</title>
-  <meta name="description" content="Turkuaz Akvaryum & PetShop — Rami Yeni Mah., Reşadiye Cad. No:22, Eyüpsultan / İstanbul. Canlı balıklar, Ultra Clear akvaryumlar, filtre, ısıtıcı, LED aydınlatma, yem ve profesyonel akvaryum kurulumu." />
+  <meta name="description" content="Turkuaz Akvaryum & PetShop — Rami Yeni Mah., Reşadiye Cad. No:22, Eyüpsultan / İstanbul. Canlı balıklar, Ultra Clear akvaryumlar, filtre, ısıtıcı, LED aydınlatma, balık ansiklopedisi ve profesyonel akvaryum kurulumu." />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; background-color: #F4F7F9; color: #0F172A; }
+    body { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; background-color: #F1F5F9; color: #0F172A; }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     .hero-mesh {
-      background: radial-gradient(circle at 15% 20%, rgba(6, 182, 212, 0.35), transparent 45%),
-                  radial-gradient(circle at 85% 75%, rgba(20, 184, 166, 0.30), transparent 50%),
-                  linear-gradient(135deg, #040D1A 0%, #071E2E 55%, #0A2E3D 100%);
+      background: radial-gradient(circle at 15% 20%, rgba(6, 182, 212, 0.32), transparent 45%),
+                  radial-gradient(circle at 85% 75%, rgba(20, 184, 166, 0.28), transparent 50%),
+                  linear-gradient(135deg, #020A13 0%, #061A28 55%, #09293A 100%);
     }
     .card-hover { transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1); }
-    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 38px -15px rgba(6, 182, 212, 0.22); }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 38px -15px rgba(6, 182, 212, 0.24); }
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    @keyframes riseBubble {
+      0% { transform: translateY(20px) scale(0.8); opacity: 0; }
+      40% { opacity: 0.55; }
+      100% { transform: translateY(-120px) scale(1.15); opacity: 0; }
+    }
+    .logo-float { animation: floatSlow 4.5s ease-in-out infinite; }
+    .bubble-1 { animation: riseBubble 6s ease-in infinite; }
+    .bubble-2 { animation: riseBubble 8s ease-in infinite 2s; }
+    .bubble-3 { animation: riseBubble 7s ease-in infinite 4s; }
   </style>
 </head>
 <body class="antialiased selection:bg-cyan-500 selection:text-white pb-20 md:pb-0">
 
   <!-- ================= 1. ÜST KURUMSAL BİLGİ BARI ================= -->
-  <div class="bg-[#040D1A] text-slate-300 text-xs border-b border-cyan-500/20">
+  <div class="bg-[#020A14] text-slate-300 text-xs border-b border-cyan-500/20">
     <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-2">
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-5">
         <span class="flex items-center gap-1.5 text-cyan-400 font-semibold">
-          <span>📍</span>
+          <svg class="w-3.5 h-3.5 text-cyan-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
           <span id="topBarAddress">Rami Yeni Mah., Reşadiye Cad. No:22, Eyüpsultan / İstanbul</span>
         </span>
         <span class="hidden sm:flex items-center gap-1.5 text-slate-400">
-          <span>🕒</span>
+          <svg class="w-3.5 h-3.5 text-teal-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
           <span id="topBarHours">Pzt–Cmt 09:00–20:00 · Pazar 10:00–18:00</span>
         </span>
       </div>
-      <div class="flex items-center gap-3">
-        <span id="topAnnouncement" class="hidden lg:inline-block text-cyan-300 font-semibold">
-          ✨ Tayland, Vietnam, Endonezya ve Singapur'dan Doğrudan İthalat • Profesyonel Akvaryum Kurulumu
-        </span>
+      <div class="flex items-center gap-4">
+        <a href="#ansiklopedi" class="hidden lg:inline-flex items-center gap-1.5 text-cyan-300 hover:text-white font-bold transition">
+          <span>📖 Akvaryum Balıkları Bilgi Ansiklopedisi</span>
+        </a>
         <a href="https://yandex.com.tr/maps/org/turkuaz_petshop/1230764518/?lang=tr&ll=28.920110%2C41.049292&z=16" target="_blank" rel="noopener" class="text-cyan-400 hover:text-cyan-300 font-bold underline">
-          Yol Tarifi Al →
+          Haritada Gör →
         </a>
       </div>
     </div>
   </div>
 
-  <!-- ================= 2. ANA NAVİGASYON BARI (STICKY GLASS) ================= -->
+  <!-- ================= 2. ANA NAVİGASYON BARI (MODERN VEKTÖR LOGOLU) ================= -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 h-18 py-3 flex items-center justify-between gap-3">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
       
-      <!-- Logo -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-cyan-600 via-teal-500 to-emerald-400 flex items-center justify-center text-white text-xl font-black shadow-lg shadow-cyan-500/25 group-hover:scale-105 transition">
-          🐠
+      <!-- Özel Tasarım Vektör SVG Logo: Turkuaz Akvaryum -->
+      <a href="#" class="flex items-center gap-3.5 group shrink-0">
+        <div class="relative w-12 h-12 rounded-2xl bg-[#031322] p-0.5 shadow-lg shadow-cyan-500/25 group-hover:shadow-cyan-500/40 transition-all duration-300">
+          <div class="w-full h-full rounded-[14px] bg-gradient-to-br from-[#062038] via-[#041527] to-[#083344] border border-cyan-400/40 flex items-center justify-center relative overflow-hidden">
+            <!-- Arka Plan Turkuaz Işık Efekti -->
+            <div class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-cyan-400/30 blur-md"></div>
+            <div class="absolute -bottom-3 -left-3 w-8 h-8 rounded-full bg-teal-400/25 blur-md"></div>
+            <!-- Modern Vektör Discus / Melek Balığı & Dalga Amblemi -->
+            <svg class="w-8 h-8 logo-float relative z-10" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="trkGrad1" x1="6" y1="8" x2="56" y2="54" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#22D3EE" />
+                  <stop offset="50%" stop-color="#14B8A6" />
+                  <stop offset="100%" stop-color="#34D399" />
+                </linearGradient>
+                <linearGradient id="trkGrad2" x1="12" y1="20" x2="48" y2="44" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#ECFEFF" />
+                  <stop offset="100%" stop-color="#22D3EE" />
+                </linearGradient>
+              </defs>
+              <!-- Üst ve Alt Akışkan Yüzgeç Kanatları -->
+              <path d="M27 8C34 8 44 14 48 26C52 22 57 18 59 17C58 24 55 29 52 32C55 35 58 40 59 47C57 46 52 42 48 38C44 50 34 56 27 56C31 46 31 39 29 32C31 25 31 18 27 8Z" fill="url(#trkGrad1)" opacity="0.92"/>
+              <!-- Modern Geometrik Balık Gövdesi -->
+              <path d="M9 32C13 21 23 16 34 19C41 21 46 26 48 32C46 38 41 43 34 45C23 48 13 43 9 32Z" fill="url(#trkGrad2)"/>
+              <!-- Turkuaz Solungaç & Desen Çizgileri -->
+              <path d="M24 21C27 26 27 38 24 43" stroke="#041527" stroke-width="2.4" stroke-linecap="round"/>
+              <path d="M31 21.5C34 27 34 37 31 42.5" stroke="#0891B2" stroke-width="2" stroke-linecap="round"/>
+              <!-- Parlak Göz -->
+              <circle cx="17.5" cy="30" r="2.3" fill="#031322"/>
+              <circle cx="16.8" cy="29.3" r="0.9" fill="#67E8F9"/>
+              <!-- Su Kabarcıkları -->
+              <circle cx="7" cy="22" r="2" fill="#22D3EE" opacity="0.85"/>
+              <circle cx="11" cy="15" r="1.4" fill="#5EEAD4" opacity="0.7"/>
+            </svg>
+          </div>
         </div>
         <div>
-          <div class="text-base sm:text-lg font-black tracking-tight text-slate-900 leading-none">
-            TURKUAZ <span class="text-cyan-600">AKVARYUM</span>
+          <div class="flex items-center gap-1.5">
+            <span class="text-base sm:text-xl font-black tracking-tight text-slate-950 leading-none">TURKUAZ</span>
+            <span class="text-base sm:text-xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 via-teal-500 to-emerald-500 leading-none">AKVARYUM</span>
           </div>
-          <div class="text-[11px] font-bold text-slate-500 tracking-wide mt-0.5">
-            RAMİ · EYÜPSULTAN · AKVARYUM & PETSHOP
+          <div class="flex items-center gap-1.5 mt-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
+            <span class="text-[10px] sm:text-[11px] font-extrabold text-slate-500 tracking-wider uppercase">
+              RAMİ · EYÜPSULTAN · AQUA & PET STUDIO
+            </span>
           </div>
         </div>
       </a>
 
       <!-- Hızlı Arama Çubuğu (Masaüstü) -->
-      <div class="hidden md:flex flex-1 max-w-md mx-4">
+      <div class="hidden md:flex flex-1 max-w-md mx-3">
         <div class="relative w-full">
           <input
             id="topSearchInput"
             type="search"
             oninput="onGlobalSearch(this.value)"
-            placeholder="Balık türü, dış filtre, ısıtıcı, yem, LED veya ürün kodu ara..."
-            class="w-full bg-slate-100 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-cyan-500 rounded-2xl pl-10 pr-4 py-2.5 text-xs font-medium text-slate-800 outline-none transition"
+            placeholder="Balık türü, dış filtre, ısıtıcı, yem, LED veya stok kodu ara..."
+            class="w-full bg-slate-100 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-cyan-500 rounded-2xl pl-10 pr-4 py-2.5 text-xs font-semibold text-slate-800 outline-none transition"
           />
-          <span class="absolute left-3.5 top-2.5 text-slate-400 text-sm">🔍</span>
+          <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
         </div>
       </div>
 
       <!-- Menü Linkleri & Sepet Butonu -->
       <div class="flex items-center gap-2">
-        <nav class="hidden xl:flex items-center gap-5 text-xs font-extrabold uppercase tracking-wider text-slate-700 mr-3">
-          <a href="#kategoriler" class="hover:text-cyan-600 transition">Kategoriler</a>
-          <a href="#urunler" onclick="selectCategory('fish')" class="text-cyan-600 hover:text-cyan-700 transition">🐠 Canlı Balıklar</a>
+        <nav class="hidden xl:flex items-center gap-4 text-xs font-extrabold uppercase tracking-wider text-slate-700 mr-2">
+          <a href="#kategoriler" class="hover:text-cyan-600 transition">Reyonlar</a>
+          <a href="#urunler" onclick="selectCategory('fish')" class="text-cyan-600 hover:text-cyan-700 transition">Canlı Balıklar</a>
           <a href="#urunler" onclick="selectCategory('akvaryumlar')" class="hover:text-cyan-600 transition">Akvaryumlar</a>
-          <a href="#sihirbaz" class="hover:text-cyan-600 transition">🧪 Kurulum Sihirbazı</a>
-          <a href="#hizmetler" class="hover:text-cyan-600 transition">Hizmetler</a>
+          <a href="#ansiklopedi" class="px-2.5 py-1.5 rounded-xl bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200/80 transition">📖 Balık Ansiklopedisi</a>
+          <a href="#sihirbaz" class="hover:text-cyan-600 transition">Litre Sihirbazı</a>
           <a href="#iletisim" class="hover:text-cyan-600 transition">İletişim</a>
         </nav>
 
         <button
-          onclick="openWizardModal()"
-          class="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border border-cyan-200 text-xs font-extrabold transition"
-          title="Akvaryum Litresine Göre Ekipman Hesapla"
+          onclick="openAdminModal()"
+          class="hidden sm:flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-extrabold transition"
+          title="Ürün Ekle / Fiyat Düzenle / Mağaza Ayarları"
         >
-          <span>🧪</span>
-          <span>Litre Sihirbazı</span>
+          <svg class="w-4 h-4 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span>Yönetim</span>
         </button>
 
         <button
           onclick="toggleCartDrawer(true)"
           class="relative flex items-center gap-2 px-3.5 py-2.5 rounded-2xl bg-slate-900 hover:bg-cyan-700 text-white text-xs font-black shadow-md transition active:scale-95"
         >
-          <span>🛒</span>
+          <svg class="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
           <span class="hidden sm:inline">Sepetim</span>
           <span id="headerCartBadge" class="px-2 py-0.5 rounded-full bg-cyan-400 text-slate-950 text-[11px] font-black">0</span>
         </button>
@@ -113,63 +173,104 @@
     </div>
 
     <!-- Mobil Arama Çubuğu -->
-    <div class="md:hidden px-4 pb-2.5">
-      <div class="relative w-full">
+    <div class="md:hidden px-4 pb-2.5 flex gap-2">
+      <div class="relative flex-1">
         <input
           id="mobileSearchInput"
           type="search"
           oninput="onGlobalSearch(this.value)"
-          placeholder="Canlı balık, filtre, ısıtıcı, açık yem, kaya ara..."
+          placeholder="Canlı balık, filtre, ısıtıcı, açık yem ara..."
           class="w-full bg-slate-100 focus:bg-white border border-slate-200 focus:border-cyan-500 rounded-xl pl-9 pr-3 py-2 text-xs font-medium text-slate-800 outline-none"
         />
-        <span class="absolute left-3 top-2 text-slate-400 text-xs">🔍</span>
+        <svg class="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
       </div>
+      <a href="#ansiklopedi" class="px-3 py-2 rounded-xl bg-cyan-50 text-cyan-800 border border-cyan-200 text-[11px] font-extrabold shrink-0 flex items-center">
+        📖 Ansiklopedi
+      </a>
     </div>
   </header>
 
-  <!-- ================= 3. MODERN SİNEMATİK HERO VİTRİNİ ================= -->
-  <section class="relative hero-mesh text-white overflow-hidden">
-    <img
-      src="img/hero.jpg"
-      alt="Turkuaz Akvaryum Doğal Bitkili Akvaryum"
-      class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-luminosity"
-      onerror="this.style.display='none'"
-    />
-    <div class="absolute inset-0 bg-gradient-to-r from-[#040D1A]/95 via-[#071E2E]/80 to-[#040D1A]/70"></div>
+  <!-- ================= 3. YENİ NESİL SUALTI HERO VİTRİNİ (KRİSTAL NETLİĞİNDE ARKA PLAN) ================= -->
+  <section class="relative bg-[#020A13] text-white overflow-hidden">
+    <!-- Yüksek Çözünürlüklü Özel Üretim Sualtı Discus & Neon Tetra Aquascape Görseli -->
+    <div class="absolute inset-0">
+      <img
+        src="img/hero-luxury.jpg"
+        alt="Turkuaz Akvaryum Discus ve Bitkili Aquascape"
+        class="w-full h-full object-cover object-right sm:object-center scale-[1.01] transition-transform duration-1000"
+      />
+      <!-- Sadece sol yazı alanını okunaklı kılan, sağdaki canlı balıkları ve bitkileri net bırakan akıllı degrade -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#020B14] via-[#031322]/80 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#020A13] via-transparent to-[#020A13]/40"></div>
+    </div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-4 py-12 sm:py-16 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-      <div class="lg:col-span-7 space-y-5">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/30 text-cyan-300 text-xs font-bold backdrop-blur-md">
+    <!-- Canlı Su Kabarcığı Animasyonları -->
+    <div class="pointer-events-none absolute inset-0 overflow-hidden">
+      <div class="bubble-1 absolute bottom-10 left-[48%] w-3 h-3 rounded-full border border-cyan-300/50 bg-cyan-300/10"></div>
+      <div class="bubble-2 absolute bottom-6 left-[68%] w-4 h-4 rounded-full border border-teal-300/40 bg-teal-300/10"></div>
+      <div class="bubble-3 absolute bottom-14 left-[82%] w-2.5 h-2.5 rounded-full border border-cyan-200/50 bg-cyan-200/10"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 pt-12 pb-10 sm:pt-16 sm:pb-14 lg:pt-20 lg:pb-16">
+      <div class="max-w-2xl space-y-6">
+        
+        <!-- Üst Rozet -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/40 text-cyan-200 text-xs font-extrabold backdrop-blur-md shadow-lg">
           <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-          <span>Rami · Eyüpsultan · İstanbul — Profesyonel Akvaryum & PetShop Mağazası</span>
+          <span>RAMİ · EYÜPSULTAN / İSTANBUL — YENİ NESİL AKVARYUM MAĞAZASI</span>
         </div>
 
-        <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-          Sualtı Dünyasının En Seçkin <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-teal-200 to-emerald-300">Canlıları & Ekipmanları</span>
+        <!-- Ana Başlık -->
+        <h1 class="text-3xl sm:text-5xl lg:text-[54px] font-black tracking-tight leading-[1.12] drop-shadow-sm">
+          Sualtı Dünyasının En Seçkin
+          <span class="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-teal-200 to-emerald-300 mt-1">
+            Canlıları & Ekipmanları
+          </span>
         </h1>
 
-        <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
-          80'den fazla ithal ve yerli canlı balık varyetesi, Ultra Clear cama cam akvaryumlar, profesyonel dış/iç filtreler, bitkili aquascape ekipmanları ve açık/kapalı yem çeşitleri tek çatı altında.
+        <!-- Açıklama -->
+        <p class="text-sm sm:text-base text-slate-200/95 leading-relaxed font-medium drop-shadow">
+          Karantinadan geçmiş <strong class="text-cyan-300">87+ canlı balık varyetesi</strong>, 45° rodajlı <strong class="text-cyan-300">Ultra Clear akvaryumlar</strong>, ultra sessiz filtreleme sistemleri, doğal kaya/kök peyzaj malzemeleri ve taze gramajlı yemler Turkuaz Akvaryum uzmanlığıyla tek adreste.
         </p>
 
-        <!-- Doğrudan İthalat Bayrakları -->
-        <div class="pt-1">
-          <span class="text-[10px] font-extrabold uppercase tracking-widest text-cyan-400 block mb-2">
-            🌏 Doğrudan Seçici İthalat & Üretim Ağımız
-          </span>
-          <div class="flex flex-wrap items-center gap-2.5">
-            <span class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 backdrop-blur-sm text-xs font-bold">
-              <img src="https://flagcdn.com/w40/th.png" alt="Tayland" class="w-5 h-3.5 object-cover rounded-sm" /> Tayland
-            </span>
-            <span class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 backdrop-blur-sm text-xs font-bold">
-              <img src="https://flagcdn.com/w40/vn.png" alt="Vietnam" class="w-5 h-3.5 object-cover rounded-sm" /> Vietnam
-            </span>
-            <span class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 backdrop-blur-sm text-xs font-bold">
-              <img src="https://flagcdn.com/w40/id.png" alt="Endonezya" class="w-5 h-3.5 object-cover rounded-sm" /> Endonezya
-            </span>
-            <span class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 backdrop-blur-sm text-xs font-bold">
-              <img src="https://flagcdn.com/w40/sg.png" alt="Singapur" class="w-5 h-3.5 object-cover rounded-sm" /> Singapur
-            </span>
+        <!-- Özgün Turkuaz Akvaryum Güvence Rozetleri -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1">
+          <div class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl bg-[#041829]/80 border border-cyan-400/30 backdrop-blur-md">
+            <div class="w-8 h-8 rounded-xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 shrink-0">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <div>
+              <div class="text-[11px] font-black text-white leading-tight">%100 Sağlıklı Canlı</div>
+              <div class="text-[10px] text-cyan-300/80">Karantina & Uyum Kontrolü</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl bg-[#041829]/80 border border-cyan-400/30 backdrop-blur-md">
+            <div class="w-8 h-8 rounded-xl bg-teal-500/20 border border-teal-400/40 flex items-center justify-center text-teal-300 shrink-0">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <div>
+              <div class="text-[11px] font-black text-white leading-tight">Balık Ansiklopedisi</div>
+              <div class="text-[10px] text-teal-300/80">Su Değeri & Bakım Rehberi</div>
+            </div>
+          </div>
+
+          <div class="col-span-2 sm:col-span-1 flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl bg-[#041829]/80 border border-cyan-400/30 backdrop-blur-md">
+            <div class="w-8 h-8 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300 shrink-0">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+            </div>
+            <div>
+              <div class="text-[11px] font-black text-white leading-tight">Akıllı Litre Sihirbazı</div>
+              <div class="text-[10px] text-emerald-300/80">Otomatik Watt & Debi Hesabı</div>
+            </div>
           </div>
         </div>
 
@@ -177,53 +278,92 @@
         <div class="flex flex-wrap items-center gap-3 pt-2">
           <a
             href="#urunler"
-            class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-teal-400 hover:from-cyan-400 hover:to-teal-300 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-cyan-500/25 transition active:scale-95"
+            class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-cyan-500/30 transition active:scale-95 flex items-center gap-2"
           >
-            🛍️ Tüm Ürünleri İncele
+            <span>Mağaza Kataloğunu Keşfet</span>
+            <span>→</span>
           </a>
           <a
             href="#urunler"
             onclick="selectCategory('fish')"
-            class="px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-cyan-400/40 text-white font-extrabold text-xs sm:text-sm backdrop-blur-md transition active:scale-95"
+            class="px-5 py-3.5 rounded-2xl bg-[#041829]/85 hover:bg-[#072640] border border-cyan-400/50 text-white font-extrabold text-xs sm:text-sm backdrop-blur-md transition active:scale-95"
           >
-            🐠 Canlı Balık Vitrini
+            Canlı Balık Vitrini (87+)
           </a>
-          <button
-            onclick="openWizardModal()"
-            class="px-5 py-3.5 rounded-2xl bg-slate-900/80 hover:bg-slate-900 border border-slate-700 text-cyan-300 font-bold text-xs sm:text-sm transition"
+          <a
+            href="#ansiklopedi"
+            class="px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-cyan-200 font-bold text-xs sm:text-sm backdrop-blur-md transition"
           >
-            🧪 Akvaryum Litre Sihirbazı
-          </button>
+            📖 Balık Bilgi Ansiklopedisi
+          </a>
         </div>
       </div>
 
-      <!-- Sağ Öne Çıkan İstatistik & Hızlı Vitrin Kartı -->
-      <div class="lg:col-span-5 grid grid-cols-2 gap-3">
-        <div onclick="selectCategory('fish')" class="cursor-pointer p-4 rounded-3xl bg-white/10 hover:bg-white/15 border border-white/15 backdrop-blur-md space-y-1.5 transition">
-          <span class="text-2xl">🐠</span>
-          <div class="text-2xl font-black text-cyan-300" id="statFishCount">87+</div>
-          <div class="text-xs font-extrabold text-white">Canlı Balık & Irk</div>
-          <p class="text-[11px] text-slate-300">İthal Lepistes, Discus, Cichlid, Tetra, Vatoz & Karides</p>
+      <!-- Alt Yüzen Cam Vitrin Barı (Arka Plandaki Discus Balıklarını Kapatmaz!) -->
+      <div class="mt-10 sm:mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div onclick="selectCategory('fish')" class="cursor-pointer group p-4 rounded-2xl bg-[#031322]/75 hover:bg-[#052038]/90 border border-cyan-400/30 hover:border-cyan-300 backdrop-blur-xl flex items-center gap-3.5 transition shadow-lg">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500/25 to-teal-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 shrink-0 group-hover:scale-105 transition">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2 12c3-5 8-7 13-5 2 1 4 3 5 5-1 2-3 4-5 5-5 2-10 0-13-5zm18 0l2-3v6l-2-3z" />
+              <circle cx="15" cy="11" r="1" fill="currentColor" />
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-1.5">
+              <span class="text-xl font-black text-cyan-300" id="statFishCount">87+</span>
+              <span class="text-xs font-extrabold text-white">Canlı Balık Türü</span>
+            </div>
+            <p class="text-[11px] text-slate-300/90 mt-0.5">Discus, Lepistes, Ciklet, Tetra, Vatoz</p>
+          </div>
         </div>
-        <div onclick="selectCategory('filtreler')" class="cursor-pointer p-4 rounded-3xl bg-white/10 hover:bg-white/15 border border-white/15 backdrop-blur-md space-y-1.5 transition">
-          <span class="text-2xl">⚙️</span>
-          <div class="text-2xl font-black text-teal-300" id="statEquipCount">200+</div>
-          <div class="text-xs font-extrabold text-white">Filtre, Isıtıcı & LED</div>
-          <p class="text-[11px] text-slate-300">Dış filtre, pipo filtre, termostatlı ısıtıcı ve RGB LED</p>
+
+        <div onclick="selectCategory('filtreler')" class="cursor-pointer group p-4 rounded-2xl bg-[#031322]/75 hover:bg-[#052038]/90 border border-cyan-400/30 hover:border-cyan-300 backdrop-blur-xl flex items-center gap-3.5 transition shadow-lg">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-500/25 to-emerald-500/20 border border-teal-400/40 flex items-center justify-center text-teal-300 shrink-0 group-hover:scale-105 transition">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-1.5">
+              <span class="text-xl font-black text-teal-300">200+</span>
+              <span class="text-xs font-extrabold text-white">Filtre & Ekipman</span>
+            </div>
+            <p class="text-[11px] text-slate-300/90 mt-0.5">Dış/İç filtre, termostatlı ısıtıcı & LED</p>
+          </div>
         </div>
-        <div onclick="selectCategory('yemler')" class="cursor-pointer p-4 rounded-3xl bg-white/10 hover:bg-white/15 border border-white/15 backdrop-blur-md space-y-1.5 transition">
-          <span class="text-2xl">🍽️</span>
-          <div class="text-2xl font-black text-amber-300">50g – 1Kg</div>
-          <div class="text-xs font-extrabold text-white">Açık & Kapalı Yemler</div>
-          <p class="text-[11px] text-slate-300">İstediğiniz gramajda taze bölme ve orijinal kutu yemler</p>
+
+        <div onclick="selectCategory('yemler')" class="cursor-pointer group p-4 rounded-2xl bg-[#031322]/75 hover:bg-[#052038]/90 border border-cyan-400/30 hover:border-cyan-300 backdrop-blur-xl flex items-center gap-3.5 transition shadow-lg">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500/25 to-orange-500/20 border border-amber-400/40 flex items-center justify-center text-amber-300 shrink-0 group-hover:scale-105 transition">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-1.5">
+              <span class="text-xl font-black text-amber-300">50g–1Kg</span>
+              <span class="text-xs font-extrabold text-white">Açık & Kutu Yem</span>
+            </div>
+            <p class="text-[11px] text-slate-300/90 mt-0.5">Seçtiğiniz gramajda taze bölme yem</p>
+          </div>
         </div>
-        <div onclick="selectCategory('akvaryumlar')" class="cursor-pointer p-4 rounded-3xl bg-white/10 hover:bg-white/15 border border-white/15 backdrop-blur-md space-y-1.5 transition">
-          <span class="text-2xl">🏠</span>
-          <div class="text-2xl font-black text-emerald-300">Özel Ölçü</div>
-          <div class="text-xs font-extrabold text-white">Ultra Clear Akvaryum</div>
-          <p class="text-[11px] text-slate-300">45° rodajlı ekstra şeffaf ve mobilyalı akvaryumlar</p>
+
+        <div onclick="selectCategory('akvaryumlar')" class="cursor-pointer group p-4 rounded-2xl bg-[#031322]/75 hover:bg-[#052038]/90 border border-cyan-400/30 hover:border-cyan-300 backdrop-blur-xl flex items-center gap-3.5 transition shadow-lg">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500/25 to-cyan-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300 shrink-0 group-hover:scale-105 transition">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path stroke-linecap="round" d="M3 10c4 1.5 8-1.5 12 0s4 1.5 6 0" />
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-1.5">
+              <span class="text-xl font-black text-emerald-300">45° Rodaj</span>
+              <span class="text-xs font-extrabold text-white">Ultra Clear Tank</span>
+            </div>
+            <p class="text-[11px] text-slate-300/90 mt-0.5">Ekstra şeffaf cama cam & mobilyalı</p>
+          </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -231,9 +371,9 @@
   <section id="kampanyaStripSection" class="bg-white border-b border-slate-200 py-5">
     <div class="max-w-7xl mx-auto px-4 space-y-3">
       <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <span class="px-2.5 py-1 rounded-lg bg-rose-600 text-white text-[11px] font-black uppercase tracking-wider">🔥 Fırsat</span>
-          <h2 class="text-sm sm:text-base font-black text-slate-900">Haftanın İndirimli & Kampanyalı Ürünleri</h2>
+        <div class="flex items-center gap-2.5">
+          <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-rose-600 to-orange-500 text-white text-[11px] font-black uppercase tracking-wider shadow-xs">Fırsat Reyonu</span>
+          <h2 class="text-sm sm:text-base font-black text-slate-900">İndirimli & Kampanyalı Akvaryum Ürünleri</h2>
         </div>
         <button onclick="selectCategory('kampanyali')" class="text-xs font-extrabold text-cyan-600 hover:text-cyan-700">
           Tüm İndirimleri Gör →
@@ -247,10 +387,10 @@
   <section id="kategoriler" class="max-w-7xl mx-auto px-4 pt-8 pb-4">
     <div class="flex items-end justify-between mb-4">
       <div>
-        <span class="text-[11px] font-extrabold uppercase tracking-widest text-cyan-600 block">Mağaza Reyonları</span>
-        <h2 class="text-xl sm:text-2xl font-black text-slate-900">Kategorilere Göre İncele</h2>
+        <span class="text-[11px] font-extrabold uppercase tracking-widest text-cyan-600 block">Turkuaz Akvaryum Reyonları</span>
+        <h2 class="text-xl sm:text-2xl font-black text-slate-900">Kategorilere Göre Keşfet</h2>
       </div>
-      <span id="totalCatalogBadge" class="text-xs font-bold text-slate-500 bg-white px-3 py-1.5 rounded-xl border border-slate-200">
+      <span id="totalCatalogBadge" class="text-xs font-extrabold text-cyan-800 bg-cyan-50 px-3.5 py-1.5 rounded-xl border border-cyan-200">
         440+ Ürün Hazır
       </span>
     </div>
@@ -259,13 +399,13 @@
   </section>
 
   <!-- ================= 6. ANA ÜRÜN VİTRİNİ, FİLTRELER & ARAMA ================= -->
-  <section id="urunler" class="max-w-7xl mx-auto px-4 py-8 space-y-6">
+  <section id="urunler" class="max-w-7xl mx-auto px-4 py-6 space-y-6">
     
     <!-- Üst Başlık ve Filtre Barı -->
     <div class="bg-white rounded-3xl p-4 sm:p-5 border border-slate-200/90 shadow-sm space-y-4">
       <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3.5">
         <div>
-          <span id="activeCategorySuper" class="text-[11px] font-extrabold uppercase tracking-wider text-cyan-600 block">Turkuaz Akvaryum Mağaza</span>
+          <span id="activeCategorySuper" class="text-[11px] font-extrabold uppercase tracking-wider text-cyan-600 block">Turkuaz Akvaryum · Rami / Eyüpsultan</span>
           <h2 id="activeCategoryTitle" class="text-lg sm:text-2xl font-black text-slate-900">Tüm Ürünler & Canlılar</h2>
         </div>
 
@@ -297,8 +437,243 @@
     <div id="loadMoreWrap" class="text-center pt-4"></div>
   </section>
 
-  <!-- ================= 7. AKVARYUM LİTRE & EKİPMAN SİHİRBAZI BÖLÜMÜ ================= -->
-  <section id="sihirbaz" class="max-w-7xl mx-auto px-4 py-8">
+  <!-- ================= 7. AKVARYUM BALIKLARI & SUALTI BİLGİ ANSİKLOPEDİSİ (YENİ!) ================= -->
+  <section id="ansiklopedi" class="py-14 bg-[#030E1A] text-white border-y border-cyan-500/25 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 space-y-8 relative z-10">
+      
+      <!-- Ansiklopedi Üst Başlık ve Arama/Sekme Barı -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-cyan-500/20 pb-6">
+        <div class="space-y-2 max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-400/30 text-cyan-300 text-xs font-extrabold uppercase tracking-wider">
+            <span>📖 Turkuaz Akvaryum Bilgi Kütüphanesi</span>
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-black tracking-tight">
+            Akvaryum Balıkları <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-emerald-300">Bilgi Ansiklopedisi</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Hangi balık kaç derece suda yaşar? Hangi türler aynı akvaryuma konur, hangileri birbirine zarar verir? Su değerleri, pH aralıkları, minimum litre gereksinimleri, beslenme ve hastalık rehberi.
+          </p>
+        </div>
+
+        <!-- Ansiklopedi Modül Sekmeleri -->
+        <div class="flex flex-wrap gap-2" id="encyTabBar">
+          <button onclick="switchEncyclopediaTab('species')" data-etab="species" class="ency-tab-btn px-4 py-2.5 rounded-2xl bg-gradient-to-r from-cyan-400 to-teal-400 text-slate-950 font-black text-xs shadow-lg transition">
+            🐠 Balık Türleri Rehberi (12 Familya)
+          </button>
+          <button onclick="switchEncyclopediaTab('matrix')" data-etab="matrix" class="ency-tab-btn px-4 py-2.5 rounded-2xl bg-white/10 hover:bg-white/15 text-white border border-white/15 font-extrabold text-xs transition">
+            ⚖️ Balık Uyumluluk Tablosu
+          </button>
+          <button onclick="switchEncyclopediaTab('water')" data-etab="water" class="ency-tab-btn px-4 py-2.5 rounded-2xl bg-white/10 hover:bg-white/15 text-white border border-white/15 font-extrabold text-xs transition">
+            💧 Su Kimyası & Azot Döngüsü
+          </button>
+          <button onclick="switchEncyclopediaTab('diseases')" data-etab="diseases" class="ency-tab-btn px-4 py-2.5 rounded-2xl bg-white/10 hover:bg-white/15 text-white border border-white/15 font-extrabold text-xs transition">
+            🛡️ Hastalık & Tedavi Rehberi
+          </button>
+        </div>
+      </div>
+
+      <!-- SEKME 1: 12 BALIK FAMİLYASI & TÜR ANSİKLOPEDİSİ -->
+      <div id="encyPane_species" class="space-y-6">
+        <!-- Filtre & Hızlı Tür Arama -->
+        <div class="flex flex-wrap items-center justify-between gap-3 bg-[#061A2E] p-3.5 rounded-2xl border border-cyan-500/20">
+          <div class="flex flex-wrap gap-1.5" id="encyDifficultyFilter">
+            <button onclick="filterEncySpecies('all')" data-ediff="all" class="ediff-btn px-3 py-1.5 rounded-xl bg-cyan-400 text-slate-950 text-xs font-black">Tüm Türler (12)</button>
+            <button onclick="filterEncySpecies('Barışçıl')" data-ediff="Barışçıl" class="ediff-btn px-3 py-1.5 rounded-xl bg-white/10 text-slate-200 text-xs font-bold hover:bg-white/15">🟢 Barışçıl / Karma Tank</button>
+            <button onclick="filterEncySpecies('Bölgeci')" data-ediff="Bölgeci" class="ediff-btn px-3 py-1.5 rounded-xl bg-white/10 text-slate-200 text-xs font-bold hover:bg-white/15">🟠 Ciklet / Bölgeci</button>
+            <button onclick="filterEncySpecies('Soğuk Su')" data-ediff="Soğuk Su" class="ediff-btn px-3 py-1.5 rounded-xl bg-white/10 text-slate-200 text-xs font-bold hover:bg-white/15">🔵 Soğuk Su / Japon</button>
+            <button onclick="filterEncySpecies('Dip & Cam')" data-ediff="Dip & Cam" class="ediff-btn px-3 py-1.5 rounded-xl bg-white/10 text-slate-200 text-xs font-bold hover:bg-white/15">🧹 Vatoz, Çöpçü & Karides</button>
+          </div>
+          <div class="relative w-full sm:w-64">
+            <input
+              id="encySearchInput"
+              type="search"
+              oninput="renderEncyclopediaSpecies()"
+              placeholder="Ansiklopedide balık ara (Discus, Lepistes...)"
+              class="w-full bg-[#030E1A] border border-cyan-500/30 focus:border-cyan-400 rounded-xl pl-3.5 pr-3 py-2 text-xs text-white placeholder-slate-400 outline-none"
+            />
+          </div>
+        </div>
+
+        <!-- 12 Detaylı Balık Ansiklopedi Kartı Grid -->
+        <div id="encySpeciesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+      </div>
+
+      <!-- SEKME 2: BALIK UYUMLULUK MATRİSİ TABLOSU -->
+      <div id="encyPane_matrix" class="hidden space-y-5">
+        <div class="bg-[#061A2E] rounded-3xl p-5 sm:p-6 border border-cyan-500/25 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h3 class="text-lg font-black text-white">Hangi Balıklar Birlikte Yaşar? (Uyumluluk Tablosu)</h3>
+              <p class="text-xs text-slate-300 mt-0.5">Yeni akvaryum kurarken veya mevcut tankınıza balık eklerken aşağıdaki altın kuralları mutlaka kontrol edin.</p>
+            </div>
+            <div class="flex items-center gap-3 text-xs font-bold">
+              <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">✅ Tam Uyumlu</span>
+              <span class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 border border-amber-400/30">⚠️ Koşullu / Dikkat</span>
+              <span class="px-2.5 py-1 rounded-lg bg-rose-500/20 text-rose-300 border border-rose-400/30">❌ Kesinlikle Uyumsuz</span>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="border-b border-cyan-500/20 text-cyan-300 uppercase text-[11px]">
+                  <th class="py-3 px-3">Balık Grubu</th>
+                  <th class="py-3 px-3">İdeal Su Sıcaklığı</th>
+                  <th class="py-3 px-3">✅ Birlikte Yaşayabileceği Türler</th>
+                  <th class="py-3 px-3">❌ Aynı Tankta Olmaması Gerekenler</th>
+                  <th class="py-3 px-3">Önerilen Tank Tipi</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-white/10 text-slate-200">
+                <tr>
+                  <td class="py-3 px-3 font-black text-white">Lepistes, Moli, Plati, Kılıçkuyruk</td>
+                  <td class="py-3 px-3 text-cyan-300 font-bold">24°C – 27°C</td>
+                  <td class="py-3 px-3 text-emerald-300">Neon Tetra, Çöpçü (Corydoras), Cüce Vatoz, Elma Salyangozu, Karides</td>
+                  <td class="py-3 px-3 text-rose-300">Malawi Cikletleri, Japon Balığı, Erkek Betta (kuyruklarını ısırabilir)</td>
+                  <td class="py-3 px-3">Bitkili / Canlı Doğuran Tankı</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-black text-white">Discus (Sualtı Kralı)</td>
+                  <td class="py-3 px-3 text-cyan-300 font-bold">28°C – 30°C</td>
+                  <td class="py-3 px-3 text-emerald-300">Kardinal Tetra, Rummy Nose Tetra, Sterbai Çöpçü, L144 Vatoz, Ramirezi</td>
+                  <td class="py-3 px-3 text-rose-300">Sert su Cikletleri, Japon, hızlı ve agresif yemlenen büyük balıklar</td>
+                  <td class="py-3 px-3">Yüksek Isılı Bitkili / Biyotop</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-black text-white">Malawi & Tanganyika Cikletleri</td>
+                  <td class="py-3 px-3 text-cyan-300 font-bold">24°C – 27°C</td>
+                  <td class="py-3 px-3 text-emerald-300">Sarı Prenses, Yunus, Iceman, Demasoni, Ahli, Sert Kabuklu Vatoz</td>
+                  <td class="py-3 px-3 text-rose-300">Lepistes, Tetra, Karides, Japon, Discus, Melek</td>
+                  <td class="py-3 px-3">Kayalık & Silis Kumlu Ciklet Tankı</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-black text-white">Japon, Oranda, Ranchu, Ryukin</td>
+                  <td class="py-3 px-3 text-cyan-300 font-bold">18°C – 22°C</td>
+                  <td class="py-3 px-3 text-emerald-300">Diğer Japon varyeteleri, Koi (büyük hacimde), Elma Salyangozu</td>
+                  <td class="py-3 px-3 text-rose-300">Tüm Tropikal Balıklar (Isıtıcılı 27°C tanklar), Cikletler, Betta</td>
+                  <td class="py-3 px-3">Isıtıcısız Geniş Soğuk Su Tankı</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-black text-white">Neon, Kardinal & Ember Tetra</td>
+                  <td class="py-3 px-3 text-cyan-300 font-bold">23°C – 27°C</td>
+                  <td class="py-3 px-3 text-emerald-300">Rasbora, Lepistes, Ramirezi, Çöpçü, Vatoz, Neocaridina Karides</td>
+                  <td class="py-3 px-3 text-rose-300">İri Cikletler ve büyük boy Melek Balıkları (avlayabilir)</td>
+                  <td class="py-3 px-3">Yoğun Bitkili Aquascape Tankı</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-3 font-black text-white">Betta (Halfmoon / Plakat)</td>
+                  <td class="py-3 px-3 text-cyan-300 font-bold">25°C – 28°C</td>
+                  <td class="py-3 px-3 text-emerald-300">Tek başına veya sakin dip balıkları (Panda Çöpçü, Nerite Salyangozu)</td>
+                  <td class="py-3 px-3 text-rose-300">İkinci bir Erkek Betta, uzun tül kuyruklu Lepistesler, Cikletler</td>
+                  <td class="py-3 px-3">20L–45L Bitkili Nano Akvaryum</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEKME 3: SU KİMYASI & AZOT DÖNGÜSÜ REHBERİ -->
+      <div id="encyPane_water" class="hidden grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="bg-[#061A2E] rounded-3xl p-6 border border-cyan-500/25 space-y-3">
+          <span class="px-2.5 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 text-[11px] font-black uppercase">1. Adım • İlk Kurulum</span>
+          <h3 class="text-lg font-black text-white">Yeni Akvaryumda Azot (Bakteri) Döngüsü</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Yeni kurulan bir akvaryuma musluk suyu konup hemen balık eklenirse balıklar **klor ve amonyak zehirlenmesinden** zarar görür.
+          </p>
+          <ul class="text-xs text-slate-200 space-y-2 pt-1">
+            <li>• <strong class="text-cyan-300">1. Gün:</strong> Kumu, kayaları yıkayıp yerleştirin. Suyu doldurup **Su Düzenleyici (Klor Giderici)** ekleyin ve filtre/ısıtıcıyı çalıştırın.</li>
+            <li>• <strong class="text-cyan-300">2. Gün:</strong> Yararlı filtrasyon bakterilerinin oluşması için **Bakteri Kültürü** aşılayın.</li>
+            <li>• <strong class="text-cyan-300">4–7. Gün:</strong> Su kristal berraklığına ulaştığında balıklarınızı poşetiyle 15 dk suya alıştırarak (aşılama yöntemiyle) ekleyin.</li>
+          </ul>
+          <button onclick="selectCategory('su')" class="w-full py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs transition">
+            Su Düzenleyici & Bakteri Kültürlerini Gör →
+          </button>
+        </div>
+
+        <div class="bg-[#061A2E] rounded-3xl p-6 border border-cyan-500/25 space-y-3">
+          <span class="px-2.5 py-1 rounded-lg bg-teal-500/20 text-teal-300 text-[11px] font-black uppercase">2. Adım • İdeal Parametreler</span>
+          <h3 class="text-lg font-black text-white">pH, TDS ve Sıcaklık Dengesi</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Her balık familyasının doğada evrimleştiği su sertliği (TDS) ve asitlik/bazlık (pH) derecesi farklıdır:
+          </p>
+          <ul class="text-xs text-slate-200 space-y-2 pt-1">
+            <li>• <strong class="text-teal-300">Amazon / Bitkili (pH 6.0 – 7.0):</strong> Discus, Ramirezi, Neon Tetra, Kardinal Tetra ve Karidesler hafif asidik, yumuşak suyu sever.</li>
+            <li>• <strong class="text-teal-300">Canlı Doğuran (pH 7.0 – 7.8):</strong> Lepistes, Moli, Plati nötr ve orta sertlikte İstanbul suyuna çok kolay uyum sağlar.</li>
+            <li>• <strong class="text-teal-300">Malawi / Tanganyika (pH 7.6 – 8.5):</strong> Afrika cikletleri yüksek pH'lı ve mercan/kalsiyum karbonat kumlu alkali suyu sever.</li>
+          </ul>
+          <button onclick="selectCategory('aksesuar')" class="w-full py-2.5 rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 font-black text-xs transition">
+            Dijital pH, TDS Ölçer & Dereceleri Gör →
+          </button>
+        </div>
+
+        <div class="bg-[#061A2E] rounded-3xl p-6 border border-cyan-500/25 space-y-3">
+          <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 text-[11px] font-black uppercase">3. Adım • Haftalık Rutin</span>
+          <h3 class="text-lg font-black text-white">Altın Bakım & Yemleme Kuralları</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Akvaryumda yosunlaşmayı, bulanıklığı ve balık kayıplarını önleyen 3 temel uzman kuralı:
+          </p>
+          <ul class="text-xs text-slate-200 space-y-2 pt-1">
+            <li>• <strong class="text-emerald-300">Haftalık %20–25 Su Değişimi:</strong> Asla akvaryum suyunun tamamını boşaltmayın! Haftada bir dip sifonuyla sadece %20–25 dinlenmiş su değişimi yapın.</li>
+            <li>• <strong class="text-emerald-300">Filtre Süngerini Muslukta Yıkamayın:</strong> Klorlu çeşme suyu yararlı bakterileri öldürür; filtre süngerini akvaryumdan çektiğiniz suda durulayın.</li>
+            <li>• <strong class="text-emerald-300">2 Dakika Yem Kuralı:</strong> Günde 2 kez, balıkların 2 dakikada bitirebileceği kadar yem verin.</li>
+          </ul>
+          <button onclick="selectCategory('yemler')" class="w-full py-2.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-xs transition">
+            Açık & Kapalı Yem Çeşitlerini Gör →
+          </button>
+        </div>
+      </div>
+
+      <!-- SEKME 4: BALIK HASTALIKLARI & TEDAVİ REHBERİ -->
+      <div id="encyPane_diseases" class="hidden grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="bg-[#061A2E] rounded-3xl p-6 border border-rose-400/30 space-y-3">
+          <span class="px-2.5 py-1 rounded-lg bg-rose-500/20 text-rose-300 text-[11px] font-black uppercase">En Sık Görülen • Parazit</span>
+          <h3 class="text-lg font-black text-white">Beyaz Benek Hastalığı (Ich)</h3>
+          <p class="text-xs text-slate-300">
+            <strong class="text-white">Belirtiler:</strong> Balığın gövdesinde ve yüzgeçlerinde tuz tanesi gibi beyaz noktalar, dekorlara sürtünme ve halsizlik. Genellikle ani ısı düşüşünden kaynaklanır.
+          </p>
+          <p class="text-xs text-cyan-200 bg-[#030E1A] p-3 rounded-2xl border border-cyan-500/20">
+            <strong>Uzman Çözümü:</strong> Su sıcaklığını kademeli olarak 28–29°C'ye çıkarın, hava motorunu tam güç açın ve 3 gün boyunca <strong>Metilen Mavisi / Beyaz Benek İlacı (Contra-Ich)</strong> uygulayın.
+          </p>
+          <button onclick="selectCategory('ilaclar')" class="w-full py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-black text-xs transition">
+            Beyaz Benek & Parazit İlaçlarını Gör →
+          </button>
+        </div>
+
+        <div class="bg-[#061A2E] rounded-3xl p-6 border border-amber-400/30 space-y-3">
+          <span class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 text-[11px] font-black uppercase">Mantar & Bakteri</span>
+          <h3 class="text-lg font-black text-white">Pamukçuk Mantarı & Kuyruk Erimesi</h3>
+          <p class="text-xs text-slate-300">
+            <strong class="text-white">Belirtiler:</strong> Yüzgeç uçlarında beyazlaşma, yırtılma, ağız veya gövdede pamuksu tüylü dokular. Kirli su ve stres kaynaklıdır.
+          </p>
+          <p class="text-xs text-cyan-200 bg-[#030E1A] p-3 rounded-2xl border border-cyan-500/20">
+            <strong>Uzman Çözümü:</strong> %30 dinlenmiş su değişimi yapın, aktif karbon varsa filtreden çıkarın ve <strong>Mantar & Bakteri Tedavi Solüsyonu (Bactofish / Mycopur)</strong> ile vitamin desteği kullanın.
+          </p>
+          <button onclick="selectCategory('ilaclar')" class="w-full py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs transition">
+            Mantar & Kuyruk Erimesi İlaçlarını Gör →
+          </button>
+        </div>
+
+        <div class="bg-[#061A2E] rounded-3xl p-6 border border-cyan-400/30 space-y-3">
+          <span class="px-2.5 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 text-[11px] font-black uppercase">Sindirim & Bağışıklık</span>
+          <h3 class="text-lg font-black text-white">İç Parazit & Şişkinlik (Dropsy)</h3>
+          <p class="text-xs text-slate-300">
+            <strong class="text-white">Belirtiler:</strong> Balığın yem yememesi, şeffaf/uzun dışkı, karın çökmesi veya aşırı karın şişliği, saklanma eğilimi.
+          </p>
+          <p class="text-xs text-cyan-200 bg-[#030E1A] p-3 rounded-2xl border border-cyan-500/20">
+            <strong>Uzman Çözümü:</strong> Tek tip bayat yem kullanımını bırakın; sarımsak özlü granül yem, multivitamin damlası ve <strong>İç Parazit Giderici</strong> koruyucu kür uygulayın.
+          </p>
+          <button onclick="selectCategory('ilaclar')" class="w-full py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black text-xs transition">
+            Vitamin & Balık Sağlığı Ürünlerini Gör →
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 8. AKVARYUM LİTRE & EKİPMAN SİHİRBAZI BÖLÜMÜ ================= -->
+  <section id="sihirbaz" class="max-w-7xl mx-auto px-4 py-10">
     <div class="hero-mesh text-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl border border-cyan-500/30 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
       <div class="lg:col-span-5 space-y-3">
         <span class="px-3 py-1 rounded-full bg-cyan-400/20 border border-cyan-400/40 text-cyan-300 text-xs font-extrabold uppercase tracking-wider">
@@ -329,7 +704,7 @@
     </div>
   </section>
 
-  <!-- ================= 8. PROFESYONEL HİZMETLERİMİZ & HAKKIMIZDA ================= -->
+  <!-- ================= 9. PROFESYONEL HİZMETLERİMİZ ================= -->
   <section id="hizmetler" class="bg-white border-y border-slate-200 py-12">
     <div class="max-w-7xl mx-auto px-4 space-y-8">
       <div class="text-center max-w-2xl mx-auto space-y-2">
@@ -385,30 +760,21 @@
               Mevcut akvaryumunuzdaki balık türleriyle %100 uyumlu yaşayacak yeni canlıların seçimi, hastalık/beyaz benek tedavi protokolü ve diyet programı.
             </p>
             <ul class="text-xs text-slate-700 space-y-1.5 pt-2 font-medium">
-              <li>✓ Tayland, Vietnam ve Singapur ithal ırklar</li>
+              <li>✓ Seçkin ithal ve yerli balık ırkları</li>
               <li>✓ Karantinadan geçmiş sağlıklı canlı garantisi</li>
               <li>✓ Türlere özel açık ve kapalı yem kombinasyonu</li>
             </ul>
           </div>
-          <a href="#urunler" onclick="selectCategory('fish')" class="w-full py-3 rounded-2xl bg-slate-900 hover:bg-cyan-600 text-white text-center text-xs font-black transition">
-            Canlı Balıkları İncele →
+          <a href="#ansiklopedi" class="w-full py-3 rounded-2xl bg-slate-900 hover:bg-cyan-600 text-white text-center text-xs font-black transition">
+            Balık Ansiklopedisini İncele →
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= 9. MÜŞTERİ YORUMLARI ================= -->
-  <section class="max-w-7xl mx-auto px-4 py-10 space-y-6">
-    <div class="text-center space-y-1">
-      <span class="text-xs font-extrabold uppercase tracking-widest text-cyan-600">Müşteri Deneyimleri</span>
-      <h2 class="text-xl sm:text-2xl font-black text-slate-900">Mağazamız Hakkında Yorumlar</h2>
-    </div>
-    <div id="reviewsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
-  </section>
-
   <!-- ================= 10. HARİTALI İLETİŞİM & MAĞAZA KONUMU (RAMİ · EYÜPSULTAN) ================= -->
-  <section id="iletisim" class="max-w-7xl mx-auto px-4 py-8">
+  <section id="iletisim" class="max-w-7xl mx-auto px-4 py-10">
     <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-md grid grid-cols-1 lg:grid-cols-12">
       <div class="lg:col-span-5 p-6 sm:p-8 space-y-5 flex flex-col justify-between">
         <div class="space-y-4">
@@ -470,7 +836,7 @@
           onclick="openAdminModal()"
           class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200 transition"
         >
-          ⚙️ Mağaza & Ürün Yönetim Paneli
+          ⚙️ Mağaza & Ürün Yönetim Paneli (Ürün Ekle / Fiyat Düzenle)
         </button>
       </div>
 
@@ -490,38 +856,44 @@
   </section>
 
   <!-- ================= 11. KURUMSAL FOOTER ================= -->
-  <footer class="bg-[#040D1A] text-slate-400 text-xs mt-12 border-t border-cyan-500/20">
+  <footer class="bg-[#020A13] text-slate-400 text-xs mt-10 border-t border-cyan-500/20">
     <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
       <div class="space-y-3">
-        <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-teal-400 flex items-center justify-center text-slate-950 font-black text-base">
-            🐠
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-[#062038] border border-cyan-400/40 flex items-center justify-center">
+            <svg class="w-6 h-6" viewBox="0 0 64 64" fill="none">
+              <path d="M27 8C34 8 44 14 48 26C52 22 57 18 59 17C58 24 55 29 52 32C55 35 58 40 59 47C57 46 52 42 48 38C44 50 34 56 27 56C31 46 31 39 29 32C31 25 31 18 27 8Z" fill="#22D3EE"/>
+              <path d="M9 32C13 21 23 16 34 19C41 21 46 26 48 32C46 38 41 43 34 45C23 48 13 43 9 32Z" fill="#A5F3FC"/>
+            </svg>
           </div>
-          <span class="text-base font-black text-white">TURKUAZ <span class="text-cyan-400">AKVARYUM</span></span>
+          <div>
+            <span class="text-base font-black text-white block leading-none">TURKUAZ <span class="text-cyan-400">AKVARYUM</span></span>
+            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Rami · Eyüpsultan · İstanbul</span>
+          </div>
         </div>
         <p class="text-slate-400 leading-relaxed">
-          Rami Yeni Mah., Reşadiye Cad. No:22, Eyüpsultan / İstanbul adresinde canlı balıklar, akvaryum sistemleri, filtre, ısıtıcı, yem ve petshop ürünleri.
+          Rami Yeni Mah., Reşadiye Cad. No:22, Eyüpsultan / İstanbul adresinde canlı balıklar, Ultra Clear akvaryum sistemleri, filtre, ısıtıcı, yem ve petshop ürünleri.
         </p>
       </div>
 
       <div class="space-y-2">
-        <h4 class="text-white font-black uppercase tracking-wider">Popüler Kategoriler</h4>
+        <h4 class="text-white font-black uppercase tracking-wider">Popüler Reyonlar</h4>
         <ul class="space-y-1.5">
-          <li><a href="#urunler" onclick="selectCategory('fish')" class="hover:text-cyan-400">🐠 Canlı Balıklar & Varyeteler</a></li>
-          <li><a href="#urunler" onclick="selectCategory('akvaryumlar')" class="hover:text-cyan-400">🏠 Ultra Clear Akvaryumlar</a></li>
-          <li><a href="#urunler" onclick="selectCategory('filtreler')" class="hover:text-cyan-400">⚙️ Dış, İç ve Askı Filtreler</a></li>
-          <li><a href="#urunler" onclick="selectCategory('yemler')" class="hover:text-cyan-400">🍽️ Açık & Kapalı Balık Yemleri</a></li>
-          <li><a href="#urunler" onclick="selectCategory('aydinlatma')" class="hover:text-cyan-400">💡 Profesyonel LED Aydınlatma</a></li>
+          <li><a href="#urunler" onclick="selectCategory('fish')" class="hover:text-cyan-400">Canlı Balıklar & Varyeteler (87+)</a></li>
+          <li><a href="#urunler" onclick="selectCategory('akvaryumlar')" class="hover:text-cyan-400">Ultra Clear Akvaryumlar</a></li>
+          <li><a href="#urunler" onclick="selectCategory('filtreler')" class="hover:text-cyan-400">Dış, İç ve Askı Filtreler</a></li>
+          <li><a href="#urunler" onclick="selectCategory('yemler')" class="hover:text-cyan-400">Açık & Kapalı Balık Yemleri</a></li>
+          <li><a href="#urunler" onclick="selectCategory('aydinlatma')" class="hover:text-cyan-400">Profesyonel LED Aydınlatma</a></li>
         </ul>
       </div>
 
       <div class="space-y-2">
-        <h4 class="text-white font-black uppercase tracking-wider">Bitkili & Bakım</h4>
+        <h4 class="text-white font-black uppercase tracking-wider">Ansiklopedi & Rehber</h4>
         <ul class="space-y-1.5">
-          <li><a href="#urunler" onclick="selectCategory('taslar')" class="hover:text-cyan-400">🪨 Doğal Kaya, Kök & Kum</a></li>
-          <li><a href="#urunler" onclick="selectCategory('bitkiler')" class="hover:text-cyan-400">🌿 Canlı Bitkiler & Gübre</a></li>
-          <li><a href="#urunler" onclick="selectCategory('su')" class="hover:text-cyan-400">💧 Su Düzenleyici & Bakteri</a></li>
-          <li><a href="#urunler" onclick="selectCategory('ilaclar')" class="hover:text-cyan-400">💊 İlaçlar & Balık Sağlığı</a></li>
+          <li><a href="#ansiklopedi" onclick="switchEncyclopediaTab('species')" class="hover:text-cyan-400">📖 12 Balık Familyası Ansiklopedisi</a></li>
+          <li><a href="#ansiklopedi" onclick="switchEncyclopediaTab('matrix')" class="hover:text-cyan-400">⚖️ Hangi Balıklar Birlikte Yaşar?</a></li>
+          <li><a href="#ansiklopedi" onclick="switchEncyclopediaTab('water')" class="hover:text-cyan-400">💧 Yeni Akvaryum Azot Döngüsü</a></li>
+          <li><a href="#ansiklopedi" onclick="switchEncyclopediaTab('diseases')" class="hover:text-cyan-400">🛡️ Beyaz Benek & Mantar Tedavisi</a></li>
           <li><a href="#sihirbaz" class="hover:text-cyan-400">🧪 Akvaryum Litre Sihirbazı</a></li>
         </ul>
       </div>
@@ -532,7 +904,7 @@
         <p class="text-cyan-400 font-semibold">Pzt–Cmt: 09:00–20:00 · Pazar: 10:00–18:00</p>
         <div class="pt-2">
           <button onclick="openAdminModal()" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-cyan-300 border border-slate-800 text-[11px] font-bold">
-            ⚙️ Mağaza Yönetimi
+            ⚙️ Mağaza & Ürün Yönetimi
           </button>
         </div>
       </div>
@@ -563,7 +935,7 @@
     </div>
   </div>
 
-  <!-- ================= ÜRÜN DETAY MODALI (QUICK VIEW) ================= -->
+  <!-- ================= ÜRÜN DETAY & CANLI BAKIM KARNESİ MODALI ================= -->
   <div id="productDetailModal" onclick="if(event.target===this)closeProductDetail()" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
     <div class="bg-white w-full max-w-3xl rounded-t-3xl sm:rounded-3xl max-h-[92vh] overflow-y-auto shadow-2xl grid grid-cols-1 md:grid-cols-12 overflow-hidden">
       <div class="md:col-span-6 bg-slate-50 p-6 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-slate-200 relative">
@@ -579,6 +951,9 @@
           <h3 id="pdTitle" class="text-lg sm:text-xl font-black text-slate-900 leading-snug"></h3>
           <div id="pdMeta" class="text-xs font-semibold text-slate-500"></div>
           <div id="pdPriceBox" class="text-2xl font-black text-cyan-700 pt-1"></div>
+
+          <!-- Canlı Balıklar İçin Otomatik Ansiklopedi Bakım Karnesi -->
+          <div id="pdFishEncyCard" class="hidden p-3 rounded-2xl bg-cyan-50/90 border border-cyan-200 space-y-2 text-xs"></div>
 
           <!-- Açık Yem Gramaj Seçici (Varsa) -->
           <div id="pdGramBox" class="hidden space-y-1.5 pt-1">
@@ -596,7 +971,7 @@
           </label>
 
           <!-- Ürün Açıklaması -->
-          <div id="pdDescription" class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80 max-h-48 overflow-y-auto whitespace-pre-line"></div>
+          <div id="pdDescription" class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80 max-h-44 overflow-y-auto whitespace-pre-line"></div>
         </div>
 
         <div class="flex items-center gap-2.5 pt-2">
@@ -627,7 +1002,7 @@
       <div id="cartItemsList" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
 
       <div class="p-4 border-t border-slate-200 bg-slate-50 space-y-3">
-        <!-- Akvaryum Teslimat Seçici (Sepette Akvaryum Varsa Görünür) -->
+        <!-- Akvaryum Teslimat Seçici -->
         <div id="cartAquariumShippingBox" class="hidden p-3 rounded-2xl bg-white border border-cyan-200 space-y-2 text-xs">
           <div class="font-black text-slate-900">🚚 Akvaryum Teslimat Seçeneği</div>
           <label class="flex items-start gap-2 cursor-pointer">
@@ -699,18 +1074,88 @@
     </div>
   </div>
 
-  <!-- ================= MAĞAZA YÖNETİM (ADMIN) MODALI ================= -->
+  <!-- ================= GELİŞMİŞ MAĞAZA & ÜRÜN YÖNETİM (ADMIN) MODALI ================= -->
   <div id="adminModal" onclick="if(event.target===this)closeAdminModal()" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-lg rounded-3xl p-6 space-y-4 shadow-2xl max-h-[90vh] overflow-y-auto">
+    <div class="bg-white w-full max-w-2xl rounded-3xl p-6 space-y-4 shadow-2xl max-h-[92vh] overflow-y-auto">
       <div class="flex items-center justify-between border-b border-slate-200 pb-3">
         <div>
-          <span class="text-[11px] font-extrabold uppercase text-cyan-600">Turkuaz Akvaryum</span>
-          <h3 class="text-base font-black text-slate-900">⚙️ Mağaza İletişim & Vitrin Ayarları</h3>
+          <span class="text-[11px] font-extrabold uppercase text-cyan-600">Turkuaz Akvaryum · Rami / Eyüpsultan</span>
+          <h3 class="text-base sm:text-lg font-black text-slate-900">⚙️ Mağaza & Ürün Yönetim Paneli</h3>
         </div>
         <button onclick="closeAdminModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 font-bold">✕</button>
       </div>
 
-      <div class="space-y-3 text-xs">
+      <!-- Yönetim Sekmeleri -->
+      <div class="flex gap-2 border-b border-slate-200 pb-2 text-xs font-extrabold">
+        <button onclick="switchAdminTab('addProduct')" id="admTabBtn_addProduct" class="px-3.5 py-2 rounded-xl bg-slate-900 text-white">➕ Yeni Ürün / Balık Ekle</button>
+        <button onclick="switchAdminTab('settings')" id="admTabBtn_settings" class="px-3.5 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200">🏪 Mağaza İletişim Ayarları</button>
+      </div>
+
+      <!-- SEKME A: YENİ ÜRÜN / BALIK EKLEME -->
+      <form id="admPane_addProduct" onsubmit="handleAdminAddProduct(event)" class="space-y-3 text-xs">
+        <div class="p-3 rounded-2xl bg-cyan-50 border border-cyan-200 text-cyan-900">
+          Buradan mağazanıza yeni canlı balık, akvaryum, filtre, yem veya ekipman ekleyebilirsiniz. Fotoğrafı telefonunuzdan/bilgisayarınızdan seçebilir veya görsel linki yapıştırabilirsiniz.
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Ürün / Canlı Adı *</label>
+            <input id="newProdName" type="text" required placeholder="Örn: Turkuaz Discus XL (12 cm)" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
+          </div>
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Reyon / Kategori *</label>
+            <select id="newProdSrc" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2">
+              <option value="fish">🐠 Canlı Balıklar</option>
+              <option value="aquariums">🏠 Ultra Clear Akvaryumlar</option>
+              <option value="equipment">⚙️ Filtre, Isıtıcı & Ekipman</option>
+              <option value="yemler">🍽️ Açık & Kapalı Yemler</option>
+              <option value="lighting">💡 LED Aydınlatma</option>
+              <option value="stone_products">🪨 Doğal Kaya, Kök & Kum</option>
+              <option value="plant_products">🌿 Canlı Bitki, Gübre & CO₂</option>
+              <option value="health">💊 İlaç & Balık Sağlığı</option>
+              <option value="aksesuarlar">📏 Ölçer & Aksesuar</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Satış Fiyatı (₺) *</label>
+            <input id="newProdPrice" type="number" step="0.01" required placeholder="Örn: 450" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
+          </div>
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">İndirim Öncesi Fiyat (Opsiyonel)</label>
+            <input id="newProdOldPrice" type="number" step="0.01" placeholder="Örn: 600" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
+          </div>
+          <div class="col-span-2 sm:col-span-1">
+            <label class="font-bold text-slate-700 block mb-1">Stok Kodu (Opsiyonel)</label>
+            <input id="newProdCode" type="text" placeholder="Örn: TRK-901" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Fotoğraf Yükle (Telefon / Bilgisayar)</label>
+            <input id="newProdFile" type="file" accept="image/*" onchange="handleNewProdImageFile(this)" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-1.5" />
+          </div>
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">veya Görsel Linki (URL)</label>
+            <input id="newProdImgUrl" type="url" placeholder="https://..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
+          </div>
+        </div>
+
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Ürün Açıklaması / Su Değerleri</label>
+          <textarea id="newProdDesc" rows="2" placeholder="Ürün veya canlı balık hakkında kısa açıklama..." class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3"></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-2xl bg-gradient-to-r from-cyan-600 to-teal-500 text-white font-black text-xs uppercase tracking-wider shadow-md">
+          ✅ Ürünü Mağazaya Ekle ve Yayınla
+        </button>
+      </form>
+
+      <!-- SEKME B: MAĞAZA İLETİŞİM AYARLARI -->
+      <div id="admPane_settings" class="hidden space-y-3 text-xs">
         <div>
           <label class="font-bold text-slate-700 block mb-1">Mağaza Adresi</label>
           <input id="admAddress" type="text" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
@@ -740,18 +1185,226 @@
       name: 'Turkuaz Akvaryum & PetShop',
       address: 'Rami Yeni Mah., Reşadiye Cad. No:22, Eyüpsultan / İstanbul',
       hours: 'Pzt–Cmt 09:00–20:00 · Pazar 10:00–18:00',
-      phone: '' // Kullanıcı isteğiyle şu anlık boş
+      phone: ''
     };
     try {
       const savedCfg = localStorage.getItem('turkuaz_magaza_cfg');
       if (savedCfg) storeConfig = { ...storeConfig, ...JSON.parse(savedCfg) };
     } catch (e) {}
 
-    // 2. KATEGORİ TANIMLARI (CANLI BALIKLAR DAHİL 12 REYON)
+    // 2. AKVARYUM BALIKLARI ANSİKLOPEDİ VERİTABANI (12 ANA FAMİLYA & BAKIM REHBERİ)
+    const FISH_ENCYCLOPEDIA = [
+      {
+        id: 'lepistes',
+        name: 'Lepistes (Guppy) & Canlı Doğuranlar',
+        latin: 'Poecilia reticulata • Xiphophorus',
+        group: 'Barışçıl',
+        difficulty: 'Başlangıç (Çok Kolay)',
+        temp: '22°C – 28°C',
+        ph: '6.8 – 7.8',
+        minLiter: '40 Litre+',
+        lifespan: '2–3 Yıl • 4–6 cm',
+        searchKey: 'lepistes',
+        img: 'img/hero-luxury.jpg',
+        summary: 'Rengârenk kuyruk varyeteleri (Albino Full Red, Blue Grass, Moscow, Koi, Dumbo Ear) ve yavrularını canlı doğurmasıyla akvaryum hobisinin en sevilen barışçıl sürü balığıdır.',
+        compatible: 'Moli, Plati, Kılıçkuyruk, Neon Tetra, Çöpçü (Corydoras), Cüce Vatoz, Karides',
+        incompatible: 'Malawi Cikletleri, Japon Balığı, Erkek Betta (tül kuyrukları ısırabilir)',
+        diet: 'Günde 2 kez ince granül yem, spirulina bitkisel pul yem ve kurutulmuş artemia.'
+      },
+      {
+        id: 'discus',
+        name: 'Discus — Sualtı Kralı',
+        latin: 'Symphysodon aequifasciatus',
+        group: 'Barışçıl',
+        difficulty: 'Uzman / Orta',
+        temp: '28°C – 30°C',
+        ph: '6.0 – 6.8',
+        minLiter: '200 Litre+',
+        lifespan: '10–15 Yıl • 15–20 cm',
+        searchKey: 'discus',
+        img: 'img/hero-luxury.jpg',
+        summary: 'Disk şeklindeki asil gövdesi ve büyüleyici turkuaz, kobalt ve kırmızı desenleriyle tatlı su akvaryumlarının kralı kabul edilir. Sıcak, yumuşak ve çok iyi filtrelenmiş su ister.',
+        compatible: 'Kardinal Tetra, Rummy Nose (Kırmızı Burun) Tetra, Sterbai Çöpçü, L144 Vatoz, Ramirezi',
+        incompatible: 'Sert su Malawi Cikletleri, Japon Balığı, hızlı ve agresif yemlenen balıklar',
+        diet: 'Yüksek proteinli Discus granül yemi, sarımsaklı yem ve dondurulmuş kan kurdu.'
+      },
+      {
+        id: 'ciklet',
+        name: 'Malawi & Tanganyika Cikletleri',
+        latin: 'Labidochromis • Cyrtocara moorii • Tropheus',
+        group: 'Bölgeci',
+        difficulty: 'Orta (Dayanıklı)',
+        temp: '24°C – 27°C',
+        ph: '7.6 – 8.5',
+        minLiter: '150 Litre+',
+        lifespan: '7–10 Yıl • 10–20 cm',
+        searchKey: 'prenses',
+        img: 'img/hero-luxury.jpg',
+        summary: 'Sarı Prenses, Mavi Prenses, Yunus Ciklet, Iceman ve Demasoni gibi çok canlı renklere sahip, kayalık mağaraları ve silis kumlu akvaryumları seven enerjik Afrika cikletleridir.',
+        compatible: 'Kendi boylarındaki diğer Malawi cikletleri ve sert zırhlı Vatozlar',
+        incompatible: 'Lepistes, Neon Tetra, Karides, Japon Balığı, Bitkili Hassas Türler',
+        diet: 'Cichlid granül yem, spirulina ağırlıklı bitkisel tablet ve sticks yemler.'
+      },
+      {
+        id: 'ramirezi',
+        name: 'Ramirezi & Cüce Amerikan Cikletleri',
+        latin: 'Mikrogeophagus ramirezi',
+        group: 'Barışçıl',
+        difficulty: 'Orta',
+        temp: '26°C – 29°C',
+        ph: '6.0 – 7.0',
+        minLiter: '60 Litre+',
+        lifespan: '3–4 Yıl • 5–7 cm',
+        searchKey: 'ramirezi',
+        img: 'img/hero-luxury.jpg',
+        summary: 'Elektrik Blue, Gold ve Balon Ramirezi varyeteleriyle bitkili akvaryumlarda beslenebilen nadir, barışçıl ve mücevher gibi parlayan Güney Amerika cüce cikletleridir.',
+        compatible: 'Neon & Kardinal Tetra, Rasbora, Discus, Melek, Çöpçü, Cüce Vatoz',
+        incompatible: 'Büyük ve sert Malawi cikletleri, soğuk su Japon balıkları',
+        diet: 'Yavaş batan mikro granül yemler, artemia ve renk artırıcı astaksantinli yemler.'
+      },
+      {
+        id: 'tetra',
+        name: 'Neon, Kardinal & Transgenetik Tetralar',
+        latin: 'Paracheirodon innesi • Gymnocorymbus',
+        group: 'Barışçıl',
+        difficulty: 'Başlangıç (Kolay)',
+        temp: '23°C – 27°C',
+        ph: '6.0 – 7.2',
+        minLiter: '45 Litre+',
+        lifespan: '4–6 Yıl • 3–5 cm',
+        searchKey: 'tetra',
+        img: 'img/hero-luxury.jpg',
+        summary: 'En az 6–10 adetlik sürüler halinde yüzdüklerinde bitkili akvaryumlarda muazzam bir görsel şölen sunan, fosforlu mavi-kırmızı çizgili barışçıl sürü balıklarıdır.',
+        compatible: 'Lepistes, Rasbora, Ramirezi, Çöpçü, Vatoz, Karides, Discus (Kardinal Tetra ile)',
+        incompatible: 'İri Cikletler ve büyük boy avcı balıklar',
+        diet: 'Mikro granül yemler, ufalanmış kaliteli pul yemler.'
+      },
+      {
+        id: 'melek',
+        name: 'Melek Balığı (Angelfish)',
+        latin: 'Pterophyllum scalare',
+        group: 'Barışçıl',
+        difficulty: 'Orta',
+        temp: '25°C – 28°C',
+        ph: '6.5 – 7.4',
+        minLiter: '120 Litre+',
+        lifespan: '8–10 Yıl • 12–15 cm (Yüksek)',
+        searchKey: 'melek',
+        img: 'img/hero-luxury.jpg',
+        summary: 'Üçgen yelken yüzgeçleriyle yüksek camlı ve bitkili akvaryumların en zarif türlerinden biridir. Tricolor, Koi, Siyah Kadife ve Platin varyeteleri mevcuttur.',
+        compatible: 'Orta boy Tetralar, Ramirezi, Gurami, Çöpçü (Corydoras), L144 Vatoz',
+        incompatible: 'Ağzına sığabilecek çok küçük yavru balıklar/karidesler ve sert Malawi cikletleri',
+        diet: 'Protein ve bitkisel dengeli pul/granül yemler, kurutulmuş kan kurdu.'
+      },
+      {
+        id: 'japon',
+        name: 'Japon, Oranda, Ranchu & Ryukin',
+        latin: 'Carassius auratus',
+        group: 'Soğuk Su',
+        difficulty: 'Başlangıç (Çok Dayanıklı)',
+        temp: '18°C – 23°C',
+        ph: '7.0 – 8.0',
+        minLiter: '60 Litre+',
+        lifespan: '10–15 Yıl • 10–20 cm',
+        searchKey: 'japon',
+        img: 'img/hero-luxury.jpg',
+        summary: 'Isıtıcı gerektirmeyen serin suları seven, sevimli yüzüşleri ve Red Cap Oranda, Ranchu, Teleskop, Tül Kuyruk varyeteleriyle bilinen klasik akvaryum balığıdır.',
+        compatible: 'Diğer Japon balığı varyeteleri ve büyük Elma Salyangozları',
+        incompatible: 'Isıtıcılı tropikal balıklar (Lepistes, Ciklet, Betta, Tetra ile aynı tankta bakılmaz!)',
+        diet: 'Sindirim sistemini yormayan batan (sinking) Japon granül ve pond stick yemler.'
+      },
+      {
+        id: 'betta',
+        name: 'Betta (Halfmoon, Crowntail & Plakat)',
+        latin: 'Betta splendens',
+        group: 'Bölgeci',
+        difficulty: 'Başlangıç (Kolay)',
+        temp: '25°C – 28°C',
+        ph: '6.5 – 7.5',
+        minLiter: '20 Litre+',
+        lifespan: '3–5 Yıl • 6–7 cm',
+        searchKey: 'betta',
+        img: 'img/hero-luxury.jpg',
+        summary: 'Labirent solungaç yapısı sayesinde su yüzeyinden de nefes alabilen, ipek elbise gibi açılan muazzam yüzgeçlere sahip asil bir türdür. Erkekleri tek bakılmalıdır.',
+        compatible: 'Tek başına veya sakin dip canlıları (Çöpçü, Nerite/Elma Salyangozu)',
+        incompatible: 'İkinci bir erkek Betta, parlak kuyruklu erkek Lepistesler',
+        diet: 'Betta özel protein granül yemleri ve kurutulmuş kan kurdu.'
+      },
+      {
+        id: 'vatoz',
+        name: 'L-Serisi Vatozlar (L144 Tül, Süper Red, Cüce)',
+        latin: 'Ancistrus sp. • L144 Longfin',
+        group: 'Dip & Cam',
+        difficulty: 'Başlangıç (Kolay)',
+        temp: '23°C – 27°C',
+        ph: '6.5 – 7.6',
+        minLiter: '50 Litre+',
+        lifespan: '8–12 Yıl • 8–12 cm',
+        searchKey: 'vatoz',
+        img: 'img/hero-luxury.jpg',
+        summary: 'Akvaryum camlarındaki, kayalardaki ve yapraklardaki yosunları temizleyen, L144 Mavi Göz Tül Kuyruk ve LDA16 varyeteleriyle hem faydalı hem çok estetik bir balıktır.',
+        compatible: 'Hemen hemen tüm tatlı su akvaryum balıklarıyla %100 barışçıl yaşar',
+        incompatible: 'Çok yüksek tuzluluk içeren acı su tankları',
+        diet: 'Batan spirulina vatoz tabletleri (Wafer), doğal Yati/Mangrow kökü lifleri ve haşlanmış kabak.'
+      },
+      {
+        id: 'copcu',
+        name: 'Corydoras Çöpçü (Panda, Orange Venezuela, Sterbai)',
+        latin: 'Corydoras panda • Corydoras venezuelanus',
+        group: 'Dip & Cam',
+        difficulty: 'Başlangıç (Kolay)',
+        temp: '22°C – 26°C',
+        ph: '6.5 – 7.5',
+        minLiter: '45 Litre+',
+        lifespan: '5–8 Yıl • 4–6 cm',
+        searchKey: 'çöpçü',
+        img: 'img/hero-luxury.jpg',
+        summary: 'Zemine düşen yem artıklarını temizleyerek suyun bozulmasını önleyen, bıyıkları zarar görmesin diye ince taneli kum zeminde en az 4–6 adetlik grup halinde beslenen sevimli dip balıklarıdır.',
+        compatible: 'Lepistes, Tetra, Discus, Melek, Ramirezi, Vatoz, Karides',
+        incompatible: 'İri ve agresif dip cikletleri, keskin kırıklı taban taşları',
+        diet: 'Zemine batan dip tablet yemleri (Bottom Wafer) ve protein granülleri.'
+      },
+      {
+        id: 'karides',
+        name: 'Tatlı Su Karidesleri (Bloody Mary, Mavi Melek, Sarı Ateş)',
+        latin: 'Neocaridina davidi',
+        group: 'Dip & Cam',
+        difficulty: 'Orta',
+        temp: '20°C – 25°C',
+        ph: '6.5 – 7.5',
+        minLiter: '20 Litre+',
+        lifespan: '1.5–2 Yıl • 2.5–3 cm',
+        searchKey: 'karides',
+        img: 'img/hero-luxury.jpg',
+        summary: 'Bitkili nano akvaryumlarda yosun ve mikro atıkları gece gündüz temizleyen, parlak kırmızı, safir mavi ve neon sarı renkleriyle bitkilerin üzerinde mücevher gibi duran omurgasızlardır.',
+        compatible: 'Neon/Ember Tetra, Lepistes, Otocinclus, Cüce Vatoz, Salyangozlar',
+        incompatible: 'Cikletler, Melek, Betta, Japon (karidesleri yem olarak görebilir) ve bakırlı ilaçlar!',
+        diet: 'Özel karides granülleri, spirulina tablet, haşlanmış ıspanak ve Catappa yaprağı.'
+      },
+      {
+        id: 'koi',
+        name: 'Moli, Plati, Kılıçkuyruk & Rasbora Grupları',
+        latin: 'Poecilia sphenops • Trigonostigma heteromorpha',
+        group: 'Barışçıl',
+        difficulty: 'Başlangıç (Çok Kolay)',
+        temp: '23°C – 27°C',
+        ph: '7.0 – 7.8',
+        minLiter: '50 Litre+',
+        lifespan: '3–5 Yıl • 5–8 cm',
+        searchKey: 'moli',
+        img: 'img/hero-luxury.jpg',
+        summary: 'Balon Moli, Ay Kuyruk Siyah Moli, Kırmızı Kılıçkuyruk ve Harlequin Rasbora gibi hem yosun tırtıklayan hem de akvaryumun orta-üst katmanına sürekli hareket katan dayanıklı türlerdir.',
+        compatible: 'Lepistes, Tetra türleri, Çöpçü, Vatoz, Gurami',
+        incompatible: 'Sert Malawi cikletleri ve soğuk su Japon balıkları',
+        diet: 'Bitkisel spirulina pul yemler ve karışık tropikal granül yemler.'
+      }
+    ];
+
+    // 3. KATEGORİ TANIMLARI (CANLI BALIKLAR DAHİL 12 REYON)
     const CATEGORIES = [
       { id: 'all', title: 'Tüm Ürünler', icon: '🛍️', desc: 'Tüm mağaza kataloğu', filter: () => true },
       { id: 'kampanyali', title: 'Kampanyalı', icon: '🔥', desc: 'İndirimli fırsat ürünleri', filter: p => p.oldPrice && Number(p.oldPrice) > Number(p.price) },
-      { id: 'fish', title: 'Canlı Balıklar', icon: '🐠', desc: 'İthal & yerli canlı balıklar', filter: p => p._src === 'fish' },
+      { id: 'fish', title: 'Canlı Balıklar', icon: '🐠', desc: '87+ seçkin canlı balık ırkı', filter: p => p._src === 'fish' },
       { id: 'akvaryumlar', title: 'Akvaryumlar', icon: '🏠', desc: 'Ultra Clear & mobilyalı setler', filter: p => p._src === 'aquariums' },
       { id: 'filtreler', title: 'Filtreler', icon: '⚙️', desc: 'Dış, iç, askı ve pipo filtreler', filter: p => p._src === 'equipment' && ['dis_filtre','aski_filtre','ic_filtre','pipo_filtre','sunger_filtre','tepe_filtre','uv_filtre','filtre_malzeme'].includes(p.subcategory) },
       { id: 'ekipman', title: 'Isıtıcı & Ekipman', icon: '🌡️', desc: 'Isıtıcı, hava & dalga motoru', filter: p => p._src === 'equipment' && !['dis_filtre','aski_filtre','ic_filtre','pipo_filtre','sunger_filtre','tepe_filtre','uv_filtre','filtre_malzeme','su_duzenleyici','ec_olcer','ph_olcer','ic_termostat'].includes(p.subcategory) },
@@ -783,13 +1436,20 @@
 
     const GRAMS = [50, 100, 250, 500, 1000];
     let allProducts = [];
-    let allReviews = [];
+    let customProducts = [];
+    try {
+      const savedCustom = localStorage.getItem('turkuaz_magaza_custom_prods');
+      if (savedCustom) customProducts = JSON.parse(savedCustom) || [];
+    } catch (e) {}
+
     let activeCategory = 'all';
     let activeSubCategory = 'all';
     let activePriceRange = 'all';
     let searchQuery = '';
     let showOutOfStock = true;
     let visibleCount = 16;
+    let activeEncyGroup = 'all';
+    let uploadedProductDataUrl = '';
 
     // Sepet State
     let cart = {};
@@ -814,7 +1474,7 @@
       el.textContent = msg;
       el.classList.remove('hidden');
       clearTimeout(showToast._t);
-      showToast._t = setTimeout(() => el.classList.add('hidden'), 2200);
+      showToast._t = setTimeout(() => el.classList.add('hidden'), 2400);
     }
 
     function isOpenFeed(p) {
@@ -830,7 +1490,23 @@
       return SUB_LABELS[p.subcategory] || p.subcategory || 'Akvaryum Ürünü';
     }
 
-    // 3. KATALOG VERİSİNİ YÜKLE
+    // Balık adına göre otomatik ansiklopedi bakım karnesi üretici
+    function getFishCareProfile(name, desc) {
+      const n = `${name} ${desc || ''}`.toLocaleLowerCase('tr-TR');
+      if (n.includes('discus')) return { temp: '28–30°C', ph: '6.0–6.8', minL: '200L+', temper: 'Barışçıl / Hassas', compat: 'Kardinal Tetra, Sterbai Çöpçü, Ramirezi, L144 Vatoz' };
+      if (n.includes('ramirezi') || n.includes('ramizeri') || n.includes('apisto')) return { temp: '26–29°C', ph: '6.0–7.0', minL: '60L+', temper: 'Barışçıl Cüce Ciklet', compat: 'Tetra türleri, Rasbora, Çöpçü, Vatoz, Discus' };
+      if (n.includes('çöpçü') || n.includes('corydoras') || n.includes('panda')) return { temp: '22–26°C', ph: '6.5–7.5', minL: '45L+', temper: 'Barışçıl Dip Sürü Balığı', compat: 'Lepistes, Tetra, Melek, Discus, Vatoz, Karides' };
+      if (n.includes('vatoz') || n.includes('l144') || n.includes('lda16')) return { temp: '23–27°C', ph: '6.5–7.6', minL: '50L+', temper: 'Barışçıl Yosun Temizleyici', compat: 'Tüm tatlı su balıklarıyla uyumludur' };
+      if (n.includes('tetra') || n.includes('neon') || n.includes('rasbora')) return { temp: '23–27°C', ph: '6.0–7.2', minL: '45L+', temper: 'Barışçıl Sürü Balığı (En az 6 adet)', compat: 'Lepistes, Çöpçü, Vatoz, Karides, Ramirezi' };
+      if (n.includes('japon') || n.includes('oranda') || n.includes('ranchu') || n.includes('teleskop')) return { temp: '18–22°C', ph: '7.0–8.0', minL: '60L+', temper: 'Barışçıl Soğuk Su Balığı', compat: 'Sadece diğer Japon varyeteleri ve Elma Salyangozu' };
+      if (n.includes('betta') || n.includes('beta') || n.includes('halfmoon')) return { temp: '25–28°C', ph: '6.5–7.5', minL: '20L+', temper: 'Tek Bakılır (Erkekler Bölgeci)', compat: 'Çöpçü, Salyangoz (Diğer Betta ile konmaz)' };
+      if (n.includes('karides') || n.includes('shrimp') || n.includes('bloody')) return { temp: '20–25°C', ph: '6.5–7.5', minL: '20L+', temper: 'Barışçıl Bitkili Tank Canlısı', compat: 'Neon Tetra, Cüce Vatoz, Salyangoz, Lepistes' };
+      if (n.includes('prenses') || n.includes('yunus') || n.includes('ciklet') || n.includes('cichlid') || n.includes('demasoni') || n.includes('ahli')) return { temp: '24–27°C', ph: '7.6–8.5', minL: '150L+', temper: 'Bölgeci Kayalık Ciklet', compat: 'Diğer Malawi/Tanganyika Cikletleri ve Vatoz' };
+      if (n.includes('melek') || n.includes('angel')) return { temp: '25–28°C', ph: '6.5–7.4', minL: '120L+', temper: 'Gösterişli / Yarı Barışçıl', compat: 'Orta boy Tetralar, Çöpçü, Vatoz, Gurami' };
+      return { temp: '24–27°C', ph: '6.8–7.6', minL: '40L+', temper: 'Barışçıl Akvaryum Balığı', compat: 'Lepistes, Moli, Plati, Tetra, Çöpçü, Vatoz' };
+    }
+
+    // 4. KATALOG VERİSİNİ YÜKLE
     async function loadStoreCatalog() {
       applyStoreConfigToDOM();
       updateWizardLiters(60);
@@ -838,7 +1514,7 @@
         const res = await fetch('data/catalog.json');
         const raw = await res.json();
         const sources = ['fish', 'aquariums', 'equipment', 'yemler', 'lighting', 'stone_products', 'plant_products', 'plants', 'health', 'aksesuarlar'];
-        const list = [];
+        const list = [...customProducts];
 
         sources.forEach(src => {
           (raw[src] || []).forEach((item, idx) => {
@@ -854,20 +1530,31 @@
         });
 
         allProducts = list;
-        allReviews = (raw.reviews || []).slice(0, 6);
+
+        // Ansiklopedideki kart görsellerini katalogdaki gerçek balık fotoğraflarıyla zenginleştir
+        enrichEncyclopediaImages(raw.fish || []);
 
         document.getElementById('totalCatalogBadge').textContent = `${allProducts.length} Ürün & Canlı`;
-        document.getElementById('statFishCount').textContent = `${(raw.fish || []).length}+`;
+        const fishCount = allProducts.filter(p => p._src === 'fish').length;
+        document.getElementById('statFishCount').textContent = `${fishCount}+`;
 
         renderCampaignStrip();
         renderCategoryBento();
         renderSubCategoryPills();
         renderProductsGrid();
-        renderReviews();
+        renderEncyclopediaSpecies();
         updateCartUI();
       } catch (err) {
         console.error('Katalog yükleme hatası:', err);
+        renderEncyclopediaSpecies();
       }
+    }
+
+    function enrichEncyclopediaImages(fishList) {
+      FISH_ENCYCLOPEDIA.forEach(entry => {
+        const match = fishList.find(f => f.img && `${f.name} ${f.subcategory || ''} ${f.category || ''}`.toLocaleLowerCase('tr-TR').includes(entry.searchKey));
+        if (match && match.img) entry.img = match.img;
+      });
     }
 
     function applyStoreConfigToDOM() {
@@ -883,7 +1570,123 @@
       }
     }
 
-    // 4. KAMPANYA ŞERİDİ
+    // 5. ANSİKLOPEDİ RENDER VE FİLTRELEME
+    function switchEncyclopediaTab(tabId) {
+      ['species', 'matrix', 'water', 'diseases'].forEach(t => {
+        const pane = document.getElementById(`encyPane_${t}`);
+        if (pane) pane.classList.toggle('hidden', t !== tabId);
+      });
+      document.querySelectorAll('.ency-tab-btn').forEach(btn => {
+        if (btn.dataset.etab === tabId) {
+          btn.className = 'ency-tab-btn px-4 py-2.5 rounded-2xl bg-gradient-to-r from-cyan-400 to-teal-400 text-slate-950 font-black text-xs shadow-lg transition';
+        } else {
+          btn.className = 'ency-tab-btn px-4 py-2.5 rounded-2xl bg-white/10 hover:bg-white/15 text-white border border-white/15 font-extrabold text-xs transition';
+        }
+      });
+    }
+
+    function filterEncySpecies(group) {
+      activeEncyGroup = group;
+      document.querySelectorAll('.ediff-btn').forEach(b => {
+        if (b.dataset.ediff === group) {
+          b.className = 'ediff-btn px-3 py-1.5 rounded-xl bg-cyan-400 text-slate-950 text-xs font-black';
+        } else {
+          b.className = 'ediff-btn px-3 py-1.5 rounded-xl bg-white/10 text-slate-200 text-xs font-bold hover:bg-white/15';
+        }
+      });
+      renderEncyclopediaSpecies();
+    }
+
+    function renderEncyclopediaSpecies() {
+      const q = (document.getElementById('encySearchInput')?.value || '').toLocaleLowerCase('tr-TR').trim();
+      const filtered = FISH_ENCYCLOPEDIA.filter(item => {
+        if (activeEncyGroup !== 'all' && item.group !== activeEncyGroup) return false;
+        if (q) {
+          const hay = `${item.name} ${item.latin} ${item.summary} ${item.compatible} ${item.incompatible}`.toLocaleLowerCase('tr-TR');
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      const grid = document.getElementById('encySpeciesGrid');
+      if (!grid) return;
+
+      grid.innerHTML = filtered.map(item => `
+        <article class="bg-[#061A2E] rounded-3xl border border-cyan-500/25 hover:border-cyan-400/60 overflow-hidden flex flex-col justify-between transition shadow-lg">
+          <div>
+            <!-- Üst Görsel & Familya Başlığı -->
+            <div class="relative h-44 bg-[#020B14] overflow-hidden flex items-center justify-center p-3 border-b border-cyan-500/20">
+              <img src="${item.img}" alt="${item.name}" loading="lazy" class="w-full h-full object-contain rounded-2xl" />
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-cyan-400 text-slate-950 text-[10px] font-black uppercase">
+                ${item.group}
+              </span>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-[#031322]/90 border border-cyan-400/30 text-cyan-200 text-[10px] font-bold">
+                ${item.difficulty}
+              </span>
+            </div>
+
+            <!-- Tür Bilgileri & Su Değerleri -->
+            <div class="p-5 space-y-3.5">
+              <div>
+                <div class="text-[11px] font-bold italic text-cyan-400">${item.latin}</div>
+                <h3 class="text-base font-black text-white mt-0.5">${item.name}</h3>
+                <p class="text-xs text-slate-300 leading-relaxed mt-1.5">${item.summary}</p>
+              </div>
+
+              <!-- 4 Su Değeri Kutusu -->
+              <div class="grid grid-cols-2 gap-2 text-[11px]">
+                <div class="p-2.5 rounded-xl bg-[#030E1A] border border-white/10">
+                  <span class="text-slate-400 block text-[10px]">🌡️ Su Sıcaklığı</span>
+                  <strong class="text-cyan-300 font-black">${item.temp}</strong>
+                </div>
+                <div class="p-2.5 rounded-xl bg-[#030E1A] border border-white/10">
+                  <span class="text-slate-400 block text-[10px]">💧 İdeal pH Değeri</span>
+                  <strong class="text-teal-300 font-black">pH ${item.ph}</strong>
+                </div>
+                <div class="p-2.5 rounded-xl bg-[#030E1A] border border-white/10">
+                  <span class="text-slate-400 block text-[10px]">📏 Min. Akvaryum</span>
+                  <strong class="text-emerald-300 font-black">${item.minLiter}</strong>
+                </div>
+                <div class="p-2.5 rounded-xl bg-[#030E1A] border border-white/10">
+                  <span class="text-slate-400 block text-[10px]">⏳ Ömür & Boy</span>
+                  <strong class="text-amber-300 font-black">${item.lifespan}</strong>
+                </div>
+              </div>
+
+              <!-- Uyumlu & Uyumsuz Türler -->
+              <div class="space-y-1.5 text-[11px] bg-[#030E1A]/90 p-3 rounded-2xl border border-white/10">
+                <div><strong class="text-emerald-400">✅ Birlikte Yaşar:</strong> <span class="text-slate-300">${item.compatible}</span></div>
+                <div><strong class="text-rose-400">❌ Aynı Tanka Konmaz:</strong> <span class="text-slate-300">${item.incompatible}</span></div>
+                <div><strong class="text-amber-300">🍽️ Beslenme:</strong> <span class="text-slate-300">${item.diet}</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-5 pb-5">
+            <button
+              onclick="filterCatalogByFishKeyword('${item.searchKey}')"
+              class="w-full py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-teal-400 hover:from-cyan-400 hover:to-teal-300 text-slate-950 font-black text-xs transition shadow"
+            >
+              🐠 Mağazadaki Canlı Türlerini Gör →
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function filterCatalogByFishKeyword(keyword) {
+      activeCategory = 'fish';
+      activeSubCategory = 'all';
+      visibleCount = 32;
+      const catObj = CATEGORIES.find(c => c.id === 'fish');
+      document.getElementById('activeCategoryTitle').textContent = `${catObj.icon} ${catObj.title}`;
+      renderCategoryBento();
+      renderSubCategoryPills();
+      renderProductsGrid();
+      document.getElementById('urunler').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // 6. KAMPANYA ŞERİDİ
     function renderCampaignStrip() {
       const discounted = allProducts.filter(p => !p.outOfStock && p.oldPrice && Number(p.oldPrice) > Number(p.price));
       const box = document.getElementById('campaignHorizontalList');
@@ -908,7 +1711,7 @@
       }).join('');
     }
 
-    // 5. KATEGORİ BENTO KUTULARI
+    // 7. KATEGORİ BENTO KUTULARI
     function renderCategoryBento() {
       const grid = document.getElementById('categoryBentoGrid');
       const displayCats = CATEGORIES.filter(c => c.id !== 'all');
@@ -1008,7 +1811,7 @@
       renderProductsGrid();
     }
 
-    // 6. ÜRÜN KARTLARI LİSTELEME
+    // 8. ÜRÜN KARTLARI LİSTELEME
     function getFilteredProducts() {
       const catObj = CATEGORIES.find(c => c.id === activeCategory) || CATEGORIES[0];
       return allProducts.filter(p => {
@@ -1053,6 +1856,7 @@
         const hasDisc = p.oldPrice && Number(p.oldPrice) > Number(p.price);
         const discPct = hasDisc ? Math.round((1 - Number(p.price) / Number(p.oldPrice)) * 100) : 0;
         const openFeed = isOpenFeed(p);
+        const fishCare = p._src === 'fish' ? getFishCareProfile(p.name, p.desc) : null;
 
         return `
           <article class="bg-white rounded-3xl border border-slate-200/90 overflow-hidden flex flex-col justify-between card-hover">
@@ -1064,7 +1868,7 @@
                   : hasDisc
                   ? `<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-lg bg-rose-600 text-white text-[10px] font-black uppercase">-%${discPct} İndirim</span>`
                   : p._src === 'fish'
-                  ? `<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-lg bg-cyan-600 text-white text-[10px] font-black uppercase">🐠 Canlı</span>`
+                  ? `<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-lg bg-cyan-600 text-white text-[10px] font-black uppercase">Canlı Balık</span>`
                   : ''
                 }
                 <span class="absolute top-3 right-3 z-10 px-2 py-0.5 rounded-md bg-slate-100 text-slate-500 font-mono text-[10px] font-bold">
@@ -1084,7 +1888,13 @@
                 <h3 onclick="openProductDetail('${p._id}')" class="text-xs sm:text-sm font-extrabold text-slate-900 line-clamp-2 min-h-[2.5em] cursor-pointer hover:text-cyan-700">
                   ${p.name}
                 </h3>
-                ${p.desc ? `<p class="text-[11px] text-slate-500 line-clamp-2">${p.desc}</p>` : ''}
+                ${fishCare ? `
+                  <div class="flex flex-wrap gap-1 pt-0.5">
+                    <span class="px-1.5 py-0.5 rounded-md bg-cyan-50 text-cyan-800 border border-cyan-200/70 text-[10px] font-bold">🌡️ ${fishCare.temp}</span>
+                    <span class="px-1.5 py-0.5 rounded-md bg-teal-50 text-teal-800 border border-teal-200/70 text-[10px] font-bold">💧 pH ${fishCare.ph}</span>
+                    <span class="px-1.5 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[10px] font-bold">${fishCare.minL}</span>
+                  </div>
+                ` : (p.desc ? `<p class="text-[11px] text-slate-500 line-clamp-2">${p.desc}</p>` : '')}
               </div>
             </div>
 
@@ -1117,7 +1927,7 @@
 
               ${isOut ? `
                 <button disabled class="w-full py-2.5 rounded-xl bg-slate-100 text-slate-400 font-extrabold text-xs cursor-not-allowed">
-                  Geçiçi Olarak Tükendi
+                  Geçici Olarak Tükendi
                 </button>
               ` : `
                 <button
@@ -1178,7 +1988,7 @@
       }
     }
 
-    // 7. ÜRÜN DETAY MODALI
+    // 9. ÜRÜN DETAY MODALI (CANLI BALIK ANSİKLOPEDİ KARNESİ İLE)
     function openProductDetail(prodId) {
       const p = allProducts.find(x => x._id === prodId);
       if (!p) return;
@@ -1201,8 +2011,40 @@
         badge.textContent = 'Stokta Yok';
         badge.className = 'absolute top-4 left-4 px-2.5 py-1 rounded-lg bg-slate-800 text-white text-[10px] font-black uppercase';
       } else {
-        badge.textContent = p._src === 'fish' ? '🐠 Canlı Balık' : p.code;
+        badge.textContent = p._src === 'fish' ? 'Canlı Balık' : p.code;
         badge.className = 'absolute top-4 left-4 px-2.5 py-1 rounded-lg bg-cyan-600 text-white text-[10px] font-black uppercase';
+      }
+
+      // Canlı Balıksa Ansiklopedi Bakım Karnesini Göster
+      const fishCard = document.getElementById('pdFishEncyCard');
+      if (p._src === 'fish') {
+        const care = getFishCareProfile(p.name, p.desc);
+        fishCard.classList.remove('hidden');
+        fishCard.innerHTML = `
+          <div class="font-black text-cyan-900 flex items-center justify-between">
+            <span>📖 Turkuaz Ansiklopedi Bakım Karnesi</span>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-cyan-200/70 text-cyan-900">${care.temper}</span>
+          </div>
+          <div class="grid grid-cols-3 gap-1.5 pt-1">
+            <div class="bg-white p-2 rounded-xl border border-cyan-200/80 text-center">
+              <span class="text-[10px] text-slate-400 block">Sıcaklık</span>
+              <strong class="text-cyan-800 font-black">${care.temp}</strong>
+            </div>
+            <div class="bg-white p-2 rounded-xl border border-cyan-200/80 text-center">
+              <span class="text-[10px] text-slate-400 block">İdeal pH</span>
+              <strong class="text-cyan-800 font-black">${care.ph}</strong>
+            </div>
+            <div class="bg-white p-2 rounded-xl border border-cyan-200/80 text-center">
+              <span class="text-[10px] text-slate-400 block">Min. Hacim</span>
+              <strong class="text-cyan-800 font-black">${care.minL}</strong>
+            </div>
+          </div>
+          <div class="text-[11px] text-slate-700 pt-0.5">
+            <strong>✅ Uyumlu Türler:</strong> ${care.compat}
+          </div>
+        `;
+      } else {
+        fishCard.classList.add('hidden');
       }
 
       // Açık Yem Gramaj
@@ -1224,7 +2066,7 @@
         matBox.classList.add('hidden');
       }
 
-      document.getElementById('pdDescription').textContent = p.desc || p.note || 'Turkuaz Akvaryum & PetShop garantisiyle orijinal ürün.';
+      document.getElementById('pdDescription').textContent = p.desc || p.note || 'Turkuaz Akvaryum & PetShop (Rami · Eyüpsultan) garantisiyle.';
       updatePdPriceDisplay();
       document.getElementById('productDetailModal').classList.remove('hidden');
     }
@@ -1281,7 +2123,7 @@
       document.getElementById('productDetailModal').classList.add('hidden');
     }
 
-    // 8. SEPET YÖNETİMİ
+    // 10. SEPET YÖNETİMİ
     function addToCart(name, price, img, qty = 1, code = '', src = '') {
       if (cart[name]) {
         cart[name].qty = Math.min(99, cart[name].qty + qty);
@@ -1360,7 +2202,7 @@
       else el.classList.add('hidden');
     }
 
-    // 9. SİPARİŞ TAMAMLAMA
+    // 11. SİPARİŞ TAMAMLAMA
     function openCheckoutModal() {
       const items = Object.values(cart);
       if (items.length === 0) {
@@ -1419,7 +2261,7 @@
       showToast(`✅ Siparişiniz (#${orderNo}) başarıyla oluşturuldu!`);
     }
 
-    // 10. AKVARYUM LİTRE SİHİRBAZI
+    // 12. AKVARYUM LİTRE SİHİRBAZI
     function updateWizardLiters(liters) {
       document.querySelectorAll('.wiz-lit-btn').forEach(b => {
         if (Number(b.dataset.lit) === liters) {
@@ -1459,29 +2301,7 @@
       `;
     }
 
-    function openWizardModal() {
-      document.getElementById('sihirbaz').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // 11. MÜŞTERİ YORUMLARI
-    function renderReviews() {
-      const box = document.getElementById('reviewsGrid');
-      const fallbackRevs = [
-        { name: 'Ahmet K.', stars: 5, text: 'Rami Eyüpsultan bölgesinde gördüğüm en temiz ve en zengin çeşitliliğe sahip akvaryum mağazası. Aldığım tüm canlılar çok sağlıklı.' },
-        { name: 'Selin Y.', stars: 5, text: 'Bitkili akvaryum kurulumumuz için kaya, kök ve dış filtre aldık. İlgi ve bilgi birikimleri harika.' },
-        { name: 'Murat D.', stars: 5, text: 'Açık yemlerin tazeliği ve ithal lepistes varyetelerinin formu mükemmel. Herkese tavsiye ederim.' }
-      ];
-      const list = allReviews.length > 0 ? allReviews : fallbackRevs;
-      box.innerHTML = list.map(r => `
-        <div class="bg-white rounded-3xl p-5 border border-slate-200/90 shadow-xs space-y-2.5">
-          <div class="text-amber-400 text-sm tracking-widest">${'★'.repeat(Math.max(1, Math.min(5, Number(r.stars) || 5)))}</div>
-          <p class="text-xs text-slate-600 leading-relaxed italic">“${r.text}”</p>
-          <div class="text-xs font-black text-slate-900">${r.name}</div>
-        </div>
-      `).join('');
-    }
-
-    // 12. YÖNETİM PANELİ
+    // 13. YÖNETİM PANELİ VE YENİ ÜRÜN EKLEME
     function openAdminModal() {
       document.getElementById('admAddress').value = storeConfig.address;
       document.getElementById('admPhone').value = storeConfig.phone;
@@ -1491,6 +2311,61 @@
 
     function closeAdminModal() {
       document.getElementById('adminModal').classList.add('hidden');
+    }
+
+    function switchAdminTab(tab) {
+      document.getElementById('admPane_addProduct').classList.toggle('hidden', tab !== 'addProduct');
+      document.getElementById('admPane_settings').classList.toggle('hidden', tab !== 'settings');
+      document.getElementById('admTabBtn_addProduct').className = tab === 'addProduct'
+        ? 'px-3.5 py-2 rounded-xl bg-slate-900 text-white'
+        : 'px-3.5 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200';
+      document.getElementById('admTabBtn_settings').className = tab === 'settings'
+        ? 'px-3.5 py-2 rounded-xl bg-slate-900 text-white'
+        : 'px-3.5 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200';
+    }
+
+    function handleNewProdImageFile(input) {
+      const file = input.files && input.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        uploadedProductDataUrl = e.target.result;
+        showToast('📸 Fotoğraf yüklendi ve hazır!');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handleAdminAddProduct(e) {
+      e.preventDefault();
+      const name = document.getElementById('newProdName').value.trim();
+      const src = document.getElementById('newProdSrc').value;
+      const price = Number(document.getElementById('newProdPrice').value) || 0;
+      const oldPrice = Number(document.getElementById('newProdOldPrice').value) || null;
+      const code = document.getElementById('newProdCode').value.trim() || `TRK-${Math.floor(100 + Math.random() * 899)}`;
+      const imgUrl = document.getElementById('newProdImgUrl').value.trim();
+      const desc = document.getElementById('newProdDesc').value.trim();
+
+      const newProd = {
+        _id: `custom_${Date.now()}`,
+        _src: src,
+        name,
+        price,
+        oldPrice,
+        code,
+        img: uploadedProductDataUrl || imgUrl || 'img/hero-luxury.jpg',
+        desc,
+        outOfStock: false
+      };
+
+      customProducts.unshift(newProd);
+      try { localStorage.setItem('turkuaz_magaza_custom_prods', JSON.stringify(customProducts)); } catch (err) {}
+      allProducts.unshift(newProd);
+      uploadedProductDataUrl = '';
+      e.target.reset();
+      renderCategoryBento();
+      renderProductsGrid();
+      closeAdminModal();
+      showToast(`✅ "${name}" mağaza vitrinine eklendi!`);
     }
 
     function saveAdminSettings() {
