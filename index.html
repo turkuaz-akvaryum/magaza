@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Turkuaz Akvaryum & PetShop | Rami · Eyüpsultan · İstanbul</title>
+  <meta name="description" content="Turkuaz Akvaryum & PetShop — Rami Yeni Mah., Reşadiye Cad. No:22, Eyüpsultan / İstanbul. Canlı balıklar, Ultra Clear akvaryumlar, filtre, ısıtıcı, LED aydınlatma, yem ve profesyonel akvaryum kurulumu." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; background-color: #F4F7F9; color: #0F172A; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .hero-mesh {
+      background: radial-gradient(circle at 15% 20%, rgba(6, 182, 212, 0.35), transparent 45%),
+                  radial-gradient(circle at 85% 75%, rgba(20, 184, 166, 0.30), transparent 50%),
+                  linear-gradient(135deg, #040D1A 0%, #071E2E 55%, #0A2E3D 100%);
+    }
+    .card-hover { transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 38px -15px rgba(6, 182, 212, 0.22); }
+  </style>
+</head>
+<body class="antialiased selection:bg-cyan-500 selection:text-white pb-20 md:pb-0">
+
+  <!-- ================= 1. ÜST KURUMSAL BİLGİ BARI ================= -->
+  <div class="bg-[#040D1A] text-slate-300 text-xs border-b border-cyan-500/20">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-4">
+        <span class="flex items-center gap-1.5 text-cyan-400 font-semibold">
+          <span>📍</span>
+          <span id="topBarAddress">Rami Yeni Mah., Reşadiye Cad. No:22, Eyüpsultan / İstanbul</span>
+        </span>
+        <span class="hidden sm:flex items-center gap-1.5 text-slate-400">
+          <span>🕒</span>
+          <span id="topBarHours">Pzt–Cmt 09:00–20:00 · Pazar 10:00–18:00</span>
+        </span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span id="topAnnouncement" class="hidden lg:inline-block text-cyan-300 font-semibold">
+          ✨ Tayland, Vietnam, Endonezya ve Singapur'dan Doğrudan İthalat • Profesyonel Akvaryum Kurulumu
+        </span>
+        <a href="https://yandex.com.tr/maps/org/turkuaz_petshop/1230764518/?lang=tr&ll=28.920110%2C41.049292&z=16" target="_blank" rel="noopener" class="text-cyan-400 hover:text-cyan-300 font-bold underline">
+          Yol Tarifi Al →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 2. ANA NAVİGASYON BARI (STICKY GLASS) ================= -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 h-18 py-3 flex items-center justify-between gap-3">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-cyan-600 via-teal-500 to-emerald-400 flex items-center justify-center text-white text-xl font-black shadow-lg shadow-cyan-500/25 group-hover:scale-105 transition">
+          🐠
+        </div>
+        <div>
+          <div class="text-base sm:text-lg font-black tracking-tight text-slate-900 leading-none">
+            TURKUAZ <span class="text-cyan-600">AKVARYUM</span>
+          </div>
+          <div class="text-[11px] font-bold text-slate-500 tracking-wide mt-0.5">
+            RAMİ · EYÜPSULTAN · AKVARYUM & PETSHOP
+          </div>
+        </div>
+      </a>
+
+      <!-- Hızlı Arama Çubuğu (Masaüstü) -->
+      <div class="hidden md:flex flex-1 max-w-md mx-4">
+        <div class="relative w-full">
+          <input
+            id="topSearchInput"
+            type="search"
+            oninput="onGlobalSearch(this.value)"
+            placeholder="Balık türü, dış filtre, ısıtıcı, yem, LED veya ürün kodu ara..."
+            class="w-full bg-slate-100 hover:bg-slate-50 focus:bg-white border border-slate-200 focus:border-cyan-500 rounded-2xl pl-10 pr-4 py-2.5 text-xs font-medium text-slate-800 outline-none transition"
+          />
+          <span class="absolute left-3.5 top-2.5 text-slate-400 text-sm">🔍</span>
+        </div>
+      </div>
+
+      <!-- Menü Linkleri & Sepet Butonu -->
+      <div class="flex items-center gap-2">
+        <nav class="hidden xl:flex items-center gap-5 text-xs font-extrabold uppercase tracking-wider text-slate-700 mr-3">
+          <a href="#kategoriler" class="hover:text-cyan-600 transition">Kategoriler</a>
+          <a href="#urunler" onclick="selectCategory('fish')" class="text-cyan-600 hover:text-cyan-700 transition">🐠 Canlı Balıklar</a>
+          <a href="#urunler" onclick="selectCategory('akvaryumlar')" class="hover:text-cyan-600 transition">Akvaryumlar</a>
+          <a href="#sihirbaz" class="hover:text-cyan-600 transition">🧪 Kurulum Sihirbazı</a>
+          <a href="#hizmetler" class="hover:text-cyan-600 transition">Hizmetler</a>
+          <a href="#iletisim" class="hover:text-cyan-600 transition">İletişim</a>
+        </nav>
+
+        <button
+          onclick="openWizardModal()"
+          class="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border border-cyan-200 text-xs font-extrabold transition"
+          title="Akvaryum Litresine Göre Ekipman Hesapla"
+        >
+          <span>🧪</span>
+          <span>Litre Sihirbazı</span>
+        </button>
+
+        <button
+          onclick="toggleCartDrawer(true)"
+          class="relative flex items-center gap-2 px-3.5 py-2.5 rounded-2xl bg-slate-900 hover:bg-cyan-700 text-white text-xs font-black shadow-md transition active:scale-95"
+        >
+          <span>🛒</span>
+          <span class="hidden sm:inline">Sepetim</span>
+          <span id="headerCartBadge" class="px-2 py-0.5 rounded-full bg-cyan-400 text-slate-950 text-[11px] font-black">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobil Arama Çubuğu -->
+    <div class="md:hidden px-4 pb-2.5">
+      <div class="relative w-full">
+        <input
+          id="mobileSearchInput"
+          type="search"
+          oninput="onGlobalSearch(this.value)"
+          placeholder="Canlı balık, filtre, ısıtıcı, açık yem, kaya ara..."
+          class="w-full bg-slate-100 focus:bg-white border border-slate-200 focus:border-cyan-500 rounded-xl pl-9 pr-3 py-2 text-xs font-medium text-slate-800 outline-none"
+        />
+        <span class="absolute left-3 top-2 text-slate-400 text-xs">🔍</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= 3. MODERN SİNEMATİK HERO VİTRİNİ ================= -->
+  <section class="relative hero-mesh text-white overflow-hidden">
+    <img
+      src="img/hero.jpg"
+      alt="Turkuaz Akvaryum Doğal Bitkili Akvaryum"
+      class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-luminosity"
+      onerror="this.style.display='none'"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-[#040D1A]/95 via-[#071E2E]/80 to-[#040D1A]/70"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 py-12 sm:py-16 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-7 space-y-5">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/30 text-cyan-300 text-xs font-bold backdrop-blur-md">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+          <span>Rami · Eyüpsultan · İstanbul — Profesyonel Akvaryum & PetShop Mağazası</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+          Sualtı Dünyasının En Seçkin <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-teal-200 to-emerald-300">Canlıları & Ekipmanları</span>
+        </h1>
+
+        <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
+          80'den fazla ithal ve yerli canlı balık varyetesi, Ultra Clear cama cam akvaryumlar, profesyonel dış/iç filtreler, bitkili aquascape ekipmanları ve açık/kapalı yem çeşitleri tek çatı altında.
+        </p>
+
+        <!-- Doğrudan İthalat Bayrakları -->
+        <div class="pt-1">
+          <span class="text-[10px] font-extrabold uppercase tracking-widest text-cyan-400 block mb-2">
+            🌏 Doğrudan Seçici İthalat & Üretim Ağımız
+          </span>
+          <div class="flex flex-wrap items-center gap-2.5">
+            <span class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 backdrop-blur-sm text-xs font-bold">
+              <img src="https://flagcdn.com/w40/th.png" alt="Tayland" class="w-5 h-3.5 object-cover rounded-sm" /> Tayland
+            </span>
+            <span class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 backdrop-blur-sm text-xs font-bold">
+              <img src="https://flagcdn.com/w40/vn.png" alt="Vietnam" class="w-5 h-3.5 object-cover rounded-sm" /> Vietnam
+            </span>
+            <span class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 backdrop-blur-sm text-xs font-bold">
+              <img src="https://flagcdn.com/w40/id.png" alt="Endonezya" class="w-5 h-3.5 object-cover rounded-sm" /> Endonezya
+            </span>
+            <span class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 backdrop-blur-sm text-xs font-bold">
+              <img src="https://flagcdn.com/w40/sg.png" alt="Singapur" class="w-5 h-3.5 object-cover rounded-sm" /> Singapur
+            </span>
+          </div>
+        </div>
+
+        <!-- CTA Butonları -->
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a
+            href="#urunler"
+            class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-teal-400 hover:from-cyan-400 hover:to-teal-300 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-cyan-500/25 transition active:scale-95"
+          >
+            🛍️ Tüm Ürünleri İncele
+          </a>
+          <a
+            href="#urunler"
+            onclick="selectCategory('fish')"
+            class="px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-cyan-400/40 text-white font-extrabold text-xs sm:text-sm backdrop-blur-md transition active:scale-95"
+          >
+            🐠 Canlı Balık Vitrini
+          </a>
+          <button
+            onclick="openWizardModal()"
+            class="px-5 py-3.5 rounded-2xl bg-slate-900/80 hover:bg-slate-900 border border-slate-700 text-cyan-300 font-bold text-xs sm:text-sm transition"
+          >
+            🧪 Akvaryum Litre Sihirbazı
+          </button>
+        </div>
+      </div>
+
+      <!-- Sağ Öne Çıkan İstatistik & Hızlı Vitrin Kartı -->
+      <div class="lg:col-span-5 grid grid-cols-2 gap-3">
+        <div onclick="selectCategory('fish')" class="cursor-pointer p-4 rounded-3xl bg-white/10 hover:bg-white/15 border border-white/15 backdrop-blur-md space-y-1.5 transition">
+          <span class="text-2xl">🐠</span>
+          <div class="text-2xl font-black text-cyan-300" id="statFishCount">87+</div>
+          <div class="text-xs font-extrabold text-white">Canlı Balık & Irk</div>
+          <p class="text-[11px] text-slate-300">İthal Lepistes, Discus, Cichlid, Tetra, Vatoz & Karides</p>
+        </div>
+        <div onclick="selectCategory('filtreler')" class="cursor-pointer p-4 rounded-3xl bg-white/10 hover:bg-white/15 border border-white/15 backdrop-blur-md space-y-1.5 transition">
+          <span class="text-2xl">⚙️</span>
+          <div class="text-2xl font-black text-teal-300" id="statEquipCount">200+</div>
+          <div class="text-xs font-extrabold text-white">Filtre, Isıtıcı & LED</div>
+          <p class="text-[11px] text-slate-300">Dış filtre, pipo filtre, termostatlı ısıtıcı ve RGB LED</p>
+        </div>
+        <div onclick="selectCategory('yemler')" class="cursor-pointer p-4 rounded-3xl bg-white/10 hover:bg-white/15 border border-white/15 backdrop-blur-md space-y-1.5 transition">
+          <span class="text-2xl">🍽️</span>
+          <div class="text-2xl font-black text-amber-300">50g – 1Kg</div>
+          <div class="text-xs font-extrabold text-white">Açık & Kapalı Yemler</div>
+          <p class="text-[11px] text-slate-300">İstediğiniz gramajda taze bölme ve orijinal kutu yemler</p>
+        </div>
+        <div onclick="selectCategory('akvaryumlar')" class="cursor-pointer p-4 rounded-3xl bg-white/10 hover:bg-white/15 border border-white/15 backdrop-blur-md space-y-1.5 transition">
+          <span class="text-2xl">🏠</span>
+          <div class="text-2xl font-black text-emerald-300">Özel Ölçü</div>
+          <div class="text-xs font-extrabold text-white">Ultra Clear Akvaryum</div>
+          <p class="text-[11px] text-slate-300">45° rodajlı ekstra şeffaf ve mobilyalı akvaryumlar</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4. KAMPANYALI & İNDİRİMLİ ÜRÜNLER KAYAN ŞERİT ================= -->
+  <section id="kampanyaStripSection" class="bg-white border-b border-slate-200 py-5">
+    <div class="max-w-7xl mx-auto px-4 space-y-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-1 rounded-lg bg-rose-600 text-white text-[11px] font-black uppercase tracking-wider">🔥 Fırsat</span>
+          <h2 class="text-sm sm:text-base font-black text-slate-900">Haftanın İndirimli & Kampanyalı Ürünleri</h2>
+        </div>
+        <button onclick="selectCategory('kampanyali')" class="text-xs font-extrabold text-cyan-600 hover:text-cyan-700">
+          Tüm İndirimleri Gör →
+        </button>
+      </div>
+      <div id="campaignHorizontalList" class="flex gap-3 overflow-x-auto no-scrollbar pb-1"></div>
+    </div>
+  </section>
+
+  <!-- ================= 5. 12 MODERN KATEGORİ KUTUSU (BENTO GRID) ================= -->
+  <section id="kategoriler" class="max-w-7xl mx-auto px-4 pt-8 pb-4">
+    <div class="flex items-end justify-between mb-4">
+      <div>
+        <span class="text-[11px] font-extrabold uppercase tracking-widest text-cyan-600 block">Mağaza Reyonları</span>
+        <h2 class="text-xl sm:text-2xl font-black text-slate-900">Kategorilere Göre İncele</h2>
+      </div>
+      <span id="totalCatalogBadge" class="text-xs font-bold text-slate-500 bg-white px-3 py-1.5 rounded-xl border border-slate-200">
+        440+ Ürün Hazır
+      </span>
+    </div>
+
+    <div id="categoryBentoGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5"></div>
+  </section>
+
+  <!-- ================= 6. ANA ÜRÜN VİTRİNİ, FİLTRELER & ARAMA ================= -->
+  <section id="urunler" class="max-w-7xl mx-auto px-4 py-8 space-y-6">
+    
+    <!-- Üst Başlık ve Filtre Barı -->
+    <div class="bg-white rounded-3xl p-4 sm:p-5 border border-slate-200/90 shadow-sm space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3.5">
+        <div>
+          <span id="activeCategorySuper" class="text-[11px] font-extrabold uppercase tracking-wider text-cyan-600 block">Turkuaz Akvaryum Mağaza</span>
+          <h2 id="activeCategoryTitle" class="text-lg sm:text-2xl font-black text-slate-900">Tüm Ürünler & Canlılar</h2>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- Fiyat Aralığı Filtresi -->
+          <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-xl text-xs font-bold" id="priceFilterBar">
+            <button onclick="setPriceRange('all')" data-pr="all" class="pr-btn px-2.5 py-1.5 rounded-lg bg-slate-900 text-white">Tümü</button>
+            <button onclick="setPriceRange('0-200')" data-pr="0-200" class="pr-btn px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900">0–200 ₺</button>
+            <button onclick="setPriceRange('200-500')" data-pr="200-500" class="pr-btn px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900">200–500 ₺</button>
+            <button onclick="setPriceRange('500-1500')" data-pr="500-1500" class="pr-btn px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900">500–1500 ₺</button>
+            <button onclick="setPriceRange('1500-999999')" data-pr="1500-999999" class="pr-btn px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900">1500 ₺+</button>
+          </div>
+
+          <label class="flex items-center gap-1.5 text-xs font-bold text-slate-600 bg-slate-100 px-3 py-2 rounded-xl cursor-pointer">
+            <input id="showOutOfStockChk" type="checkbox" checked onchange="onToggleOutOfStock(this.checked)" class="accent-cyan-600 w-4 h-4 rounded" />
+            <span>Tükenenleri Göster</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Alt Kategori Sekmeleri (Dinamik) -->
+      <div id="subCategoryPills" class="flex gap-2 overflow-x-auto no-scrollbar pb-1"></div>
+    </div>
+
+    <!-- Ürün Kartları Grid (4 Sütun Masaüstü, 2 Sütun Mobil) -->
+    <div id="productsGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5"></div>
+
+    <!-- Daha Fazla Göster Butonu -->
+    <div id="loadMoreWrap" class="text-center pt-4"></div>
+  </section>
+
+  <!-- ================= 7. AKVARYUM LİTRE & EKİPMAN SİHİRBAZI BÖLÜMÜ ================= -->
+  <section id="sihirbaz" class="max-w-7xl mx-auto px-4 py-8">
+    <div class="hero-mesh text-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl border border-cyan-500/30 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+      <div class="lg:col-span-5 space-y-3">
+        <span class="px-3 py-1 rounded-full bg-cyan-400/20 border border-cyan-400/40 text-cyan-300 text-xs font-extrabold uppercase tracking-wider">
+          🧪 Akıllı Kurulum Asistanı
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-black leading-tight">
+          Akvaryum Litrenize Göre İdeal Ekipman Hesaplayıcı
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          Akvaryumunuzun litresini seçin; kaç Watt ısıtıcı, saatte kaç litre (L/h) çeviren filtre ve kaç kg taban kumu gerektiğini anında hesaplayıp uygun ürünleri filtreleyelim.
+        </p>
+      </div>
+
+      <div class="lg:col-span-7 bg-slate-950/70 border border-white/10 rounded-2xl p-4 sm:p-5 space-y-4 backdrop-blur-md">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <span class="text-xs font-extrabold text-cyan-300 uppercase tracking-wider">1. Akvaryum Hacminizi Seçin:</span>
+          <div class="flex flex-wrap gap-1.5" id="wizardLiterButtons">
+            <button onclick="updateWizardLiters(30)" data-lit="30" class="wiz-lit-btn px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-bold">30L Nano</button>
+            <button onclick="updateWizardLiters(60)" data-lit="60" class="wiz-lit-btn px-3 py-1.5 rounded-xl bg-cyan-500 text-slate-950 text-xs font-black">60L Standart</button>
+            <button onclick="updateWizardLiters(120)" data-lit="120" class="wiz-lit-btn px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-bold">120L Bitkili</button>
+            <button onclick="updateWizardLiters(200)" data-lit="200" class="wiz-lit-btn px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-bold">200L Cichlid/Show</button>
+            <button onclick="updateWizardLiters(350)" data-lit="350" class="wiz-lit-btn px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-bold">350L+ Dev Tank</button>
+          </div>
+        </div>
+
+        <div id="wizardResultsGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 8. PROFESYONEL HİZMETLERİMİZ & HAKKIMIZDA ================= -->
+  <section id="hizmetler" class="bg-white border-y border-slate-200 py-12">
+    <div class="max-w-7xl mx-auto px-4 space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-cyan-600">Turkuaz Akvaryum & PetShop Uzmanlığı</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Profesyonel Kurulum & Bakım Hizmetlerimiz</h2>
+        <p class="text-xs sm:text-sm text-slate-500">
+          Eyüpsultan Rami mağazamızda ve İstanbul genelinde ev/ofis akvaryumlarınız için anahtar teslim kurulum, aquascape peyzaj ve periyodik bakım desteği.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="rounded-3xl border border-slate-200 p-6 bg-slate-50/60 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-cyan-600">01 • Anahtar Teslim</span>
+            <h3 class="text-lg font-black text-slate-900">Özel Akvaryum & Aquascape Kurulumu</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Evinize veya ofisinize özel ölçü Ultra Clear akvaryum, doğal kaya/kök (Hardscape) dizaynı, CO₂ destekli canlı bitki peyzajı ve bakteri döngüsü kurulumu.
+            </p>
+            <ul class="text-xs text-slate-700 space-y-1.5 pt-2 font-medium">
+              <li>✓ Yerinde keşif ve özel ölçü tasarım</li>
+              <li>✓ Doğal Dragon Stone, Seiryu & Yati kökü peyzajı</li>
+              <li>✓ İlk su hazırlığı ve bakteri kültürü aşılama</li>
+            </ul>
+          </div>
+          <a href="#iletisim" class="w-full py-3 rounded-2xl bg-slate-900 hover:bg-cyan-600 text-white text-center text-xs font-black transition">
+            Mağazamızla İletişime Geçin →
+          </a>
+        </div>
+
+        <div class="rounded-3xl border-2 border-cyan-500 p-6 bg-white shadow-lg flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-cyan-600">02 • Periyodik Bakım</span>
+            <h3 class="text-lg font-black text-slate-900">Aylık Akvaryum Bakım & Temizlik</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Akvaryumunuzun su değişimi, dip çekimi, cam/alg temizliği, dış filtre medya bakımı ve su parametre ölçümleri (pH, TDS, Sıcaklık) uzman ekibimizce yapılır.
+            </p>
+            <ul class="text-xs text-slate-700 space-y-1.5 pt-2 font-medium">
+              <li>✓ Profesyonel dış filtre ve ekipman temizliği</li>
+              <li>✓ Canlı bitki budama ve sıvı gübreleme</li>
+              <li>✓ Balık sağlık taraması ve su şartlandırma</li>
+            </ul>
+          </div>
+          <a href="#iletisim" class="w-full py-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-teal-400 text-slate-950 text-center text-xs font-black shadow-md transition">
+            Bakım Randevusu Alın →
+          </a>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 p-6 bg-slate-50/60 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-cyan-600">03 • Canlı & Yem Danışmanlığı</span>
+            <h3 class="text-lg font-black text-slate-900">Uyumlu Balık Seçimi & Su Analizi</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Mevcut akvaryumunuzdaki balık türleriyle %100 uyumlu yaşayacak yeni canlıların seçimi, hastalık/beyaz benek tedavi protokolü ve diyet programı.
+            </p>
+            <ul class="text-xs text-slate-700 space-y-1.5 pt-2 font-medium">
+              <li>✓ Tayland, Vietnam ve Singapur ithal ırklar</li>
+              <li>✓ Karantinadan geçmiş sağlıklı canlı garantisi</li>
+              <li>✓ Türlere özel açık ve kapalı yem kombinasyonu</li>
+            </ul>
+          </div>
+          <a href="#urunler" onclick="selectCategory('fish')" class="w-full py-3 rounded-2xl bg-slate-900 hover:bg-cyan-600 text-white text-center text-xs font-black transition">
+            Canlı Balıkları İncele →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 9. MÜŞTERİ YORUMLARI ================= -->
+  <section class="max-w-7xl mx-auto px-4 py-10 space-y-6">
+    <div class="text-center space-y-1">
+      <span class="text-xs font-extrabold uppercase tracking-widest text-cyan-600">Müşteri Deneyimleri</span>
+      <h2 class="text-xl sm:text-2xl font-black text-slate-900">Mağazamız Hakkında Yorumlar</h2>
+    </div>
+    <div id="reviewsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+  </section>
+
+  <!-- ================= 10. HARİTALI İLETİŞİM & MAĞAZA KONUMU (RAMİ · EYÜPSULTAN) ================= -->
+  <section id="iletisim" class="max-w-7xl mx-auto px-4 py-8">
+    <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-md grid grid-cols-1 lg:grid-cols-12">
+      <div class="lg:col-span-5 p-6 sm:p-8 space-y-5 flex flex-col justify-between">
+        <div class="space-y-4">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-widest text-cyan-600">Mağazamızı Ziyaret Edin</span>
+            <h2 class="text-2xl font-black text-slate-900 mt-1">Turkuaz Akvaryum & PetShop</h2>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1">
+              <div class="font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                <span>📍</span> <span>Mağaza Adresimiz</span>
+              </div>
+              <p id="contactAddressText" class="text-slate-600 leading-relaxed font-medium">
+                Rami Yeni Mah., Reşadiye Cad. No:22, Eyüpsultan / İstanbul
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1.5">
+                <a
+                  href="https://yandex.com.tr/maps/org/turkuaz_petshop/1230764518/?lang=tr&ll=28.920110%2C41.049292&z=16"
+                  target="_blank"
+                  rel="noopener"
+                  class="px-3 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-[11px] transition"
+                >
+                  🗺️ Yandex Harita'da Aç →
+                </a>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=41.049292,28.920110"
+                  target="_blank"
+                  rel="noopener"
+                  class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-[11px] transition"
+                >
+                  📍 Google Maps Yol Tarifi →
+                </a>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1">
+              <div class="font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                <span>🕒</span> <span>Çalışma Saatlerimiz</span>
+              </div>
+              <p id="contactHoursText" class="text-slate-600 font-medium">
+                Pazartesi – Cumartesi: 09:00 – 20:00<br />
+                Pazar: 10:00 – 18:00
+              </p>
+            </div>
+
+            <div id="contactPhoneCard" class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1">
+              <div class="font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                <span>📞</span> <span>İletişim & Sipariş Hattı</span>
+              </div>
+              <p id="contactPhoneText" class="text-slate-500 font-medium">
+                Mağaza iletişim numarası Yönetim Panelinden eklenebilir.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <button
+          onclick="openAdminModal()"
+          class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200 transition"
+        >
+          ⚙️ Mağaza & Ürün Yönetim Paneli
+        </button>
+      </div>
+
+      <!-- Sağ: Canlı Harita (Rami Yeni Mah., Reşadiye Cad. No:22 Koordinatları: 41.049292, 28.920110) -->
+      <div class="lg:col-span-7 min-h-[340px] bg-slate-100">
+        <iframe
+          title="Turkuaz Akvaryum & PetShop Rami Eyüpsultan Harita"
+          src="https://yandex.com.tr/map-widget/v1/?ll=28.920110%2C41.049292&z=17&pt=28.920110,41.049292,pm2rdm"
+          width="100%"
+          height="100%"
+          style="min-height: 360px; border: 0;"
+          allowfullscreen="true"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 11. KURUMSAL FOOTER ================= -->
+  <footer class="bg-[#040D1A] text-slate-400 text-xs mt-12 border-t border-cyan-500/20">
+    <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="space-y-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-teal-400 flex items-center justify-center text-slate-950 font-black text-base">
+            🐠
+          </div>
+          <span class="text-base font-black text-white">TURKUAZ <span class="text-cyan-400">AKVARYUM</span></span>
+        </div>
+        <p class="text-slate-400 leading-relaxed">
+          Rami Yeni Mah., Reşadiye Cad. No:22, Eyüpsultan / İstanbul adresinde canlı balıklar, akvaryum sistemleri, filtre, ısıtıcı, yem ve petshop ürünleri.
+        </p>
+      </div>
+
+      <div class="space-y-2">
+        <h4 class="text-white font-black uppercase tracking-wider">Popüler Kategoriler</h4>
+        <ul class="space-y-1.5">
+          <li><a href="#urunler" onclick="selectCategory('fish')" class="hover:text-cyan-400">🐠 Canlı Balıklar & Varyeteler</a></li>
+          <li><a href="#urunler" onclick="selectCategory('akvaryumlar')" class="hover:text-cyan-400">🏠 Ultra Clear Akvaryumlar</a></li>
+          <li><a href="#urunler" onclick="selectCategory('filtreler')" class="hover:text-cyan-400">⚙️ Dış, İç ve Askı Filtreler</a></li>
+          <li><a href="#urunler" onclick="selectCategory('yemler')" class="hover:text-cyan-400">🍽️ Açık & Kapalı Balık Yemleri</a></li>
+          <li><a href="#urunler" onclick="selectCategory('aydinlatma')" class="hover:text-cyan-400">💡 Profesyonel LED Aydınlatma</a></li>
+        </ul>
+      </div>
+
+      <div class="space-y-2">
+        <h4 class="text-white font-black uppercase tracking-wider">Bitkili & Bakım</h4>
+        <ul class="space-y-1.5">
+          <li><a href="#urunler" onclick="selectCategory('taslar')" class="hover:text-cyan-400">🪨 Doğal Kaya, Kök & Kum</a></li>
+          <li><a href="#urunler" onclick="selectCategory('bitkiler')" class="hover:text-cyan-400">🌿 Canlı Bitkiler & Gübre</a></li>
+          <li><a href="#urunler" onclick="selectCategory('su')" class="hover:text-cyan-400">💧 Su Düzenleyici & Bakteri</a></li>
+          <li><a href="#urunler" onclick="selectCategory('ilaclar')" class="hover:text-cyan-400">💊 İlaçlar & Balık Sağlığı</a></li>
+          <li><a href="#sihirbaz" class="hover:text-cyan-400">🧪 Akvaryum Litre Sihirbazı</a></li>
+        </ul>
+      </div>
+
+      <div class="space-y-2">
+        <h4 class="text-white font-black uppercase tracking-wider">Mağaza Konumu</h4>
+        <p>Rami Yeni Mah., Reşadiye Cad. No:22<br />Eyüpsultan / İstanbul</p>
+        <p class="text-cyan-400 font-semibold">Pzt–Cmt: 09:00–20:00 · Pazar: 10:00–18:00</p>
+        <div class="pt-2">
+          <button onclick="openAdminModal()" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-cyan-300 border border-slate-800 text-[11px] font-bold">
+            ⚙️ Mağaza Yönetimi
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-slate-800/80 py-4 text-center text-[11px] text-slate-500">
+      © 2026 Turkuaz Akvaryum & PetShop (Rami · Eyüpsultan / İstanbul) • Tüm Hakları Saklıdır.
+    </div>
+  </footer>
+
+  <!-- ================= MOBİL ALT SEPET BARI ================= -->
+  <div id="floatingCartBar" class="fixed bottom-3 left-3 right-3 max-w-xl mx-auto z-40 hidden bg-slate-900 text-white rounded-2xl p-3 shadow-2xl border border-cyan-500/40 flex items-center justify-between gap-3">
+    <div onclick="toggleCartDrawer(true)" class="flex items-center gap-3 cursor-pointer">
+      <div class="w-10 h-10 rounded-xl bg-cyan-500 text-slate-950 font-black flex items-center justify-center text-base">
+        🛒
+      </div>
+      <div>
+        <div id="floatCartCount" class="text-xs font-black text-cyan-300">0 Ürün</div>
+        <div id="floatCartTotal" class="text-sm font-black text-white">0 ₺</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="toggleCartDrawer(true)" class="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold">
+        Sepeti Gör
+      </button>
+      <button onclick="openCheckoutModal()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-teal-400 text-slate-950 text-xs font-black shadow-md">
+        Siparişi Tamamla →
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= ÜRÜN DETAY MODALI (QUICK VIEW) ================= -->
+  <div id="productDetailModal" onclick="if(event.target===this)closeProductDetail()" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white w-full max-w-3xl rounded-t-3xl sm:rounded-3xl max-h-[92vh] overflow-y-auto shadow-2xl grid grid-cols-1 md:grid-cols-12 overflow-hidden">
+      <div class="md:col-span-6 bg-slate-50 p-6 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-slate-200 relative">
+        <span id="pdBadge" class="absolute top-4 left-4 px-2.5 py-1 rounded-lg bg-cyan-600 text-white text-[10px] font-black uppercase"></span>
+        <img id="pdImage" src="" alt="" class="max-h-72 w-full object-contain rounded-2xl" />
+      </div>
+      <div class="md:col-span-6 p-5 sm:p-6 flex flex-col justify-between space-y-4">
+        <div class="space-y-2.5">
+          <div class="flex items-start justify-between gap-2">
+            <span id="pdCategory" class="text-[11px] font-extrabold uppercase tracking-wider text-cyan-600"></span>
+            <button onclick="closeProductDetail()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm">✕</button>
+          </div>
+          <h3 id="pdTitle" class="text-lg sm:text-xl font-black text-slate-900 leading-snug"></h3>
+          <div id="pdMeta" class="text-xs font-semibold text-slate-500"></div>
+          <div id="pdPriceBox" class="text-2xl font-black text-cyan-700 pt-1"></div>
+
+          <!-- Açık Yem Gramaj Seçici (Varsa) -->
+          <div id="pdGramBox" class="hidden space-y-1.5 pt-1">
+            <span class="text-[11px] font-extrabold text-slate-700 block">Gramaj Seçin:</span>
+            <div id="pdGramButtons" class="flex flex-wrap gap-1.5"></div>
+          </div>
+
+          <!-- Akvaryum Siyah Mat Fon Seçeneği (Varsa) -->
+          <label id="pdMatBox" class="hidden flex items-center justify-between p-3 rounded-2xl border-2 border-slate-200 bg-slate-50 cursor-pointer">
+            <div class="flex items-center gap-2">
+              <input id="pdMatCheck" type="checkbox" onchange="updatePdPriceDisplay()" class="w-4 h-4 accent-cyan-600" />
+              <span class="text-xs font-bold text-slate-800">Siyah Mat Arka Fon İster misiniz?</span>
+            </div>
+            <span class="text-xs font-black text-cyan-700">+500 ₺</span>
+          </label>
+
+          <!-- Ürün Açıklaması -->
+          <div id="pdDescription" class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80 max-h-48 overflow-y-auto whitespace-pre-line"></div>
+        </div>
+
+        <div class="flex items-center gap-2.5 pt-2">
+          <div class="flex items-center border border-slate-300 rounded-2xl bg-slate-50">
+            <button onclick="changePdQty(-1)" class="w-10 h-11 font-black text-base text-slate-700">−</button>
+            <span id="pdQty" class="w-8 text-center font-black text-sm">1</span>
+            <button onclick="changePdQty(1)" class="w-10 h-11 font-black text-base text-slate-700">+</button>
+          </div>
+          <button id="pdAddBtn" onclick="addFromDetailModal()" class="flex-1 py-3.5 px-4 rounded-2xl bg-gradient-to-r from-cyan-600 to-teal-500 hover:from-cyan-500 hover:to-teal-400 text-white font-black text-xs uppercase tracking-wider shadow-lg transition active:scale-95">
+            🛒 Sepete Ekle
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= KAYAR SEPET ÇEKMECESİ ================= -->
+  <div id="cartDrawerBackdrop" onclick="if(event.target===this)toggleCartDrawer(false)" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-xs flex justify-end">
+    <div class="bg-white w-full max-w-md h-full flex flex-col justify-between shadow-2xl">
+      <div class="p-4 border-b border-slate-200 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="text-lg">🛒</span>
+          <h3 class="text-base font-black text-slate-900">Alışveriş Sepetim</h3>
+        </div>
+        <button onclick="toggleCartDrawer(false)" class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 font-bold">✕</button>
+      </div>
+
+      <div id="cartItemsList" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
+
+      <div class="p-4 border-t border-slate-200 bg-slate-50 space-y-3">
+        <!-- Akvaryum Teslimat Seçici (Sepette Akvaryum Varsa Görünür) -->
+        <div id="cartAquariumShippingBox" class="hidden p-3 rounded-2xl bg-white border border-cyan-200 space-y-2 text-xs">
+          <div class="font-black text-slate-900">🚚 Akvaryum Teslimat Seçeneği</div>
+          <label class="flex items-start gap-2 cursor-pointer">
+            <input type="radio" name="akvShipMode" value="istanbul" checked onchange="setAquariumShipMode('istanbul')" class="mt-0.5 accent-cyan-600" />
+            <span><strong class="text-slate-800">İstanbul İçi / Mağazadan Teslim</strong><br /><span class="text-[11px] text-slate-500">Rami mağazamızdan teslim veya İstanbul içi kurye</span></span>
+          </label>
+          <label class="flex items-start gap-2 cursor-pointer">
+            <input type="radio" name="akvShipMode" value="sehirlerarasi" onchange="setAquariumShipMode('sehirlerarasi')" class="mt-0.5 accent-cyan-600" />
+            <span><strong class="text-slate-800">Şehirler Arası Korumalı Gönderim (+1.000 ₺)</strong><br /><span class="text-[11px] text-slate-500">Özel sandıklı sigortalı gönderim</span></span>
+          </label>
+        </div>
+
+        <div class="flex items-center justify-between text-base font-black text-slate-900">
+          <span>Toplam Tutar</span>
+          <span id="cartDrawerTotal" class="text-xl text-cyan-700">0 ₺</span>
+        </div>
+
+        <button
+          onclick="openCheckoutModal()"
+          class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-cyan-600 to-teal-500 hover:from-cyan-500 hover:to-teal-400 text-white font-black text-xs uppercase tracking-wider shadow-lg transition active:scale-95"
+        >
+          Siparişi Tamamla →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SİPARİŞ TAMAMLAMA (CHECKOUT) MODALI ================= -->
+  <div id="checkoutModal" onclick="if(event.target===this)closeCheckoutModal()" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-3xl p-6 space-y-4 shadow-2xl max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div>
+          <span class="text-[11px] font-extrabold uppercase tracking-wider text-cyan-600">Turkuaz Akvaryum & PetShop</span>
+          <h3 class="text-lg font-black text-slate-900">Sipariş & Teslimat Bilgileri</h3>
+        </div>
+        <button onclick="closeCheckoutModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 font-bold">✕</button>
+      </div>
+
+      <form onsubmit="submitOrder(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Adınız Soyadınız *</label>
+          <input id="chkName" type="text" required placeholder="Ad Soyad" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 outline-none focus:border-cyan-500" />
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Telefon Numaranız *</label>
+            <input id="chkPhone" type="tel" required placeholder="05XX XXX XX XX" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 outline-none focus:border-cyan-500" />
+          </div>
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Teslimat Yöntemi</label>
+            <select id="chkDeliveryType" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 outline-none focus:border-cyan-500">
+              <option value="Kargo ile Adrese Teslim">📦 Kargo ile Adrese Teslim</option>
+              <option value="Rami Mağazadan Gel-Al">🏪 Rami Mağazadan Gel-Al (Eyüpsultan)</option>
+              <option value="İstanbul İçi Kurye">🛵 İstanbul İçi Kurye</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Teslimat Adresi & Sipariş Notunuz *</label>
+          <textarea id="chkAddress" rows="3" required placeholder="Mahalle, Cadde, Sokak, Bina/Daire No, İlçe / İl..." class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 outline-none focus:border-cyan-500"></textarea>
+        </div>
+
+        <div id="checkoutSummaryBox" class="p-3.5 rounded-2xl bg-cyan-50 border border-cyan-200 space-y-1"></div>
+
+        <button type="submit" class="w-full py-3.5 rounded-2xl bg-slate-900 hover:bg-cyan-600 text-white font-black text-xs uppercase tracking-wider shadow-lg transition">
+          ✅ Siparişi Onayla ve Oluştur
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MAĞAZA YÖNETİM (ADMIN) MODALI ================= -->
+  <div id="adminModal" onclick="if(event.target===this)closeAdminModal()" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-3xl p-6 space-y-4 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div>
+          <span class="text-[11px] font-extrabold uppercase text-cyan-600">Turkuaz Akvaryum</span>
+          <h3 class="text-base font-black text-slate-900">⚙️ Mağaza İletişim & Vitrin Ayarları</h3>
+        </div>
+        <button onclick="closeAdminModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 font-bold">✕</button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Mağaza Adresi</label>
+          <input id="admAddress" type="text" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Telefon / WhatsApp Sipariş Numarası (Şu an boş bırakabilirsiniz)</label>
+          <input id="admPhone" type="text" placeholder="Örn: 0532 000 00 00 (Boş bırakılırsa sitede gizlenir)" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Çalışma Saatleri</label>
+          <input id="admHours" type="text" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
+        </div>
+        <button onclick="saveAdminSettings()" class="w-full py-3 rounded-2xl bg-cyan-600 hover:bg-cyan-700 text-white font-black text-xs">
+          Kaydet ve Siteye Uygula
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BİLDİRİM TOAST -->
+  <div id="toastBox" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 hidden bg-slate-900 text-white px-5 py-3 rounded-2xl text-xs font-extrabold shadow-2xl border border-cyan-400/40"></div>
+
+  <!-- ================= JAVASCRIPT MOTORU ================= -->
+  <script>
+    // 1. MAĞAZA AYARLARI (Rami Yeni Mah., Reşadiye Cad. No:22, Eyüpsultan / İstanbul)
+    let storeConfig = {
+      name: 'Turkuaz Akvaryum & PetShop',
+      address: 'Rami Yeni Mah., Reşadiye Cad. No:22, Eyüpsultan / İstanbul',
+      hours: 'Pzt–Cmt 09:00–20:00 · Pazar 10:00–18:00',
+      phone: '' // Kullanıcı isteğiyle şu anlık boş
+    };
+    try {
+      const savedCfg = localStorage.getItem('turkuaz_magaza_cfg');
+      if (savedCfg) storeConfig = { ...storeConfig, ...JSON.parse(savedCfg) };
+    } catch (e) {}
+
+    // 2. KATEGORİ TANIMLARI (CANLI BALIKLAR DAHİL 12 REYON)
+    const CATEGORIES = [
+      { id: 'all', title: 'Tüm Ürünler', icon: '🛍️', desc: 'Tüm mağaza kataloğu', filter: () => true },
+      { id: 'kampanyali', title: 'Kampanyalı', icon: '🔥', desc: 'İndirimli fırsat ürünleri', filter: p => p.oldPrice && Number(p.oldPrice) > Number(p.price) },
+      { id: 'fish', title: 'Canlı Balıklar', icon: '🐠', desc: 'İthal & yerli canlı balıklar', filter: p => p._src === 'fish' },
+      { id: 'akvaryumlar', title: 'Akvaryumlar', icon: '🏠', desc: 'Ultra Clear & mobilyalı setler', filter: p => p._src === 'aquariums' },
+      { id: 'filtreler', title: 'Filtreler', icon: '⚙️', desc: 'Dış, iç, askı ve pipo filtreler', filter: p => p._src === 'equipment' && ['dis_filtre','aski_filtre','ic_filtre','pipo_filtre','sunger_filtre','tepe_filtre','uv_filtre','filtre_malzeme'].includes(p.subcategory) },
+      { id: 'ekipman', title: 'Isıtıcı & Ekipman', icon: '🌡️', desc: 'Isıtıcı, hava & dalga motoru', filter: p => p._src === 'equipment' && !['dis_filtre','aski_filtre','ic_filtre','pipo_filtre','sunger_filtre','tepe_filtre','uv_filtre','filtre_malzeme','su_duzenleyici','ec_olcer','ph_olcer','ic_termostat'].includes(p.subcategory) },
+      { id: 'yemler', title: 'Balık Yemleri', icon: '🍽️', desc: 'Açık gramajlı & kutu yemler', filter: p => p._src === 'yemler' },
+      { id: 'aydinlatma', title: 'LED Aydınlatma', icon: '💡', desc: 'Bitkili & RGB LED armatürler', filter: p => p._src === 'lighting' },
+      { id: 'taslar', title: 'Kaya, Kök & Kum', icon: '🪨', desc: 'Doğal taş, kum ve bitki toprağı', filter: p => p._src === 'stone_products' || (p._src === 'plant_products' && p.subcategory === 'substrat') },
+      { id: 'bitkiler', title: 'Bitki, Gübre & CO₂', icon: '🌿', desc: 'Canlı bitkiler ve sıvı gübreler', filter: p => p._src === 'plants' || (p._src === 'plant_products' && p.subcategory !== 'substrat') },
+      { id: 'su', title: 'Su Düzenleyiciler', icon: '💧', desc: 'Su hazırlayıcı & bakteri kültürü', filter: p => p._src === 'equipment' && p.subcategory === 'su_duzenleyici' },
+      { id: 'ilaclar', title: 'İlaç & Sağlık', icon: '💊', desc: 'Mantar, beyaz benek & vitamin', filter: p => p._src === 'health' },
+      { id: 'aksesuar', title: 'Ölçer & Aksesuar', icon: '📏', desc: 'pH/EC ölçer, sifon, kepçe', filter: p => p._src === 'aksesuarlar' || ['ec_olcer','ph_olcer','ic_termostat'].includes(p.subcategory) }
+    ];
+
+    const SUB_LABELS = {
+      dis_filtre: 'Dış Filtre', ic_filtre: 'İç Filtre', aski_filtre: 'Askı (Şelale) Filtre',
+      pipo_filtre: 'Pipo Filtre', sunger_filtre: 'Sünger Filtre', tepe_filtre: 'Tepe Filtre',
+      uv_filtre: 'UV Filtre', filtre_malzeme: 'Filtre Malzemeleri', hava_motoru: 'Hava Motoru',
+      dalga_motoru: 'Dalga Motoru', kafa_sump_motoru: 'Kafa & Sump Motoru',
+      otomatik_yemleme: 'Otomatik Yemleme', su_duzenleyici: 'Su Düzenleyiciler',
+      test_kiti: 'Test Kiti', 'ısıtıcı': 'Akvaryum Isıtıcı', temizlik: 'Temizlik Ekipmanı',
+      acik_yem: 'Açık Bölme Yem', granul_yem: 'Granül Yem', pul_yem: 'Pul Yem', tablet_yem: 'Tablet Yem',
+      mantar: 'Mantar Tedavisi', bakteri: 'Bakteri Tedavisi', parazit: 'Parazit / Beyaz Benek',
+      vitamin: 'Vitamin & Bağışıklık', stres: 'Stres Önleyici',
+      ec_olcer: 'TDS / EC Ölçer', ph_olcer: 'pH Ölçer', ic_termostat: 'Termostat & Derece',
+      kayalar: 'Doğal Kayalar', bitki_kumu: 'Bitki Kumu', 'doğal_taş': 'Doğal Taşlar',
+      'kök_ağaç': 'Mangrow & Yati Kökü', 'doğal_kum': 'Doğal Kum', 'bitki_toprağı': 'Aktif Bitki Toprağı',
+      canli: 'Canlı Bitkiler', 'gübre': 'Sıvı Bitki Gübresi', co2: 'CO₂ Sistemleri', substrat: 'Substrat',
+      aski_led: 'Askı LED', grolux: 'Grolux LED', aquaslim: 'AquaSlim LED', rgb_telefon: 'RGB Akıllı LED'
+    };
+
+    const GRAMS = [50, 100, 250, 500, 1000];
+    let allProducts = [];
+    let allReviews = [];
+    let activeCategory = 'all';
+    let activeSubCategory = 'all';
+    let activePriceRange = 'all';
+    let searchQuery = '';
+    let showOutOfStock = true;
+    let visibleCount = 16;
+
+    // Sepet State
+    let cart = {};
+    let aquariumShipMode = 'istanbul';
+    try {
+      const savedCart = localStorage.getItem('turkuaz_magaza_cart');
+      if (savedCart) cart = JSON.parse(savedCart) || {};
+    } catch (e) {}
+
+    // Detay Modal State
+    let currentDetailProduct = null;
+    let currentDetailGram = 250;
+    let currentDetailQty = 1;
+
+    function formatTL(val) {
+      const n = Math.round(Number(val || 0) * 100) / 100;
+      return n.toLocaleString('tr-TR') + ' ₺';
+    }
+
+    function showToast(msg) {
+      const el = document.getElementById('toastBox');
+      el.textContent = msg;
+      el.classList.remove('hidden');
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => el.classList.add('hidden'), 2200);
+    }
+
+    function isOpenFeed(p) {
+      return p.subcategory === 'acik_yem' && Number(p.price) > 0;
+    }
+
+    function calcGramPrice(p, gram) {
+      return Math.round((Number(p.price) * gram / 1000) * 100) / 100;
+    }
+
+    function getSubLabel(p) {
+      if (p._src === 'fish') return p.subcategory || p.category || 'Canlı Balık';
+      return SUB_LABELS[p.subcategory] || p.subcategory || 'Akvaryum Ürünü';
+    }
+
+    // 3. KATALOG VERİSİNİ YÜKLE
+    async function loadStoreCatalog() {
+      applyStoreConfigToDOM();
+      updateWizardLiters(60);
+      try {
+        const res = await fetch('data/catalog.json');
+        const raw = await res.json();
+        const sources = ['fish', 'aquariums', 'equipment', 'yemler', 'lighting', 'stone_products', 'plant_products', 'plants', 'health', 'aksesuarlar'];
+        const list = [];
+
+        sources.forEach(src => {
+          (raw[src] || []).forEach((item, idx) => {
+            if (!item || !item.name || item.gizli) return;
+            const code = item.code || `${src.slice(0,3).toUpperCase()}-${100 + idx}`;
+            list.push({
+              ...item,
+              _id: `${src}_${code}_${idx}`,
+              _src: src,
+              code: code.replace(/^EA-/i, 'TRK-')
+            });
+          });
+        });
+
+        allProducts = list;
+        allReviews = (raw.reviews || []).slice(0, 6);
+
+        document.getElementById('totalCatalogBadge').textContent = `${allProducts.length} Ürün & Canlı`;
+        document.getElementById('statFishCount').textContent = `${(raw.fish || []).length}+`;
+
+        renderCampaignStrip();
+        renderCategoryBento();
+        renderSubCategoryPills();
+        renderProductsGrid();
+        renderReviews();
+        updateCartUI();
+      } catch (err) {
+        console.error('Katalog yükleme hatası:', err);
+      }
+    }
+
+    function applyStoreConfigToDOM() {
+      document.getElementById('topBarAddress').textContent = storeConfig.address;
+      document.getElementById('topBarHours').textContent = storeConfig.hours;
+      document.getElementById('contactAddressText').textContent = storeConfig.address;
+      document.getElementById('contactHoursText').textContent = storeConfig.hours;
+      const phoneTxt = document.getElementById('contactPhoneText');
+      if (storeConfig.phone && storeConfig.phone.trim()) {
+        phoneTxt.innerHTML = `<a href="tel:${storeConfig.phone}" class="text-cyan-600 font-black text-sm">${storeConfig.phone}</a>`;
+      } else {
+        phoneTxt.textContent = 'Telefon numarası henüz eklenmedi (Yönetim panelinden ekleyebilirsiniz).';
+      }
+    }
+
+    // 4. KAMPANYA ŞERİDİ
+    function renderCampaignStrip() {
+      const discounted = allProducts.filter(p => !p.outOfStock && p.oldPrice && Number(p.oldPrice) > Number(p.price));
+      const box = document.getElementById('campaignHorizontalList');
+      if (discounted.length === 0) {
+        document.getElementById('kampanyaStripSection').classList.add('hidden');
+        return;
+      }
+      box.innerHTML = discounted.slice(0, 12).map(p => {
+        const discPct = Math.round((1 - Number(p.price) / Number(p.oldPrice)) * 100);
+        return `
+          <div onclick="openProductDetail('${p._id}')" class="w-64 shrink-0 bg-slate-50 hover:bg-cyan-50/50 border border-slate-200 hover:border-cyan-400 rounded-2xl p-2.5 flex items-center gap-3 cursor-pointer transition">
+            <img src="${p.img || ''}" alt="${p.name}" class="w-14 h-14 object-contain bg-white rounded-xl border border-slate-200 p-1 shrink-0" loading="lazy" />
+            <div class="min-w-0 flex-1">
+              <span class="inline-block px-1.5 py-0.5 rounded bg-rose-600 text-white text-[10px] font-black">-%${discPct}</span>
+              <div class="text-xs font-extrabold text-slate-900 truncate mt-0.5">${p.name}</div>
+              <div class="text-xs font-black text-cyan-700">
+                <s class="text-slate-400 font-semibold mr-1">${formatTL(p.oldPrice)}</s> ${formatTL(p.price)}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 5. KATEGORİ BENTO KUTULARI
+    function renderCategoryBento() {
+      const grid = document.getElementById('categoryBentoGrid');
+      const displayCats = CATEGORIES.filter(c => c.id !== 'all');
+      grid.innerHTML = displayCats.map(c => {
+        const count = allProducts.filter(c.filter).length;
+        const isActive = activeCategory === c.id;
+        return `
+          <button
+            onclick="selectCategory('${c.id}')"
+            class="p-3.5 rounded-2xl border text-left transition flex flex-col justify-between gap-2 card-hover ${
+              isActive
+                ? 'bg-slate-900 text-white border-slate-900 shadow-lg'
+                : 'bg-white text-slate-800 border-slate-200/90 hover:border-cyan-400'
+            }"
+          >
+            <div class="flex items-center justify-between w-full">
+              <span class="text-2xl">${c.icon}</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-black ${
+                isActive ? 'bg-cyan-400 text-slate-950' : 'bg-slate-100 text-slate-600'
+              }">${count}</span>
+            </div>
+            <div>
+              <div class="text-xs font-black leading-snug">${c.title}</div>
+              <div class="text-[10px] ${isActive ? 'text-slate-300' : 'text-slate-400'} line-clamp-1 mt-0.5">${c.desc}</div>
+            </div>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectCategory(catId) {
+      activeCategory = catId;
+      activeSubCategory = 'all';
+      visibleCount = 16;
+      const catObj = CATEGORIES.find(c => c.id === catId) || CATEGORIES[0];
+      document.getElementById('activeCategoryTitle').textContent = `${catObj.icon} ${catObj.title}`;
+      renderCategoryBento();
+      renderSubCategoryPills();
+      renderProductsGrid();
+      document.getElementById('urunler').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function renderSubCategoryPills() {
+      const catObj = CATEGORIES.find(c => c.id === activeCategory) || CATEGORIES[0];
+      const inCat = allProducts.filter(catObj.filter);
+      const subCounts = {};
+      inCat.forEach(p => {
+        const sub = getSubLabel(p);
+        subCounts[sub] = (subCounts[sub] || 0) + 1;
+      });
+      const subs = Object.keys(subCounts);
+      const box = document.getElementById('subCategoryPills');
+      if (subs.length <= 1) {
+        box.innerHTML = '';
+        return;
+      }
+      box.innerHTML = [
+        `<button onclick="selectSubCategory('all')" class="px-3.5 py-1.5 rounded-xl text-xs font-extrabold shrink-0 transition ${
+          activeSubCategory === 'all' ? 'bg-cyan-600 text-white shadow' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+        }">Tümü (${inCat.length})</button>`,
+        ...subs.map(s => `
+          <button onclick="selectSubCategory('${s.replace(/'/g, "\\'")}')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold shrink-0 transition ${
+            activeSubCategory === s ? 'bg-cyan-600 text-white shadow' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+          }">${s} (${subCounts[s]})</button>
+        `)
+      ].join('');
+    }
+
+    function selectSubCategory(sub) {
+      activeSubCategory = sub;
+      visibleCount = 16;
+      renderSubCategoryPills();
+      renderProductsGrid();
+    }
+
+    function setPriceRange(range) {
+      activePriceRange = range;
+      visibleCount = 16;
+      document.querySelectorAll('.pr-btn').forEach(btn => {
+        if (btn.dataset.pr === range) {
+          btn.className = 'pr-btn px-2.5 py-1.5 rounded-lg bg-slate-900 text-white';
+        } else {
+          btn.className = 'pr-btn px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900';
+        }
+      });
+      renderProductsGrid();
+    }
+
+    function onToggleOutOfStock(checked) {
+      showOutOfStock = checked;
+      renderProductsGrid();
+    }
+
+    function onGlobalSearch(val) {
+      searchQuery = (val || '').toLocaleLowerCase('tr-TR').trim();
+      visibleCount = 16;
+      renderProductsGrid();
+    }
+
+    // 6. ÜRÜN KARTLARI LİSTELEME
+    function getFilteredProducts() {
+      const catObj = CATEGORIES.find(c => c.id === activeCategory) || CATEGORIES[0];
+      return allProducts.filter(p => {
+        if (!catObj.filter(p)) return false;
+        if (activeSubCategory !== 'all' && getSubLabel(p) !== activeSubCategory) return false;
+        if (!showOutOfStock && p.outOfStock) return false;
+        if (activePriceRange !== 'all') {
+          const [minP, maxP] = activePriceRange.split('-').map(Number);
+          const pr = Number(p.price) || 0;
+          if (pr < minP || pr > maxP) return false;
+        }
+        if (searchQuery) {
+          const hay = `${p.name} ${p.brand || ''} ${p.code || ''} ${getSubLabel(p)} ${p.desc || ''}`.toLocaleLowerCase('tr-TR');
+          if (!hay.includes(searchQuery)) return false;
+        }
+        return true;
+      }).sort((a, b) => (a.outOfStock ? 1 : 0) - (b.outOfStock ? 1 : 0));
+    }
+
+    function renderProductsGrid() {
+      const filtered = getFilteredProducts();
+      const grid = document.getElementById('productsGrid');
+      const moreWrap = document.getElementById('loadMoreWrap');
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-white rounded-3xl p-12 text-center border border-slate-200 space-y-2">
+            <div class="text-3xl">🔍</div>
+            <div class="text-base font-black text-slate-800">Aramanızla eşleşen ürün bulunamadı</div>
+            <p class="text-xs text-slate-500">Filtreleri sıfırlayarak tüm mağaza ürünlerini görüntüleyebilirsiniz.</p>
+            <button onclick="selectCategory('all');setPriceRange('all');" class="mt-2 px-4 py-2 rounded-xl bg-cyan-600 text-white text-xs font-black">
+              Tüm Ürünleri Göster
+            </button>
+          </div>
+        `;
+        moreWrap.innerHTML = '';
+        return;
+      }
+
+      grid.innerHTML = filtered.slice(0, visibleCount).map(p => {
+        const isOut = Boolean(p.outOfStock);
+        const hasDisc = p.oldPrice && Number(p.oldPrice) > Number(p.price);
+        const discPct = hasDisc ? Math.round((1 - Number(p.price) / Number(p.oldPrice)) * 100) : 0;
+        const openFeed = isOpenFeed(p);
+
+        return `
+          <article class="bg-white rounded-3xl border border-slate-200/90 overflow-hidden flex flex-col justify-between card-hover">
+            <div>
+              <!-- Ürün Görseli -->
+              <div onclick="openProductDetail('${p._id}')" class="relative aspect-square bg-white border-b border-slate-100 p-4 flex items-center justify-center cursor-pointer overflow-hidden group">
+                ${isOut
+                  ? `<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-lg bg-slate-800 text-white text-[10px] font-black uppercase">Stokta Yok</span>`
+                  : hasDisc
+                  ? `<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-lg bg-rose-600 text-white text-[10px] font-black uppercase">-%${discPct} İndirim</span>`
+                  : p._src === 'fish'
+                  ? `<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-lg bg-cyan-600 text-white text-[10px] font-black uppercase">🐠 Canlı</span>`
+                  : ''
+                }
+                <span class="absolute top-3 right-3 z-10 px-2 py-0.5 rounded-md bg-slate-100 text-slate-500 font-mono text-[10px] font-bold">
+                  ${p.code}
+                </span>
+                ${p.img
+                  ? `<img src="${p.img}" alt="${p.name}" loading="lazy" class="w-full h-full object-contain group-hover:scale-105 transition duration-300" />`
+                  : `<div class="text-xs text-slate-400 font-bold">Görsel Yakında</div>`
+                }
+              </div>
+
+              <!-- Ürün Bilgisi -->
+              <div class="p-3.5 sm:p-4 space-y-1.5">
+                <div class="text-[10px] font-extrabold uppercase tracking-wider text-cyan-600 truncate">
+                  ${getSubLabel(p)} ${p.note && p._src === 'fish' ? `• ${p.note}` : ''}
+                </div>
+                <h3 onclick="openProductDetail('${p._id}')" class="text-xs sm:text-sm font-extrabold text-slate-900 line-clamp-2 min-h-[2.5em] cursor-pointer hover:text-cyan-700">
+                  ${p.name}
+                </h3>
+                ${p.desc ? `<p class="text-[11px] text-slate-500 line-clamp-2">${p.desc}</p>` : ''}
+              </div>
+            </div>
+
+            <!-- Fiyat & Sepete Ekle -->
+            <div class="px-3.5 pb-3.5 sm:px-4 sm:pb-4 space-y-2.5">
+              ${openFeed && !isOut ? `
+                <div class="flex flex-wrap gap-1" id="gramGroup_${p._id}">
+                  ${GRAMS.map(g => `
+                    <button
+                      type="button"
+                      onclick="selectCardGram('${p._id}', ${g})"
+                      data-gram="${g}"
+                      class="px-2 py-1 rounded-lg text-[10px] font-extrabold border transition ${
+                        g === 250 ? 'bg-slate-900 text-white border-slate-900' : 'bg-slate-50 text-slate-700 border-slate-200'
+                      }"
+                    >${g >= 1000 ? '1 Kg' : g + 'g'}</button>
+                  `).join('')}
+                </div>
+              ` : ''}
+
+              <div class="flex items-baseline justify-between">
+                <div>
+                  ${hasDisc ? `<s class="text-xs text-slate-400 font-semibold block">${formatTL(p.oldPrice)}</s>` : ''}
+                  <span id="cardPrice_${p._id}" class="text-base sm:text-lg font-black text-slate-900">
+                    ${openFeed ? formatTL(calcGramPrice(p, 250)) : (Number(p.price) > 0 ? formatTL(p.price) : 'Fiyat Sorunuz')}
+                  </span>
+                  ${openFeed ? `<span class="text-[10px] text-slate-400 font-bold"> / 250g</span>` : ''}
+                </div>
+              </div>
+
+              ${isOut ? `
+                <button disabled class="w-full py-2.5 rounded-xl bg-slate-100 text-slate-400 font-extrabold text-xs cursor-not-allowed">
+                  Geçiçi Olarak Tükendi
+                </button>
+              ` : `
+                <button
+                  onclick="addCardToCart('${p._id}')"
+                  class="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-cyan-600 active:scale-95 text-white font-black text-xs transition flex items-center justify-center gap-1.5 shadow-sm"
+                >
+                  <span>🛒</span>
+                  <span>Sepete Ekle</span>
+                </button>
+              `}
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      if (filtered.length > visibleCount) {
+        moreWrap.innerHTML = `
+          <button
+            onclick="visibleCount += 16; renderProductsGrid();"
+            class="px-6 py-3 rounded-2xl bg-white hover:bg-slate-900 text-slate-900 hover:text-white border-2 border-slate-900 font-black text-xs uppercase tracking-wider transition"
+          >
+            Daha Fazla Ürün Göster (${filtered.length - visibleCount} Ürün Daha)
+          </button>
+        `;
+      } else {
+        moreWrap.innerHTML = '';
+      }
+    }
+
+    function selectCardGram(prodId, gram) {
+      const p = allProducts.find(x => x._id === prodId);
+      if (!p) return;
+      p._selectedGram = gram;
+      const grp = document.getElementById(`gramGroup_${prodId}`);
+      if (grp) {
+        grp.querySelectorAll('button').forEach(b => {
+          const g = Number(b.dataset.gram);
+          b.className = `px-2 py-1 rounded-lg text-[10px] font-extrabold border transition ${
+            g === gram ? 'bg-slate-900 text-white border-slate-900' : 'bg-slate-50 text-slate-700 border-slate-200'
+          }`;
+        });
+      }
+      const priceEl = document.getElementById(`cardPrice_${prodId}`);
+      if (priceEl) {
+        priceEl.innerHTML = `${formatTL(calcGramPrice(p, gram))} <span class="text-[10px] text-slate-400 font-bold">/ ${gram >= 1000 ? '1 Kg' : gram + 'g'}</span>`;
+      }
+    }
+
+    function addCardToCart(prodId) {
+      const p = allProducts.find(x => x._id === prodId);
+      if (!p) return;
+      if (isOpenFeed(p)) {
+        const g = p._selectedGram || 250;
+        const gLabel = g >= 1000 ? '1 Kg' : `${g}g`;
+        addToCart(`${p.name} (${gLabel})`, calcGramPrice(p, g), p.img, 1, p.code, p._src);
+      } else {
+        addToCart(p.name, Number(p.price) || 0, p.img, 1, p.code, p._src);
+      }
+    }
+
+    // 7. ÜRÜN DETAY MODALI
+    function openProductDetail(prodId) {
+      const p = allProducts.find(x => x._id === prodId);
+      if (!p) return;
+      currentDetailProduct = p;
+      currentDetailGram = p._selectedGram || 250;
+      currentDetailQty = 1;
+
+      document.getElementById('pdQty').textContent = '1';
+      document.getElementById('pdImage').src = p.img || '';
+      document.getElementById('pdCategory').textContent = getSubLabel(p);
+      document.getElementById('pdTitle').textContent = p.name;
+      document.getElementById('pdMeta').textContent = [
+        p.code ? `Stok Kodu: ${p.code}` : '',
+        p.brand ? `Marka: ${p.brand}` : '',
+        p.size ? `Ölçü: ${p.size}` : ''
+      ].filter(Boolean).join(' • ');
+
+      const badge = document.getElementById('pdBadge');
+      if (p.outOfStock) {
+        badge.textContent = 'Stokta Yok';
+        badge.className = 'absolute top-4 left-4 px-2.5 py-1 rounded-lg bg-slate-800 text-white text-[10px] font-black uppercase';
+      } else {
+        badge.textContent = p._src === 'fish' ? '🐠 Canlı Balık' : p.code;
+        badge.className = 'absolute top-4 left-4 px-2.5 py-1 rounded-lg bg-cyan-600 text-white text-[10px] font-black uppercase';
+      }
+
+      // Açık Yem Gramaj
+      const gramBox = document.getElementById('pdGramBox');
+      if (isOpenFeed(p)) {
+        gramBox.classList.remove('hidden');
+        renderPdGramButtons();
+      } else {
+        gramBox.classList.add('hidden');
+      }
+
+      // Akvaryum Siyah Mat
+      const matBox = document.getElementById('pdMatBox');
+      const matChk = document.getElementById('pdMatCheck');
+      matChk.checked = false;
+      if (p._src === 'aquariums') {
+        matBox.classList.remove('hidden');
+      } else {
+        matBox.classList.add('hidden');
+      }
+
+      document.getElementById('pdDescription').textContent = p.desc || p.note || 'Turkuaz Akvaryum & PetShop garantisiyle orijinal ürün.';
+      updatePdPriceDisplay();
+      document.getElementById('productDetailModal').classList.remove('hidden');
+    }
+
+    function renderPdGramButtons() {
+      const box = document.getElementById('pdGramButtons');
+      box.innerHTML = GRAMS.map(g => `
+        <button
+          type="button"
+          onclick="currentDetailGram=${g};renderPdGramButtons();updatePdPriceDisplay();"
+          class="px-3 py-1.5 rounded-xl text-xs font-extrabold border ${
+            currentDetailGram === g ? 'bg-slate-900 text-white border-slate-900' : 'bg-slate-100 text-slate-700 border-slate-200'
+          }"
+        >${g >= 1000 ? '1 Kg' : g + 'g'}</button>
+      `).join('');
+    }
+
+    function updatePdPriceDisplay() {
+      const p = currentDetailProduct;
+      if (!p) return;
+      let unitPrice = Number(p.price) || 0;
+      if (isOpenFeed(p)) {
+        unitPrice = calcGramPrice(p, currentDetailGram);
+      } else if (p._src === 'aquariums' && document.getElementById('pdMatCheck').checked) {
+        unitPrice += 500;
+      }
+      document.getElementById('pdPriceBox').textContent = formatTL(unitPrice * currentDetailQty);
+    }
+
+    function changePdQty(delta) {
+      currentDetailQty = Math.max(1, Math.min(99, currentDetailQty + delta));
+      document.getElementById('pdQty').textContent = String(currentDetailQty);
+      updatePdPriceDisplay();
+    }
+
+    function addFromDetailModal() {
+      const p = currentDetailProduct;
+      if (!p || p.outOfStock) return;
+      let finalName = p.name;
+      let unitPrice = Number(p.price) || 0;
+      if (isOpenFeed(p)) {
+        const gLabel = currentDetailGram >= 1000 ? '1 Kg' : `${currentDetailGram}g`;
+        finalName = `${p.name} (${gLabel})`;
+        unitPrice = calcGramPrice(p, currentDetailGram);
+      } else if (p._src === 'aquariums' && document.getElementById('pdMatCheck').checked) {
+        finalName = `${p.name} · Siyah Mat Fonlu`;
+        unitPrice += 500;
+      }
+      addToCart(finalName, unitPrice, p.img, currentDetailQty, p.code, p._src);
+      closeProductDetail();
+    }
+
+    function closeProductDetail() {
+      document.getElementById('productDetailModal').classList.add('hidden');
+    }
+
+    // 8. SEPET YÖNETİMİ
+    function addToCart(name, price, img, qty = 1, code = '', src = '') {
+      if (cart[name]) {
+        cart[name].qty = Math.min(99, cart[name].qty + qty);
+      } else {
+        cart[name] = { name, price: Number(price) || 0, img: img || '', qty, code, src };
+      }
+      saveCart();
+      updateCartUI();
+      showToast(`🛒 "${name}" sepete eklendi!`);
+    }
+
+    function changeCartQty(name, delta) {
+      if (!cart[name]) return;
+      cart[name].qty += delta;
+      if (cart[name].qty <= 0) delete cart[name];
+      saveCart();
+      updateCartUI();
+    }
+
+    function saveCart() {
+      try { localStorage.setItem('turkuaz_magaza_cart', JSON.stringify(cart)); } catch (e) {}
+    }
+
+    function setAquariumShipMode(mode) {
+      aquariumShipMode = mode;
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const items = Object.values(cart);
+      const count = items.reduce((s, x) => s + x.qty, 0);
+      const hasAquarium = items.some(x => x.src === 'aquariums' || /^AKV-/i.test(x.code || ''));
+      const shipFee = (hasAquarium && aquariumShipMode === 'sehirlerarasi') ? 1000 : 0;
+      const subtotal = items.reduce((s, x) => s + x.qty * x.price, 0);
+      const grandTotal = subtotal + shipFee;
+
+      document.getElementById('headerCartBadge').textContent = String(count);
+      document.getElementById('floatCartCount').textContent = `${count} Ürün`;
+      document.getElementById('floatCartTotal').textContent = formatTL(grandTotal);
+      document.getElementById('cartDrawerTotal').textContent = formatTL(grandTotal);
+
+      const floatBar = document.getElementById('floatingCartBar');
+      if (count > 0) floatBar.classList.remove('hidden');
+      else floatBar.classList.add('hidden');
+
+      const shipBox = document.getElementById('cartAquariumShippingBox');
+      if (hasAquarium) shipBox.classList.remove('hidden');
+      else shipBox.classList.add('hidden');
+
+      const listEl = document.getElementById('cartItemsList');
+      if (items.length === 0) {
+        listEl.innerHTML = `<div class="text-center py-16 text-slate-400 text-xs font-bold">Sepetiniz şu an boş.</div>`;
+        return;
+      }
+
+      listEl.innerHTML = items.map(item => `
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-3">
+          <img src="${item.img}" alt="" class="w-14 h-14 rounded-xl object-contain bg-white border border-slate-200 p-1 shrink-0" />
+          <div class="min-w-0 flex-1">
+            <div class="text-xs font-extrabold text-slate-900 truncate">${item.name}</div>
+            <div class="text-[11px] font-bold text-cyan-700 mt-0.5">${formatTL(item.price)} x ${item.qty} = ${formatTL(item.price * item.qty)}</div>
+            <div class="flex items-center gap-2 mt-1.5">
+              <button onclick="changeCartQty('${item.name.replace(/'/g, "\\'")}', -1)" class="w-6 h-6 rounded-lg bg-white border border-slate-300 font-black text-xs">−</button>
+              <span class="text-xs font-black">${item.qty}</span>
+              <button onclick="changeCartQty('${item.name.replace(/'/g, "\\'")}', 1)" class="w-6 h-6 rounded-lg bg-white border border-slate-300 font-black text-xs">+</button>
+            </div>
+          </div>
+          <button onclick="changeCartQty('${item.name.replace(/'/g, "\\'")}', -999)" class="text-rose-500 hover:text-rose-700 text-xs font-bold">Sil</button>
+        </div>
+      `).join('');
+    }
+
+    function toggleCartDrawer(open) {
+      const el = document.getElementById('cartDrawerBackdrop');
+      if (open) el.classList.remove('hidden');
+      else el.classList.add('hidden');
+    }
+
+    // 9. SİPARİŞ TAMAMLAMA
+    function openCheckoutModal() {
+      const items = Object.values(cart);
+      if (items.length === 0) {
+        showToast('Sepetiniz boş!');
+        return;
+      }
+      toggleCartDrawer(false);
+      const total = items.reduce((s, x) => s + x.qty * x.price, 0);
+      document.getElementById('checkoutSummaryBox').innerHTML = `
+        <div class="font-black text-slate-900">Sipariş Özeti (${items.length} Kalem)</div>
+        <div class="text-[11px] text-slate-600 max-h-28 overflow-y-auto space-y-0.5">
+          ${items.map(i => `<div>• ${i.qty}x ${i.name} — <strong>${formatTL(i.qty * i.price)}</strong></div>`).join('')}
+        </div>
+        <div class="text-sm font-black text-cyan-800 pt-1 border-t border-cyan-200">Toplam: ${formatTL(total)}</div>
+      `;
+      document.getElementById('checkoutModal').classList.remove('hidden');
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModal').classList.add('hidden');
+    }
+
+    function submitOrder(e) {
+      e.preventDefault();
+      const name = document.getElementById('chkName').value.trim();
+      const phone = document.getElementById('chkPhone').value.trim();
+      const delivery = document.getElementById('chkDeliveryType').value;
+      const address = document.getElementById('chkAddress').value.trim();
+      const items = Object.values(cart);
+      const total = items.reduce((s, x) => s + x.qty * x.price, 0);
+
+      const orderNo = `TRK-${Date.now().toString().slice(-5)}`;
+      const msgLines = [
+        `*TURKUAZ AKVARYUM & PETSHOP - YENİ SİPARİŞ (#${orderNo})*`,
+        `Müşteri: ${name}`,
+        `Telefon: ${phone}`,
+        `Teslimat: ${delivery}`,
+        `Adres: ${address}`,
+        ``,
+        `*SİPARİŞ KALEMLERİ:*`,
+        ...items.map(i => `• ${i.qty}x ${i.name} (${i.code || ''}) — ${formatTL(i.qty * i.price)}`),
+        ``,
+        `*GENEL TOPLAM: ${formatTL(total)}*`
+      ];
+
+      if (storeConfig.phone && storeConfig.phone.replace(/\D/g, '').length >= 10) {
+        let cleanPhone = storeConfig.phone.replace(/\D/g, '');
+        if (cleanPhone.startsWith('0')) cleanPhone = '90' + cleanPhone.slice(1);
+        window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(msgLines.join('\n'))}`, '_blank');
+      }
+
+      cart = {};
+      saveCart();
+      updateCartUI();
+      closeCheckoutModal();
+      showToast(`✅ Siparişiniz (#${orderNo}) başarıyla oluşturuldu!`);
+    }
+
+    // 10. AKVARYUM LİTRE SİHİRBAZI
+    function updateWizardLiters(liters) {
+      document.querySelectorAll('.wiz-lit-btn').forEach(b => {
+        if (Number(b.dataset.lit) === liters) {
+          b.className = 'wiz-lit-btn px-3 py-1.5 rounded-xl bg-cyan-400 text-slate-950 text-xs font-black shadow';
+        } else {
+          b.className = 'wiz-lit-btn px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-bold hover:bg-slate-700';
+        }
+      });
+
+      const heaterWatt = liters <= 40 ? '25W – 50W' : liters <= 80 ? '100W' : liters <= 150 ? '150W – 200W' : '300W';
+      const filterFlow = `${liters * 4} – ${liters * 6} L/Saat`;
+      const filterType = liters <= 50 ? 'Askı / Pipo Filtre' : liters <= 120 ? 'İç / Mini Dış Filtre' : 'Profesyonel Dış Filtre';
+      const sandKg = `${Math.round(liters * 0.15)} – ${Math.round(liters * 0.22)} Kg`;
+      const ledWatt = `${Math.round(liters * 0.35)}W – ${Math.round(liters * 0.5)}W LED`;
+
+      document.getElementById('wizardResultsGrid').innerHTML = `
+        <div onclick="selectCategory('ekipman')" class="p-3 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 cursor-pointer transition">
+          <span class="text-[10px] text-cyan-300 font-bold uppercase block">🌡️ Önerilen Isıtıcı</span>
+          <div class="text-base font-black text-white mt-0.5">${heaterWatt}</div>
+          <span class="text-[10px] text-slate-300">Isıtıcıları Gör →</span>
+        </div>
+        <div onclick="selectCategory('filtreler')" class="p-3 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 cursor-pointer transition">
+          <span class="text-[10px] text-cyan-300 font-bold uppercase block">⚙️ İdeal Filtre Debisi</span>
+          <div class="text-base font-black text-white mt-0.5">${filterFlow}</div>
+          <span class="text-[10px] text-slate-300">${filterType} →</span>
+        </div>
+        <div onclick="selectCategory('taslar')" class="p-3 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 cursor-pointer transition">
+          <span class="text-[10px] text-cyan-300 font-bold uppercase block">🪨 Taban Kumu İhtiyacı</span>
+          <div class="text-base font-black text-white mt-0.5">${sandKg}</div>
+          <span class="text-[10px] text-slate-300">Kum & Toprak Gör →</span>
+        </div>
+        <div onclick="selectCategory('aydinlatma')" class="p-3 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 cursor-pointer transition">
+          <span class="text-[10px] text-cyan-300 font-bold uppercase block">💡 Aydınlatma Gücü</span>
+          <div class="text-base font-black text-white mt-0.5">${ledWatt}</div>
+          <span class="text-[10px] text-slate-300">LED Armatürleri Gör →</span>
+        </div>
+      `;
+    }
+
+    function openWizardModal() {
+      document.getElementById('sihirbaz').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 11. MÜŞTERİ YORUMLARI
+    function renderReviews() {
+      const box = document.getElementById('reviewsGrid');
+      const fallbackRevs = [
+        { name: 'Ahmet K.', stars: 5, text: 'Rami Eyüpsultan bölgesinde gördüğüm en temiz ve en zengin çeşitliliğe sahip akvaryum mağazası. Aldığım tüm canlılar çok sağlıklı.' },
+        { name: 'Selin Y.', stars: 5, text: 'Bitkili akvaryum kurulumumuz için kaya, kök ve dış filtre aldık. İlgi ve bilgi birikimleri harika.' },
+        { name: 'Murat D.', stars: 5, text: 'Açık yemlerin tazeliği ve ithal lepistes varyetelerinin formu mükemmel. Herkese tavsiye ederim.' }
+      ];
+      const list = allReviews.length > 0 ? allReviews : fallbackRevs;
+      box.innerHTML = list.map(r => `
+        <div class="bg-white rounded-3xl p-5 border border-slate-200/90 shadow-xs space-y-2.5">
+          <div class="text-amber-400 text-sm tracking-widest">${'★'.repeat(Math.max(1, Math.min(5, Number(r.stars) || 5)))}</div>
+          <p class="text-xs text-slate-600 leading-relaxed italic">“${r.text}”</p>
+          <div class="text-xs font-black text-slate-900">${r.name}</div>
+        </div>
+      `).join('');
+    }
+
+    // 12. YÖNETİM PANELİ
+    function openAdminModal() {
+      document.getElementById('admAddress').value = storeConfig.address;
+      document.getElementById('admPhone').value = storeConfig.phone;
+      document.getElementById('admHours').value = storeConfig.hours;
+      document.getElementById('adminModal').classList.remove('hidden');
+    }
+
+    function closeAdminModal() {
+      document.getElementById('adminModal').classList.add('hidden');
+    }
+
+    function saveAdminSettings() {
+      storeConfig.address = document.getElementById('admAddress').value.trim() || storeConfig.address;
+      storeConfig.phone = document.getElementById('admPhone').value.trim();
+      storeConfig.hours = document.getElementById('admHours').value.trim() || storeConfig.hours;
+      try { localStorage.setItem('turkuaz_magaza_cfg', JSON.stringify(storeConfig)); } catch (e) {}
+      applyStoreConfigToDOM();
+      closeAdminModal();
+      showToast('✅ Mağaza bilgileri güncellendi!');
+    }
+
+    document.addEventListener('DOMContentLoaded', loadStoreCatalog);
+  </script>
+</body>
+</html>
