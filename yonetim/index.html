@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#020A13" />
+  <title>Turkuaz Akvaryum — Patron Yönetim Paneli</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: #F1F5F9;
+      color: #0F172A;
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- ================= 1. GİRİŞ / KİLİT EKRANI ================= -->
+  <div id="authOverlay" class="fixed inset-0 z-50 bg-[#020A13] flex items-center justify-center p-4 overflow-y-auto">
+    <div class="w-full max-w-md bg-white rounded-3xl shadow-2xl border border-cyan-500/30 overflow-hidden my-auto">
+      <div class="bg-gradient-to-br from-[#020A13] via-[#062038] to-[#083344] px-6 py-5 text-white">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-xl">🔐</div>
+          <div>
+            <span class="text-[10px] font-black uppercase tracking-widest text-cyan-300 block">Turkuaz Akvaryum · Rami</span>
+            <h1 class="text-lg font-black leading-tight">Patron Yönetim Paneli</h1>
+          </div>
+        </div>
+        <p class="text-[11px] text-slate-300 mt-2.5 leading-relaxed">
+          Müşteri vitrini ve mobil APK buradan tek tıkla güncellenir. Erişim anahtarınız yalnızca kendi cihazınızda şifreli/yerel olarak tutulur.
+        </p>
+      </div>
+
+      <!-- DURUM A: KAYITLI PIN VARSA KİLİT AÇMA -->
+      <form id="unlockForm" onsubmit="handleUnlockSubmit(event)" class="hidden p-6 space-y-4 text-xs">
+        <div>
+          <label class="font-extrabold text-slate-700 block mb-1.5">Patron Giriş Şifresi (PIN)</label>
+          <input id="unlockPinInput" type="password" inputmode="text" required placeholder="Şifrenizi girin..." class="w-full bg-slate-50 border border-slate-300 focus:border-cyan-600 focus:outline-none rounded-xl px-3.5 py-3 text-sm font-bold tracking-wider" />
+        </div>
+        <div id="unlockErrorMsg" class="hidden text-rose-600 font-bold bg-rose-50 border border-rose-200 rounded-xl p-2.5"></div>
+        <button type="submit" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-cyan-600 to-teal-500 text-white font-black text-xs uppercase tracking-wider shadow-lg active:scale-95 transition">
+          🔓 Yönetim Paneline Gir
+        </button>
+        <div class="grid grid-cols-2 gap-2 pt-1">
+          <button type="button" onclick="enterDemoMode()" class="py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-extrabold text-[11px]">
+            👁️ Demo Modu
+          </button>
+          <button type="button" onclick="showSetupView(true)" class="py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 font-extrabold text-[11px]">
+            ⚙️ Token / PIN Yenile
+          </button>
+        </div>
+      </form>
+
+      <!-- DURUM B: İLK KURULUM VE GİTHUB TOKEN BAĞLANTISI -->
+      <form id="setupForm" onsubmit="handleSetupSubmit(event)" class="hidden p-6 space-y-3.5 text-xs">
+        <div class="p-3 rounded-2xl bg-cyan-50 border border-cyan-200 text-cyan-900 leading-relaxed">
+          <strong>İlk Kurulum:</strong> Canlı yayın için GitHub üzerinden oluşturacağınız <em>Fine-Grained Token</em> (yalnızca bu depo için Contents Read/Write) anahtarını girin. Anahtar sunucuda değil yalnızca tarayıcınızda saklanır.
+        </div>
+        <div>
+          <label class="font-extrabold text-slate-700 block mb-1">Patron Giriş Şifresi / PIN Belirle *</label>
+          <input id="setupPinInput" type="password" required minlength="4" placeholder="En az 4 karakter (Örn: 1923 veya şifre)" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 font-bold" />
+        </div>
+        <div>
+          <label class="font-extrabold text-slate-700 block mb-1">GitHub Fine-Grained Token *</label>
+          <input id="setupTokenInput" type="password" required placeholder="github_pat_..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 font-mono text-[11px]" />
+        </div>
+        <details class="bg-slate-50 border border-slate-200 rounded-xl p-2.5">
+          <summary class="font-bold text-slate-600 cursor-pointer">GitHub Repo Hedefi (Varsayılan Hazır)</summary>
+          <div class="grid grid-cols-3 gap-2 mt-2">
+            <div>
+              <label class="text-[10px] font-bold text-slate-500 block">Sahip</label>
+              <input id="setupOwnerInput" type="text" value="turkuaz-akvaryum" class="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-[11px] font-semibold" />
+            </div>
+            <div>
+              <label class="text-[10px] font-bold text-slate-500 block">Repo</label>
+              <input id="setupRepoInput" type="text" value="magaza" class="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-[11px] font-semibold" />
+            </div>
+            <div>
+              <label class="text-[10px] font-bold text-slate-500 block">Dal (Branch)</label>
+              <input id="setupBranchInput" type="text" value="main" class="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-[11px] font-semibold" />
+            </div>
+          </div>
+        </details>
+        <div id="setupErrorMsg" class="hidden text-rose-600 font-bold bg-rose-50 border border-rose-200 rounded-xl p-2.5"></div>
+        <button type="submit" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-cyan-600 to-teal-500 text-white font-black text-xs uppercase tracking-wider shadow-lg active:scale-95 transition">
+          ✅ Kaydet ve Panele Gir
+        </button>
+        <div class="pt-1 border-t border-slate-100">
+          <button type="button" onclick="enterDemoMode()" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-extrabold text-[11px]">
+            👁️ Demo Ön İzleme Modunda Aç (Sunum İçin — Tokensiz)
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= 2. PATRON ANA ÇALIŞMA ALANI ================= -->
+  <div id="appShell" class="hidden flex-1 flex flex-col">
+
+    <!-- YAPIŞKAN ÜST BAR -->
+    <header class="sticky top-0 z-30 bg-[#020A13] text-white border-b border-cyan-500/30 shadow-md">
+      <div class="max-w-6xl mx-auto px-3.5 py-2.5 flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div class="w-9 h-9 rounded-xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-base shrink-0">🐠</div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-1.5">
+              <span class="text-sm font-black tracking-tight truncate">TURKUAZ PATRON PANELİ</span>
+              <span id="modeBadge" class="px-2 py-0.5 rounded-full text-[9px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 shrink-0">Canlı</span>
+            </div>
+            <p class="text-[10px] text-slate-400 truncate">Web Mağaza + Mobil APK Tek Merkezden Yönetilir</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <a href="../index.html" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-[11px] font-extrabold text-cyan-200 transition">
+            ↗ Vitrini Gör
+          </a>
+          <button
+            id="publishTopBtn"
+            type="button"
+            onclick="publishToGitHub()"
+            class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-700 text-slate-200 font-black text-xs transition active:scale-95"
+          >
+            <span>🚀 Yayınla</span>
+            <span id="pendingBadge" class="hidden px-1.5 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black">0</span>
+          </button>
+          <button type="button" onclick="lockPanel()" title="Paneli Kilitle" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-xs font-bold">
+            🔒
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 ANA SEKME -->
+      <div class="max-w-6xl mx-auto px-3.5 pb-2.5 flex gap-1.5 overflow-x-auto no-scrollbar text-xs font-extrabold">
+        <button type="button" onclick="switchPatronTab('products')" id="tabBtn_products" class="px-3.5 py-2 rounded-xl bg-cyan-400 text-slate-950 shrink-0">📦 Ürünler & Fiyat</button>
+        <button type="button" onclick="switchPatronTab('add')" id="tabBtn_add" class="px-3.5 py-2 rounded-xl bg-white/10 text-slate-200 hover:bg-white/15 shrink-0">➕ Yeni Ürün Ekle</button>
+        <button type="button" onclick="switchPatronTab('settings')" id="tabBtn_settings" class="px-3.5 py-2 rounded-xl bg-white/10 text-slate-200 hover:bg-white/15 shrink-0">🏪 Fiyat & İletişim</button>
+        <button type="button" onclick="switchPatronTab('sync')" id="tabBtn_sync" class="px-3.5 py-2 rounded-xl bg-white/10 text-slate-200 hover:bg-white/15 shrink-0">🔑 Bağlantı & Yedek</button>
+      </div>
+    </header>
+
+    <!-- YAYINLANMAMIŞ DEĞİŞİKLİK UYARI ŞERİDİ -->
+    <div id="dirtyBanner" class="hidden bg-amber-50 border-b border-amber-300 text-amber-950 text-xs">
+      <div class="max-w-6xl mx-auto px-3.5 py-2 flex flex-wrap items-center justify-between gap-2">
+        <div class="font-bold">
+          ⚠️ <span id="dirtySummaryText">Bekleyen değişiklikleriniz var.</span> Müşteri sitesine yansıması için <strong>"🚀 Canlıya Yayınla"</strong> butonuna basın.
+        </div>
+        <button type="button" onclick="publishToGitHub()" class="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-black text-[11px]">
+          Şimdi Yayınla →
+        </button>
+      </div>
+    </div>
+
+    <!-- İÇERİK GÖVDESİ -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-3.5 py-4 space-y-4">
+
+      <!-- ÖZET İSTATİSTİK ŞERİDİ -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
+        <div class="bg-white rounded-2xl p-3.5 border border-slate-200 shadow-xs">
+          <div class="text-[10px] font-extrabold uppercase text-slate-400">Toplam Katalog</div>
+          <div id="kpiTotal" class="text-xl font-black text-slate-900 mt-0.5">—</div>
+        </div>
+        <div class="bg-white rounded-2xl p-3.5 border border-slate-200 shadow-xs">
+          <div class="text-[10px] font-extrabold uppercase text-slate-400">Stokta Aktif</div>
+          <div id="kpiInStock" class="text-xl font-black text-emerald-600 mt-0.5">—</div>
+        </div>
+        <div class="bg-white rounded-2xl p-3.5 border border-slate-200 shadow-xs">
+          <div class="text-[10px] font-extrabold uppercase text-slate-400">Canlı Balıklar</div>
+          <div id="kpiFish" class="text-xl font-black text-cyan-600 mt-0.5">—</div>
+        </div>
+        <button type="button" onclick="switchPatronTab('settings')" class="text-left bg-white hover:bg-cyan-50 rounded-2xl p-3.5 border border-slate-200 shadow-xs transition">
+          <div class="text-[10px] font-extrabold uppercase text-slate-400">Sitede Fiyatlar</div>
+          <div id="kpiPriceStatus" class="text-sm font-black text-slate-900 mt-1">—</div>
+        </button>
+      </div>
+
+      <!-- ########## SEKME 1: ÜRÜN & FİYAT YÖNETİMİ ########## -->
+      <section id="pane_products" class="space-y-3">
+        <!-- Filtre & Arama Kartı -->
+        <div class="bg-white rounded-2xl p-3.5 border border-slate-200 shadow-xs space-y-2.5 text-xs">
+          <div class="grid grid-cols-1 sm:grid-cols-12 gap-2">
+            <input id="adminSearchInput" type="search" oninput="onAdminFilterChange()" placeholder="🔍 Ürün adı, stok kodu (TRK/BLK) veya açıklama ara..." class="sm:col-span-6 bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 font-semibold focus:border-cyan-600 focus:outline-none" />
+            <select id="adminSrcFilter" onchange="onAdminFilterChange()" class="sm:col-span-3 bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 font-bold">
+              <option value="all">Tüm Reyonlar</option>
+              <option value="fish">🐠 Canlı Balıklar</option>
+              <option value="petshop">🐾 Kedi · Kuş · Köpek</option>
+              <option value="aquariums">🏠 Akvaryumlar</option>
+              <option value="equipment">⚙️ Filtre & Ekipman</option>
+              <option value="yemler">🍽️ Yemler</option>
+              <option value="lighting">💡 LED Aydınlatma</option>
+              <option value="stone_products">🪨 Kaya, Kök & Kum</option>
+              <option value="plant_products">🌿 Bitki Ürünleri</option>
+              <option value="plants">🌱 Canlı Bitkiler</option>
+              <option value="health">💊 Balık Sağlığı</option>
+              <option value="aksesuarlar">📏 Ölçer & Aksesuar</option>
+            </select>
+            <select id="adminStockFilter" onchange="onAdminFilterChange()" class="sm:col-span-3 bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 font-bold">
+              <option value="all">Stok: Tümü</option>
+              <option value="in">Sadece Stokta Olanlar</option>
+              <option value="out">Tükenenler</option>
+              <option value="hidden">Vitrinde Gizlenenler</option>
+            </select>
+          </div>
+
+          <!-- Toplu Yüzde Zam / İndirim Barı -->
+          <div class="pt-2 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="font-extrabold text-slate-700">💹 Toplu Fiyat (%):</span>
+              <input id="bulkPctInput" type="number" step="0.5" placeholder="+10 veya -15" class="w-28 bg-slate-50 border border-slate-300 rounded-xl px-2.5 py-1.5 font-bold" />
+              <select id="bulkScopeSelect" class="bg-slate-50 border border-slate-300 rounded-xl px-2.5 py-1.5 font-bold">
+                <option value="filtered">Sadece Ekrandaki Filtreli Ürünlere</option>
+                <option value="all">Tüm Katalogdaki Ürünlere</option>
+              </select>
+              <button type="button" onclick="applyBulkPercent()" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-cyan-700 text-white font-black transition">
+                Uygula
+              </button>
+              <button id="undoBulkBtn" type="button" onclick="undoLastBulkPrice()" class="hidden px-2.5 py-1.5 rounded-xl bg-rose-50 text-rose-700 border border-rose-200 font-extrabold">
+                ↩ Geri Al
+              </button>
+            </div>
+            <div id="filteredCountLabel" class="font-extrabold text-slate-500">0 ürün gösteriliyor</div>
+          </div>
+        </div>
+
+        <!-- Ürün Listesi -->
+        <div id="adminProductList" class="space-y-2"></div>
+
+        <div class="text-center pt-1">
+          <button id="adminLoadMoreBtn" type="button" onclick="loadMoreAdminProducts()" class="hidden px-5 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-700 font-extrabold text-xs shadow-xs hover:bg-slate-50">
+            Daha Fazla Ürün Göster ↓
+          </button>
+        </div>
+      </section>
+
+      <!-- ########## SEKME 2: YENİ ÜRÜN / BALIK EKLE ########## -->
+      <section id="pane_add" class="hidden">
+        <form id="addProdForm" onsubmit="handleCreateProduct(event)" class="bg-white rounded-3xl p-5 border border-slate-200 shadow-xs max-w-2xl mx-auto space-y-3.5 text-xs">
+          <div class="border-b border-slate-100 pb-3">
+            <h2 class="text-base font-black text-slate-900">➕ Vitrine Yeni Ürün / Canlı Balık Ekle</h2>
+            <p class="text-[11px] text-slate-500 mt-0.5">Eklediğiniz fotoğraf telefon/bilgisayar üzerinde otomatik küçültülüp (<span class="font-bold">max 900px JPEG</span>) kaydedilir; "Canlıya Yayınla" dediğinizde müşterilerin sitesine ve APK'ya yansır.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="font-extrabold text-slate-700 block mb-1">Ürün / Canlı Adı *</label>
+              <input id="addName" type="text" required placeholder="Örn: TURKUAZ DİSCUS XL (12 CM)" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 font-semibold" />
+            </div>
+            <div>
+              <label class="font-extrabold text-slate-700 block mb-1">Reyon / Ana Kategori *</label>
+              <select id="addSrc" onchange="updateAddSubcategoryHint()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 font-bold">
+                <option value="fish">🐠 Canlı Balıklar</option>
+                <option value="petshop">🐾 Kedi · Kuş · Köpek (PetShop)</option>
+                <option value="aquariums">🏠 Ultra Clear Akvaryumlar</option>
+                <option value="equipment">⚙️ Filtre, Isıtıcı & Ekipman</option>
+                <option value="yemler">🍽️ Açık & Kapalı Yemler</option>
+                <option value="lighting">💡 LED Aydınlatma</option>
+                <option value="stone_products">🪨 Doğal Kaya, Kök & Kum</option>
+                <option value="plant_products">🌿 Canlı Bitki, Gübre & CO₂</option>
+                <option value="health">💊 İlaç & Balık Sağlığı</option>
+                <option value="aksesuarlar">📏 Ölçer & Aksesuar</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            <div>
+              <label class="font-extrabold text-slate-700 block mb-1">Satış Fiyatı (₺)</label>
+              <input id="addPrice" type="number" step="0.01" placeholder="Opsiyonel" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
+            </div>
+            <div>
+              <label class="font-extrabold text-slate-700 block mb-1">Eski Fiyat (₺)</label>
+              <input id="addOldPrice" type="number" step="0.01" placeholder="İndirim çizgisi" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
+            </div>
+            <div>
+              <label class="font-extrabold text-slate-700 block mb-1">Stok Kodu</label>
+              <input id="addCode" type="text" placeholder="Otomatik" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
+            </div>
+            <div>
+              <label class="font-extrabold text-slate-700 block mb-1">Birim / Not</label>
+              <input id="addNote" type="text" placeholder="Adet / 1 kg" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
+            </div>
+          </div>
+
+          <div>
+            <label class="font-extrabold text-slate-700 block mb-1">Alt Kategori (Opsiyonel — filtre için)</label>
+            <input id="addSubcategory" type="text" list="subcatSuggestions" placeholder="Örn: DİSCUS TÜRLERİ veya dis_filtre" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
+            <datalist id="subcatSuggestions">
+              <option value="DİSCUS TÜRLERİ" />
+              <option value="JAPON BALIKLARI" />
+              <option value="LEPİSTES & CANLI DOĞURAN" />
+              <option value="BETTA TÜRLERİ" />
+              <option value="KARİDES & SALYANGOZ" />
+              <option value="CİKLET TÜRLERİ" />
+              <option value="kedi" />
+              <option value="kopek" />
+              <option value="kus" />
+              <option value="dis_filtre" />
+              <option value="ic_filtre" />
+              <option value="ısıtıcı" />
+              <option value="acik_yem" />
+              <option value="ultra_clear" />
+            </datalist>
+          </div>
+
+          <!-- Fotoğraf Yükleme & Önizleme -->
+          <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2.5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <label class="font-extrabold text-slate-800">📷 Ürün Fotoğrafı (Telefon Galerisi / Kamera / Bilgisayar)</label>
+              <span id="addImgStatus" class="text-[11px] font-bold text-cyan-700">Hazır</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <img id="addImgPreview" src="../img/hero-luxury.jpg" alt="Ön izleme" class="w-16 h-16 rounded-2xl object-cover border border-slate-300 bg-white shrink-0" />
+              <div class="flex-1 space-y-2">
+                <input id="addFileInput" type="file" accept="image/*" onchange="handleImageFileSelect(this, 'add')" class="w-full text-[11px] bg-white border border-slate-300 rounded-xl px-2.5 py-2" />
+                <input id="addImgUrlInput" type="text" oninput="syncAddImgPreview(this.value)" placeholder="veya görsel yolu / linki (Örn: img/ency-discus.jpg veya https://...)" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-[11px]" />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="font-extrabold text-slate-700 block mb-1">Ürün Açıklaması / Su Değerleri</label>
+            <textarea id="addDesc" rows="3" placeholder="Müşterilerin ürün detayında göreceği bilgi..." class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3"></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-cyan-600 to-teal-500 text-white font-black text-xs uppercase tracking-wider shadow-md active:scale-95 transition">
+            ✅ Ürünü Listeye Ekle (Yayın Kuyruğuna Al)
+          </button>
+        </form>
+      </section>
+
+      <!-- ########## SEKME 3: MAĞAZA İLETİŞİM & FİYAT GÖSTERİM AYARLARI ########## -->
+      <section id="pane_settings" class="hidden">
+        <div class="bg-white rounded-3xl p-5 border border-slate-200 shadow-xs max-w-2xl mx-auto space-y-4 text-xs">
+          <div class="border-b border-slate-100 pb-3">
+            <h2 class="text-base font-black text-slate-900">🏪 Mağaza Vitrin Ayarları (`data/store-config.json`)</h2>
+            <p class="text-[11px] text-slate-500 mt-0.5">Buradaki değişiklikler hem web sitenizi hem de tüm müşterilerdeki Android APK'yı günceller.</p>
+          </div>
+
+          <label class="flex items-center justify-between gap-3 p-4 rounded-2xl bg-cyan-50 border-2 border-cyan-200 cursor-pointer">
+            <div>
+              <div class="font-black text-slate-900 text-sm">Müşterilere Ürün Fiyatlarını (₺) Göster</div>
+              <div class="text-[11px] text-slate-600 mt-0.5">Kapalı olduğunda web sitesinde ve APK'da hiçbir fiyat görünmez; müşteri ürünleri görür ve kod/adet ile sepet listesi oluşturur.</div>
+            </div>
+            <input id="cfgShowPrices" type="checkbox" class="w-6 h-6 accent-cyan-600 rounded shrink-0" />
+          </label>
+
+          <div>
+            <label class="font-extrabold text-slate-700 block mb-1">Mağaza Başlığı</label>
+            <input id="cfgName" type="text" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 font-semibold" />
+          </div>
+          <div>
+            <label class="font-extrabold text-slate-700 block mb-1">Mağaza Açık Adresi</label>
+            <input id="cfgAddress" type="text" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 font-semibold" />
+          </div>
+          <div>
+            <label class="font-extrabold text-slate-700 block mb-1">Çalışma Saatleri</label>
+            <input id="cfgHours" type="text" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 font-semibold" />
+          </div>
+          <div>
+            <label class="font-extrabold text-slate-700 block mb-1">Telefon & WhatsApp Sipariş Numarası</label>
+            <input id="cfgPhone" type="tel" placeholder="Örn: 0532 000 00 00 (Boş bırakılırsa müşteri sitesinde telefon kartı gizlenir)" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 font-semibold" />
+          </div>
+
+          <button type="button" onclick="saveSettingsToQueue()" class="w-full py-3.5 rounded-2xl bg-slate-900 hover:bg-cyan-700 text-white font-black text-xs uppercase tracking-wider transition">
+            💾 Ayarları Kaydet & Yayın Kuyruğuna Al
+          </button>
+        </div>
+      </section>
+
+      <!-- ########## SEKME 4: GİTHUB BAĞLANTISI & YEDEKLEME ########## -->
+      <section id="pane_sync" class="hidden">
+        <div class="bg-white rounded-3xl p-5 border border-slate-200 shadow-xs max-w-2xl mx-auto space-y-4 text-xs">
+          <div class="border-b border-slate-100 pb-3">
+            <h2 class="text-base font-black text-slate-900">🔑 GitHub Yayın Bağlantısı & Güvenlik</h2>
+            <p class="text-[11px] text-slate-500 mt-0.5">Sunum sırasında token girmeden Demo Ön İzleme kullanabilir; canlı yönetim için müşterinin GitHub Fine-Grained Token'ını buraya kaydedebilirsiniz.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+            <div>
+              <label class="font-bold text-slate-700 block mb-1">Repo Sahibi</label>
+              <input id="syncOwner" type="text" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 font-semibold" />
+            </div>
+            <div>
+              <label class="font-bold text-slate-700 block mb-1">Repo Adı</label>
+              <input id="syncRepo" type="text" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 font-semibold" />
+            </div>
+            <div>
+              <label class="font-bold text-slate-700 block mb-1">Branch</label>
+              <input id="syncBranch" type="text" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 font-semibold" />
+            </div>
+          </div>
+
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">GitHub Fine-Grained Token (Değiştirmek için yenisini yapıştırın)</label>
+            <input id="syncToken" type="password" placeholder="Mevcut token korunur veya yeni github_pat_..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 font-mono text-[11px]" />
+          </div>
+
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Yeni Patron Giriş PIN / Şifresi (Opsiyonel)</label>
+            <input id="syncNewPin" type="password" placeholder="Değiştirmek istemiyorsanız boş bırakın" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 font-bold" />
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <button type="button" onclick="saveSyncSettings()" class="flex-1 py-2.5 px-4 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-black">
+              💾 Bağlantı Bilgilerini Kaydet
+            </button>
+            <button type="button" onclick="testGitHubConnection()" class="py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-black">
+              🔌 Bağlantıyı Test Et
+            </button>
+          </div>
+          <div id="syncTestResult" class="hidden p-3 rounded-xl font-bold"></div>
+
+          <div class="border-t border-slate-200 pt-4 space-y-2">
+            <div class="font-black text-slate-800">📥 Güvenli JSON Yedekleri İndir</div>
+            <p class="text-[11px] text-slate-500">Yaptığınız tüm düzenlemeleri bilgisayarınıza/telefonunuza yedek olarak indirebilirsiniz.</p>
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" onclick="downloadJsonBackup('catalog')" class="py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-extrabold">📥 catalog.json İndir</button>
+              <button type="button" onclick="downloadJsonBackup('config')" class="py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-extrabold">📥 store-config.json İndir</button>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-200 pt-4 flex items-center justify-between">
+            <span class="text-[11px] text-slate-500">Bu cihazdaki kayıtlı PIN ve token bilgilerini temizle:</span>
+            <button type="button" onclick="clearDeviceAuth()" class="px-3 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-extrabold">
+              🗑️ Cihaz Kaydını Sil
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ================= 3. ÜRÜN DÜZENLEME MODALI ================= -->
+  <div id="editModal" onclick="if(event.target===this)closeEditModal()" class="fixed inset-0 z-40 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <form onsubmit="handleSaveEditProduct(event)" class="bg-white w-full max-w-xl rounded-3xl p-5 space-y-3 shadow-2xl max-h-[92vh] overflow-y-auto text-xs">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+        <div>
+          <span id="editProdCodeBadge" class="text-[10px] font-black text-cyan-600 uppercase">KOD</span>
+          <h3 class="text-sm font-black text-slate-900">✏️ Ürünü Düzenle</h3>
+        </div>
+        <button type="button" onclick="closeEditModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 font-bold">✕</button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Ürün Adı *</label>
+          <input id="editName" type="text" required class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 font-semibold" />
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Reyon</label>
+          <select id="editSrc" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 font-bold">
+            <option value="fish">🐠 Canlı Balıklar</option>
+            <option value="petshop">🐾 Kedi · Kuş · Köpek</option>
+            <option value="aquariums">🏠 Akvaryumlar</option>
+            <option value="equipment">⚙️ Filtre & Ekipman</option>
+            <option value="yemler">🍽️ Yemler</option>
+            <option value="lighting">💡 LED Aydınlatma</option>
+            <option value="stone_products">🪨 Kaya, Kök & Kum</option>
+            <option value="plant_products">🌿 Bitki Ürünleri</option>
+            <option value="plants">🌱 Canlı Bitkiler</option>
+            <option value="health">💊 Balık Sağlığı</option>
+            <option value="aksesuarlar">📏 Ölçer & Aksesuar</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Fiyat (₺)</label>
+          <input id="editPrice" type="number" step="0.01" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-2.5 py-2" />
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Eski Fiyat</label>
+          <input id="editOldPrice" type="number" step="0.01" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-2.5 py-2" />
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Stok Kodu</label>
+          <input id="editCode" type="text" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-2.5 py-2" />
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Not / Birim</label>
+          <input id="editNote" type="text" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-2.5 py-2" />
+        </div>
+      </div>
+
+      <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="font-bold text-slate-700">Fotoğrafı Değiştir</span>
+          <span id="editImgStatus" class="text-[10px] font-bold text-cyan-700"></span>
+        </div>
+        <div class="flex items-center gap-3">
+          <img id="editImgPreview" src="../img/hero-luxury.jpg" alt="Ürün görseli" class="w-14 h-14 rounded-xl object-cover border border-slate-300 bg-white shrink-0" />
+          <div class="flex-1 space-y-1.5">
+            <input id="editFileInput" type="file" accept="image/*" onchange="handleImageFileSelect(this, 'edit')" class="w-full text-[11px] bg-white border border-slate-300 rounded-lg px-2 py-1.5" />
+            <input id="editImgUrlInput" type="text" oninput="syncEditImgPreview(this.value)" placeholder="Görsel yolu veya https://..." class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-[11px]" />
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2">
+        <label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer font-bold">
+          <span>Stokta Tükendi</span>
+          <input id="editOutOfStock" type="checkbox" class="w-4 h-4 accent-rose-600" />
+        </label>
+        <label class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer font-bold">
+          <span>Vitrinden Gizle</span>
+          <input id="editHidden" type="checkbox" class="w-4 h-4 accent-amber-600" />
+        </label>
+      </div>
+
+      <div>
+        <label class="font-bold text-slate-700 block mb-1">Açıklama</label>
+        <textarea id="editDesc" rows="2" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5"></textarea>
+      </div>
+
+      <div class="flex gap-2 pt-1">
+        <button type="submit" class="flex-1 py-3 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white font-black">✅ Değişiklikleri Kaydet</button>
+        <button type="button" onclick="deleteEditingProduct()" class="px-4 py-3 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-black">🗑️ Sil</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ================= 4. YAYIN İLERLEME MODALI ================= -->
+  <div id="publishModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md rounded-3xl p-6 space-y-4 shadow-2xl text-xs">
+      <div class="flex items-center justify-between">
+        <h3 id="pubModalTitle" class="text-base font-black text-slate-900">🚀 Canlıya Yayınlanıyor...</h3>
+        <button id="pubModalCloseBtn" type="button" onclick="closePublishModal()" class="hidden w-8 h-8 rounded-full bg-slate-100 text-slate-700 font-bold">✕</button>
+      </div>
+      <div id="pubModalLog" class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5 text-[11px] font-semibold text-slate-700 max-h-56 overflow-y-auto"></div>
+      <div id="pubModalActions" class="hidden flex gap-2">
+        <button type="button" onclick="closePublishModal()" class="flex-1 py-2.5 rounded-xl bg-cyan-600 text-white font-black">Tamam</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toastBox" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 hidden bg-slate-900 text-white px-5 py-3 rounded-2xl text-xs font-extrabold shadow-2xl border border-cyan-400/40"></div>
+
+  <script>
+    const AUTH_STORAGE_KEY = 'turkuaz_patron_auth_v1';
+    const CATALOG_KEYS_ORDER = [
+      'fish', 'petshop', 'aquariums', 'equipment', 'yemler',
+      'lighting', 'stone_products', 'plant_products', 'plants', 'health', 'aksesuarlar'
+    ];
+    const SRC_LABELS = {
+      fish: 'Canlı Balık', petshop: 'PetShop', aquariums: 'Akvaryum',
+      equipment: 'Ekipman', yemler: 'Yemler', lighting: 'LED Aydınlatma',
+      stone_products: 'Kaya & Kum', plant_products: 'Bitki Ürünü',
+      plants: 'Canlı Bitki', health: 'Balık Sağlığı', aksesuarlar: 'Aksesuar'
+    };
+
+    let authState = {
+      owner: 'turkuaz-akvaryum',
+      repo: 'magaza',
+      branch: 'main',
+      token: '',
+      pinHash: ''
+    };
+    let isDemoMode = false;
+
+    let rawCatalog = {};
+    let storeConfig = {
+      name: 'Turkuaz Akvaryum & PetShop',
+      address: 'Rami Yeni Mah., Reşadiye Cad. No:22, Eyüpsultan / İstanbul',
+      hours: 'Pzt–Cmt 09:00–20:00 · Pazar 10:00–18:00',
+      phone: '',
+      showPrices: false
+    };
+
+    // Değişiklik kuyruğu
+    let catalogDirty = false;
+    let configDirty = false;
+    let uploadQueue = {}; // { 'img/uploads/trk-....jpg': { base64NoHeader, previewDataUrl } }
+    let pendingActionsCount = 0;
+
+    // Görsel yükleme geçici durumları
+    let addPendingImage = null;  // { path, base64NoHeader, previewDataUrl }
+    let editPendingImage = null; // { path, base64NoHeader, previewDataUrl }
+    let editingTarget = null;    // { src, index }
+    let adminVisibleCount = 40;
+    let lastBulkSnapshot = null;
+
+    // ---------- YARDIMCILAR ----------
+    function showToast(msg) {
+      const el = document.getElementById('toastBox');
+      el.textContent = msg;
+      el.classList.remove('hidden');
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => el.classList.add('hidden'), 2600);
+    }
+
+    function escapeHtml(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function resolvePreviewUrl(img) {
+      if (!img) return '../img/hero-luxury.jpg';
+      if (uploadQueue[img]) return uploadQueue[img].previewDataUrl;
+      if (/^(https?:|data:|blob:|\.\.\/)/i.test(img)) return img;
+      return '../' + img.replace(/^\/+/, '');
+    }
+
+    // Büyük JSON ve UTF-8 dosyalar için güvenli parça parça (chunked) Base64 dönüştürücü
+    function uint8ToBase64(bytes) {
+      const chunk = 0x8000;
+      let binary = '';
+      for (let i = 0; i < bytes.length; i += chunk) {
+        binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+      }
+      return btoa(binary);
+    }
+
+    function textToBase64Utf8(str) {
+      return uint8ToBase64(new TextEncoder().encode(str));
+    }
+
+    function base64Utf8ToText(b64) {
+      const clean = (b64 || '').replace(/\s+/g, '');
+      const bin = atob(clean);
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      return new TextDecoder('utf-8').decode(bytes);
+    }
+
+    async function hashPin(pin) {
+      const data = new TextEncoder().encode('turkuaz_salt_' + pin);
+      if (window.crypto && window.crypto.subtle) {
+        const digest = await window.crypto.subtle.digest('SHA-256', data);
+        return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
+      }
+      let h = 2166136261;
+      for (let i = 0; i < data.length; i++) {
+        h ^= data[i];
+        h = Math.imul(h, 16777619);
+      }
+      return 'fb_' + (h >>> 0).toString(16);
+    }
+
+    // ---------- KİLİT & KİMLİK DOĞRULAMA ----------
+    function loadSavedAuth() {
+      try {
+        const raw = localStorage.getItem(AUTH_STORAGE_KEY);
+        if (raw) authState = { ...authState, ...JSON.parse(raw) };
+      } catch (e) {}
+    }
+
+    function saveAuth() {
+      try { localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(authState)); } catch (e) {}
+    }
+
+    function initAuthGate() {
+      loadSavedAuth();
+      if (authState.pinHash && authState.token) {
+        document.getElementById('unlockForm').classList.remove('hidden');
+        document.getElementById('setupForm').classList.add('hidden');
+      } else {
+        showSetupView(false);
+      }
+    }
+
+    function showSetupView(prefillRepo) {
+      document.getElementById('unlockForm').classList.add('hidden');
+      document.getElementById('setupForm').classList.remove('hidden');
+      if (prefillRepo) {
+        document.getElementById('setupOwnerInput').value = authState.owner || 'turkuaz-akvaryum';
+        document.getElementById('setupRepoInput').value = authState.repo || 'magaza';
+        document.getElementById('setupBranchInput').value = authState.branch || 'main';
+      }
+    }
+
+    async function handleUnlockSubmit(e) {
+      e.preventDefault();
+      const pin = document.getElementById('unlockPinInput').value;
+      const errEl = document.getElementById('unlockErrorMsg');
+      errEl.classList.add('hidden');
+      const digest = await hashPin(pin);
+      if (digest !== authState.pinHash) {
+        errEl.textContent = '❌ Hatalı şifre / PIN. Lütfen tekrar deneyin.';
+        errEl.classList.remove('hidden');
+        return;
+      }
+      isDemoMode = false;
+      document.getElementById('unlockPinInput').value = '';
+      openWorkspace();
+    }
+
+    async function handleSetupSubmit(e) {
+      e.preventDefault();
+      const pin = document.getElementById('setupPinInput').value.trim();
+      const token = document.getElementById('setupTokenInput').value.trim();
+      const owner = document.getElementById('setupOwnerInput').value.trim() || 'turkuaz-akvaryum';
+      const repo = document.getElementById('setupRepoInput').value.trim() || 'magaza';
+      const branch = document.getElementById('setupBranchInput').value.trim() || 'main';
+      const errEl = document.getElementById('setupErrorMsg');
+      errEl.classList.add('hidden');
+
+      if (pin.length < 4 || !token) {
+        errEl.textContent = 'Lütfen en az 4 karakterli bir PIN ve GitHub Token girin.';
+        errEl.classList.remove('hidden');
+        return;
+      }
+      authState = { owner, repo, branch, token, pinHash: await hashPin(pin) };
+      saveAuth();
+      isDemoMode = false;
+      openWorkspace();
+    }
+
+    function enterDemoMode() {
+      isDemoMode = true;
+      openWorkspace();
+      showToast('👁️ Demo Ön İzleme Modu açıldı (Yaptığınız değişiklikler tarayıcıda ön izlenir).');
+    }
+
+    function lockPanel() {
+      document.getElementById('appShell').classList.add('hidden');
+      document.getElementById('authOverlay').classList.remove('hidden');
+      initAuthGate();
+    }
+
+    async function openWorkspace() {
+      document.getElementById('authOverlay').classList.add('hidden');
+      document.getElementById('appShell').classList.remove('hidden');
+
+      const badge = document.getElementById('modeBadge');
+      if (isDemoMode || !authState.token) {
+        badge.textContent = 'Demo Ön İzleme';
+        badge.className = 'px-2 py-0.5 rounded-full text-[9px] font-black uppercase bg-amber-400/20 text-amber-300 border border-amber-400/40 shrink-0';
+      } else {
+        badge.textContent = 'Canlı GitHub';
+        badge.className = 'px-2 py-0.5 rounded-full text-[9px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 shrink-0';
+      }
+
+      document.getElementById('syncOwner').value = authState.owner;
+      document.getElementById('syncRepo').value = authState.repo;
+      document.getElementById('syncBranch').value = authState.branch;
+
+      await loadLatestData();
+    }
+
+    // ---------- VERİ ÇEKME (CDN GECİKMESİZ) ----------
+    async function githubGetContent(path) {
+      const url = `https://api.github.com/repos/${encodeURIComponent(authState.owner)}/${encodeURIComponent(authState.repo)}/contents/${path}?ref=${encodeURIComponent(authState.branch)}&t=${Date.now()}`;
+      const res = await fetch(url, {
+        headers: {
+          'Authorization': `Bearer ${authState.token}`,
+          'Accept': 'application/vnd.github+json'
+        }
+      });
+      if (!res.ok) return null;
+      return await res.json();
+    }
+
+    async function loadLatestData() {
+      let loadedCat = false;
+      let loadedCfg = false;
+
+      if (!isDemoMode && authState.token) {
+        try {
+          const [catObj, cfgObj] = await Promise.all([
+            githubGetContent('data/catalog.json'),
+            githubGetContent('data/store-config.json')
+          ]);
+          if (catObj && catObj.content) {
+            rawCatalog = JSON.parse(base64Utf8ToText(catObj.content));
+            loadedCat = true;
+          }
+          if (cfgObj && cfgObj.content) {
+            storeConfig = { ...storeConfig, ...JSON.parse(base64Utf8ToText(cfgObj.content)) };
+            loadedCfg = true;
+          }
+        } catch (e) {}
+      }
+
+      if (!loadedCat) {
+        try {
+          const res = await fetch('../data/catalog.json?t=' + Date.now());
+          if (res.ok) rawCatalog = await res.json();
+        } catch (e) {}
+      }
+      if (!loadedCfg) {
+        try {
+          const res = await fetch('../data/store-config.json?t=' + Date.now());
+          if (res.ok) storeConfig = { ...storeConfig, ...(await res.json()) };
+        } catch (e) {}
+      }
+
+      syncSettingsInputs();
+      refreshKpis();
+      renderAdminProductList();
+      updateDirtyUI();
+    }
+
+    // ---------- SEKME & DURUM YÖNETİMİ ----------
+    function switchPatronTab(tab) {
+      ['products', 'add', 'settings', 'sync'].forEach(t => {
+        const pane = document.getElementById(`pane_${t}`);
+        const btn = document.getElementById(`tabBtn_${t}`);
+        const active = (t === tab);
+        if (pane) pane.classList.toggle('hidden', !active);
+        if (btn) {
+          btn.className = active
+            ? 'px-3.5 py-2 rounded-xl bg-cyan-400 text-slate-950 shrink-0'
+            : 'px-3.5 py-2 rounded-xl bg-white/10 text-slate-200 hover:bg-white/15 shrink-0';
+        }
+      });
+    }
+
+    function markDirty(kind) {
+      if (kind === 'catalog') catalogDirty = true;
+      if (kind === 'config') configDirty = true;
+      pendingActionsCount += 1;
+      updateDirtyUI();
+      refreshKpis();
+    }
+
+    function updateDirtyUI() {
+      const uploadCount = Object.keys(uploadQueue).length;
+      const dirty = catalogDirty || configDirty || uploadCount > 0;
+      const badge = document.getElementById('pendingBadge');
+      const banner = document.getElementById('dirtyBanner');
+      const topBtn = document.getElementById('publishTopBtn');
+
+      if (dirty) {
+        const parts = [];
+        if (catalogDirty) parts.push('ürün kataloğu');
+        if (configDirty) parts.push('mağaza ayarları');
+        if (uploadCount > 0) parts.push(`${uploadCount} yeni fotoğraf`);
+        document.getElementById('dirtySummaryText').textContent = `Bekleyen güncellemeler: ${parts.join(', ')}.`;
+        badge.textContent = String(Math.max(1, pendingActionsCount));
+        badge.classList.remove('hidden');
+        banner.classList.remove('hidden');
+        topBtn.className = 'flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-black text-xs shadow-lg transition active:scale-95';
+      } else {
+        badge.classList.add('hidden');
+        banner.classList.add('hidden');
+        topBtn.className = 'flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-700 text-slate-200 font-black text-xs transition active:scale-95';
+      }
+    }
+
+    function getAllCatalogKeys() {
+      const keys = [...CATALOG_KEYS_ORDER];
+      Object.keys(rawCatalog || {}).forEach(k => {
+        if (Array.isArray(rawCatalog[k]) && !keys.includes(k)) keys.push(k);
+      });
+      return keys;
+    }
+
+    function refreshKpis() {
+      let total = 0;
+      let inStock = 0;
+      let fish = 0;
+      getAllCatalogKeys().forEach(src => {
+        const arr = rawCatalog[src] || [];
+        arr.forEach(item => {
+          if (!item || !item.name) return;
+          total += 1;
+          if (!item.outOfStock && !item.gizli) inStock += 1;
+          if (src === 'fish' && !item.gizli) fish += 1;
+        });
+      });
+      document.getElementById('kpiTotal').textContent = String(total);
+      document.getElementById('kpiInStock').textContent = String(inStock);
+      document.getElementById('kpiFish').textContent = String(fish);
+      const pStat = document.getElementById('kpiPriceStatus');
+      if (storeConfig.showPrices) {
+        pStat.textContent = '✅ Açık (₺ Görünür)';
+        pStat.className = 'text-sm font-black text-emerald-600 mt-1';
+      } else {
+        pStat.textContent = '🔒 Gizli (Katalog)';
+        pStat.className = 'text-sm font-black text-amber-600 mt-1';
+      }
+    }
+
+    // ---------- ÜRÜN LİSTESİ & FİLTRELEME ----------
+    function getFilteredAdminRows() {
+      const q = document.getElementById('adminSearchInput').value.trim().toLocaleLowerCase('tr-TR');
+      const srcFilter = document.getElementById('adminSrcFilter').value;
+      const stockFilter = document.getElementById('adminStockFilter').value;
+
+      const rows = [];
+      getAllCatalogKeys().forEach(src => {
+        if (srcFilter !== 'all' && src !== srcFilter) return;
+        const arr = rawCatalog[src] || [];
+        arr.forEach((item, index) => {
+          if (!item || !item.name) return;
+          if (stockFilter === 'in' && (item.outOfStock || item.gizli)) return;
+          if (stockFilter === 'out' && !item.outOfStock) return;
+          if (stockFilter === 'hidden' && !item.gizli) return;
+          if (q) {
+            const hay = `${item.name} ${item.code || ''} ${item.desc || ''} ${item.subcategory || ''}`.toLocaleLowerCase('tr-TR');
+            if (!hay.includes(q)) return;
+          }
+          rows.push({ src, index, item });
+        });
+      });
+      return rows;
+    }
+
+    function onAdminFilterChange() {
+      adminVisibleCount = 40;
+      renderAdminProductList();
+    }
+
+    function loadMoreAdminProducts() {
+      adminVisibleCount += 40;
+      renderAdminProductList();
+    }
+
+    function renderAdminProductList() {
+      const rows = getFilteredAdminRows();
+      document.getElementById('filteredCountLabel').textContent = `${rows.length} ürün listeleniyor`;
+      const container = document.getElementById('adminProductList');
+      const moreBtn = document.getElementById('adminLoadMoreBtn');
+
+      if (rows.length === 0) {
+        container.innerHTML = `<div class="bg-white rounded-2xl p-8 text-center text-xs font-bold text-slate-400 border border-slate-200">Eşleşen ürün bulunamadı.</div>`;
+        moreBtn.classList.add('hidden');
+        return;
+      }
+
+      const slice = rows.slice(0, adminVisibleCount);
+      moreBtn.classList.toggle('hidden', rows.length <= adminVisibleCount);
+
+      container.innerHTML = slice.map(({ src, index, item }) => {
+        const price = Number(item.price || 0);
+        const imgUrl = resolvePreviewUrl(item.img);
+        const srcLabel = SRC_LABELS[src] || src;
+        return `
+          <div class="bg-white rounded-2xl p-3 border border-slate-200 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-3 min-w-0 flex-1">
+              <img src="${escapeHtml(imgUrl)}" onerror="this.src='../img/hero-luxury.jpg'" alt="" class="w-12 h-12 rounded-xl object-cover border border-slate-200 bg-slate-100 shrink-0" />
+              <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap items-center gap-1.5 mb-0.5">
+                  <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[10px] font-black">${escapeHtml(item.code || 'KODSUZ')}</span>
+                  <span class="px-2 py-0.5 rounded-md bg-cyan-50 text-cyan-800 text-[10px] font-extrabold">${escapeHtml(srcLabel)}</span>
+                  ${item.gizli ? `<span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-800 text-[10px] font-black">Gizli</span>` : ''}
+                </div>
+                <div class="text-xs font-black text-slate-900 truncate">${escapeHtml(item.name)}</div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between sm:justify-end gap-2 shrink-0 text-xs">
+              <div class="flex items-center gap-1 bg-slate-50 border border-slate-300 rounded-xl px-2 py-1">
+                <input
+                  type="number"
+                  step="0.01"
+                  value="${price || ''}"
+                  placeholder="0"
+                  onchange="quickUpdatePrice('${src}', ${index}, this.value)"
+                  class="w-20 bg-transparent text-right font-black text-slate-900 focus:outline-none"
+                />
+                <span class="text-[11px] font-bold text-slate-400">₺</span>
+              </div>
+
+              <button
+                type="button"
+                onclick="toggleQuickStock('${src}', ${index})"
+                class="px-2.5 py-1.5 rounded-xl font-black text-[11px] border transition ${item.outOfStock ? 'bg-rose-50 text-rose-700 border-rose-200' : 'bg-emerald-50 text-emerald-700 border-emerald-200'}"
+              >
+                ${item.outOfStock ? 'Tükendi' : 'Stokta'}
+              </button>
+
+              <button
+                type="button"
+                onclick="openEditModal('${src}', ${index})"
+                class="px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-cyan-700 text-white font-black text-[11px] transition"
+              >
+                ✏️ Düzenle
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function quickUpdatePrice(src, index, rawVal) {
+      const item = (rawCatalog[src] || [])[index];
+      if (!item) return;
+      const val = Number(rawVal);
+      item.price = isNaN(val) || val < 0 ? 0 : Math.round(val * 100) / 100;
+      markDirty('catalog');
+      showToast(`💰 "${item.name}" fiyatı güncellendi (Yayın bekliyor).`);
+    }
+
+    function toggleQuickStock(src, index) {
+      const item = (rawCatalog[src] || [])[index];
+      if (!item) return;
+      item.outOfStock = !item.outOfStock;
+      markDirty('catalog');
+      renderAdminProductList();
+    }
+
+    function applyBulkPercent() {
+      const pct = Number(document.getElementById('bulkPctInput').value);
+      if (isNaN(pct) || pct === 0) {
+        showToast('Geçerli bir yüzde girin (Örn: 10 veya -15).');
+        return;
+      }
+      const scope = document.getElementById('bulkScopeSelect').value;
+      const targets = scope === 'filtered'
+        ? getFilteredAdminRows()
+        : (() => {
+            const list = [];
+            getAllCatalogKeys().forEach(src => {
+              (rawCatalog[src] || []).forEach((item, index) => { if (item) list.push({ src, index, item }); });
+            });
+            return list;
+          })();
+
+      lastBulkSnapshot = targets.map(t => ({ src: t.src, index: t.index, oldPrice: t.item.price }));
+      let changed = 0;
+      const factor = 1 + (pct / 100);
+      targets.forEach(({ item }) => {
+        const cur = Number(item.price || 0);
+        if (cur > 0) {
+          item.price = Math.max(1, Math.round(cur * factor));
+          changed += 1;
+        }
+      });
+
+      if (changed > 0) {
+        markDirty('catalog');
+        document.getElementById('undoBulkBtn').classList.remove('hidden');
+        renderAdminProductList();
+        showToast(`✅ ${changed} ürünün fiyatı %${pct} güncellendi!`);
+      } else {
+        showToast('Fiyatı 0’dan büyük eşleşen ürün bulunamadı.');
+      }
+    }
+
+    function undoLastBulkPrice() {
+      if (!lastBulkSnapshot) return;
+      lastBulkSnapshot.forEach(snap => {
+        const item = (rawCatalog[snap.src] || [])[snap.index];
+        if (item) item.price = snap.oldPrice;
+      });
+      lastBulkSnapshot = null;
+      document.getElementById('undoBulkBtn').classList.add('hidden');
+      markDirty('catalog');
+      renderAdminProductList();
+      showToast('↩ Son toplu fiyat işlemi geri alındı.');
+    }
+
+    // ---------- FOTOĞRAF KÜÇÜLTME (<CANVAS> MAX 900PX JPEG) ----------
+    function handleImageFileSelect(input, target) {
+      const file = input.files && input.files[0];
+      if (!file) return;
+      const statusEl = document.getElementById(target === 'add' ? 'addImgStatus' : 'editImgStatus');
+      statusEl.textContent = 'Sıkıştırılıyor...';
+
+      const reader = new FileReader();
+      reader.onload = ev => {
+        const img = new Image();
+        img.onload = () => {
+          const maxDim = 900;
+          let w = img.naturalWidth || img.width;
+          let h = img.naturalHeight || img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w >= h) {
+              h = Math.round(h * (maxDim / w));
+              w = maxDim;
+            } else {
+              w = Math.round(w * (maxDim / h));
+              h = maxDim;
+            }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillRect(0, 0, w, h);
+          ctx.drawImage(img, 0, 0, w, h);
+
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+          const base64NoHeader = dataUrl.split(',')[1];
+          const kb = Math.round((base64NoHeader.length * 0.75) / 1024);
+          const uploadPath = `img/uploads/trk-${Date.now()}.jpg`;
+          const payload = { path: uploadPath, base64NoHeader, previewDataUrl: dataUrl };
+
+          if (target === 'add') {
+            addPendingImage = payload;
+            document.getElementById('addImgPreview').src = dataUrl;
+            document.getElementById('addImgUrlInput').value = uploadPath;
+          } else {
+            editPendingImage = payload;
+            document.getElementById('editImgPreview').src = dataUrl;
+            document.getElementById('editImgUrlInput').value = uploadPath;
+          }
+          statusEl.textContent = `✅ Hazır (${w}×${h}, ${kb} KB)`;
+        };
+        img.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function syncAddImgPreview(val) {
+      addPendingImage = null;
+      document.getElementById('addImgPreview').src = resolvePreviewUrl(val.trim());
+    }
+
+    function syncEditImgPreview(val) {
+      editPendingImage = null;
+      document.getElementById('editImgPreview').src = resolvePreviewUrl(val.trim());
+    }
+
+    function updateAddSubcategoryHint() {
+      const src = document.getElementById('addSrc').value;
+      const hintMap = {
+        fish: 'Örn: DİSCUS TÜRLERİ, LEPİSTES, CİKLET TÜRLERİ',
+        petshop: 'Örn: kedi, kopek, kus',
+        aquariums: 'Örn: ultra_clear, bombeli, nano',
+        equipment: 'Örn: dis_filtre, ic_filtre, ısıtıcı, hava_motoru',
+        yemler: 'Örn: acik_yem, granul_yem, pul_yem'
+      };
+      document.getElementById('addSubcategory').placeholder = hintMap[src] || 'Alt kategori (Opsiyonel)';
+    }
+
+    // ---------- YENİ ÜRÜN EKLEME ----------
+    function handleCreateProduct(e) {
+      e.preventDefault();
+      const name = document.getElementById('addName').value.trim();
+      const src = document.getElementById('addSrc').value;
+      const priceVal = Number(document.getElementById('addPrice').value);
+      const oldPriceVal = Number(document.getElementById('addOldPrice').value);
+      const codeInput = document.getElementById('addCode').value.trim();
+      const note = document.getElementById('addNote').value.trim();
+      const subcat = document.getElementById('addSubcategory').value.trim();
+      const imgUrl = document.getElementById('addImgUrlInput').value.trim();
+      const desc = document.getElementById('addDesc').value.trim();
+
+      const code = codeInput || `TRK-${Math.floor(100 + Math.random() * 899)}`;
+      let finalImg = imgUrl || 'img/hero-luxury.jpg';
+      if (addPendingImage) {
+        uploadQueue[addPendingImage.path] = {
+          base64NoHeader: addPendingImage.base64NoHeader,
+          previewDataUrl: addPendingImage.previewDataUrl
+        };
+        finalImg = addPendingImage.path;
+      }
+
+      const newObj = {
+        code,
+        name,
+        price: isNaN(priceVal) || priceVal < 0 ? 0 : priceVal,
+        img: finalImg,
+        outOfStock: false,
+        desc
+      };
+      if (!isNaN(oldPriceVal) && oldPriceVal > 0) newObj.oldPrice = oldPriceVal;
+      if (note) newObj.note = note;
+      if (subcat) {
+        newObj.subcategory = subcat;
+        newObj.category = subcat;
+      }
+      if (src === 'fish') newObj.type = 'Tatlı Su';
+
+      if (!Array.isArray(rawCatalog[src])) rawCatalog[src] = [];
+      rawCatalog[src].unshift(newObj);
+
+      addPendingImage = null;
+      e.target.reset();
+      document.getElementById('addImgPreview').src = '../img/hero-luxury.jpg';
+      document.getElementById('addImgStatus').textContent = 'Hazır';
+
+      markDirty('catalog');
+      renderAdminProductList();
+      switchPatronTab('products');
+      showToast(`✅ "${name}" vitrine eklendi! Yayınlamak için üstteki 🚀 butonuna basın.`);
+    }
+
+    // ---------- ÜRÜN DÜZENLEME & SİLME ----------
+    function openEditModal(src, index) {
+      const item = (rawCatalog[src] || [])[index];
+      if (!item) return;
+      editingTarget = { src, index };
+      editPendingImage = null;
+      document.getElementById('editProdCodeBadge').textContent = `${SRC_LABELS[src] || src} • ${item.code || 'TRK'}`;
+      document.getElementById('editName').value = item.name || '';
+      document.getElementById('editSrc').value = src;
+      document.getElementById('editPrice').value = item.price || '';
+      document.getElementById('editOldPrice').value = item.oldPrice || '';
+      document.getElementById('editCode').value = item.code || '';
+      document.getElementById('editNote').value = item.note || '';
+      document.getElementById('editImgUrlInput').value = item.img || '';
+      document.getElementById('editImgPreview').src = resolvePreviewUrl(item.img);
+      document.getElementById('editImgStatus').textContent = '';
+      document.getElementById('editFileInput').value = '';
+      document.getElementById('editOutOfStock').checked = Boolean(item.outOfStock);
+      document.getElementById('editHidden').checked = Boolean(item.gizli);
+      document.getElementById('editDesc').value = item.desc || '';
+      document.getElementById('editModal').classList.remove('hidden');
+    }
+
+    function closeEditModal() {
+      document.getElementById('editModal').classList.add('hidden');
+      editingTarget = null;
+      editPendingImage = null;
+    }
+
+    function handleSaveEditProduct(e) {
+      e.preventDefault();
+      if (!editingTarget) return;
+      const { src, index } = editingTarget;
+      const item = (rawCatalog[src] || [])[index];
+      if (!item) return;
+
+      const newSrc = document.getElementById('editSrc').value;
+      const priceVal = Number(document.getElementById('editPrice').value);
+      const oldPriceVal = Number(document.getElementById('editOldPrice').value);
+
+      item.name = document.getElementById('editName').value.trim();
+      item.price = isNaN(priceVal) || priceVal < 0 ? 0 : priceVal;
+      if (!isNaN(oldPriceVal) && oldPriceVal > 0) item.oldPrice = oldPriceVal;
+      else delete item.oldPrice;
+
+      item.code = document.getElementById('editCode').value.trim() || item.code;
+      const noteVal = document.getElementById('editNote').value.trim();
+      if (noteVal) item.note = noteVal;
+      else delete item.note;
+
+      if (editPendingImage) {
+        uploadQueue[editPendingImage.path] = {
+          base64NoHeader: editPendingImage.base64NoHeader,
+          previewDataUrl: editPendingImage.previewDataUrl
+        };
+        item.img = editPendingImage.path;
+      } else {
+        const imgTxt = document.getElementById('editImgUrlInput').value.trim();
+        if (imgTxt) item.img = imgTxt;
+      }
+
+      item.outOfStock = Boolean(document.getElementById('editOutOfStock').checked);
+      if (document.getElementById('editHidden').checked) item.gizli = true;
+      else delete item.gizli;
+      item.desc = document.getElementById('editDesc').value.trim();
+
+      if (newSrc !== src) {
+        rawCatalog[src].splice(index, 1);
+        if (!Array.isArray(rawCatalog[newSrc])) rawCatalog[newSrc] = [];
+        rawCatalog[newSrc].unshift(item);
+      }
+
+      markDirty('catalog');
+      closeEditModal();
+      renderAdminProductList();
+      showToast('✅ Ürün güncellendi (Yayın bekliyor).');
+    }
+
+    function deleteEditingProduct() {
+      if (!editingTarget) return;
+      const { src, index } = editingTarget;
+      const item = (rawCatalog[src] || [])[index];
+      if (!item) return;
+      if (!confirm(`"${item.name}" ürününü katalogdan kalıcı olarak silmek istiyor musunuz?`)) return;
+      rawCatalog[src].splice(index, 1);
+      markDirty('catalog');
+      closeEditModal();
+      renderAdminProductList();
+      showToast('🗑️ Ürün listeden kaldırıldı.');
+    }
+
+    // ---------- MAĞAZA AYARLARI ----------
+    function syncSettingsInputs() {
+      document.getElementById('cfgShowPrices').checked = Boolean(storeConfig.showPrices);
+      document.getElementById('cfgName').value = storeConfig.name || '';
+      document.getElementById('cfgAddress').value = storeConfig.address || '';
+      document.getElementById('cfgHours').value = storeConfig.hours || '';
+      document.getElementById('cfgPhone').value = storeConfig.phone || '';
+    }
+
+    function saveSettingsToQueue() {
+      storeConfig.showPrices = Boolean(document.getElementById('cfgShowPrices').checked);
+      storeConfig.name = document.getElementById('cfgName').value.trim() || 'Turkuaz Akvaryum & PetShop';
+      storeConfig.address = document.getElementById('cfgAddress').value.trim() || storeConfig.address;
+      storeConfig.hours = document.getElementById('cfgHours').value.trim() || storeConfig.hours;
+      storeConfig.phone = document.getElementById('cfgPhone').value.trim();
+      markDirty('config');
+      showToast('💾 Mağaza ayarları kuyruğa alındı! Canlıya yayınlamak için 🚀 Yayınla butonuna basın.');
+    }
+
+    // ---------- BAĞLANTI & YEDEKLEME ----------
+    async function saveSyncSettings() {
+      authState.owner = document.getElementById('syncOwner').value.trim() || 'turkuaz-akvaryum';
+      authState.repo = document.getElementById('syncRepo').value.trim() || 'magaza';
+      authState.branch = document.getElementById('syncBranch').value.trim() || 'main';
+      const newTok = document.getElementById('syncToken').value.trim();
+      if (newTok) {
+        authState.token = newTok;
+        isDemoMode = false;
+        document.getElementById('syncToken').value = '';
+      }
+      const newPin = document.getElementById('syncNewPin').value.trim();
+      if (newPin) {
+        if (newPin.length < 4) {
+          showToast('Yeni PIN en az 4 karakter olmalıdır.');
+          return;
+        }
+        authState.pinHash = await hashPin(newPin);
+        document.getElementById('syncNewPin').value = '';
+      }
+      saveAuth();
+      document.getElementById('modeBadge').textContent = authState.token && !isDemoMode ? 'Canlı GitHub' : 'Demo Ön İzleme';
+      showToast('✅ Bağlantı ve güvenlik ayarları kaydedildi.');
+    }
+
+    async function testGitHubConnection() {
+      const box = document.getElementById('syncTestResult');
+      box.classList.remove('hidden');
+      if (!authState.token) {
+        box.className = 'p-3 rounded-xl font-bold bg-amber-50 text-amber-800 border border-amber-200';
+        box.textContent = '⚠️ Önce geçerli bir GitHub Token kaydedin.';
+        return;
+      }
+      box.className = 'p-3 rounded-xl font-bold bg-slate-100 text-slate-700';
+      box.textContent = 'Bağlantı kontrol ediliyor...';
+      try {
+        const res = await fetch(`https://api.github.com/repos/${encodeURIComponent(authState.owner)}/${encodeURIComponent(authState.repo)}`, {
+          headers: { 'Authorization': `Bearer ${authState.token}`, 'Accept': 'application/vnd.github+json' }
+        });
+        const data = await res.json();
+        if (res.ok && data.permissions && data.permissions.push) {
+          box.className = 'p-3 rounded-xl font-bold bg-emerald-50 text-emerald-800 border border-emerald-200';
+          box.textContent = `✅ Bağlantı Başarılı! Hedef: ${data.full_name} (Yazma yetkisi aktif).`;
+        } else if (res.ok) {
+          box.className = 'p-3 rounded-xl font-bold bg-amber-50 text-amber-800 border border-amber-200';
+          box.textContent = `⚠️ Repo bulundu (${data.full_name}), ancak token için "Contents: Read and Write" yetkisi gerekli.`;
+        } else {
+          box.className = 'p-3 rounded-xl font-bold bg-rose-50 text-rose-800 border border-rose-200';
+          box.textContent = `❌ Hata (${res.status}): ${data.message || 'Token veya repo adı geçersiz.'}`;
+        }
+      } catch (err) {
+        box.className = 'p-3 rounded-xl font-bold bg-rose-50 text-rose-800 border border-rose-200';
+        box.textContent = '❌ İnternet bağlantı hatası: ' + err.message;
+      }
+    }
+
+    function buildCleanCatalogJson() {
+      const out = {};
+      getAllCatalogKeys().forEach(src => {
+        if (Array.isArray(rawCatalog[src])) {
+          out[src] = rawCatalog[src].map(item => {
+            const copy = { ...item };
+            delete copy._id;
+            delete copy._src;
+            return copy;
+          });
+        }
+      });
+      return JSON.stringify(out, null, 2) + '\n';
+    }
+
+    function downloadJsonBackup(type) {
+      const isCat = type === 'catalog';
+      const content = isCat ? buildCleanCatalogJson() : JSON.stringify(storeConfig, null, 2) + '\n';
+      const filename = isCat ? 'catalog.json' : 'store-config.json';
+      const blob = new Blob([content], { type: 'application/json;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      showToast(`📥 ${filename} indirildi!`);
+    }
+
+    function clearDeviceAuth() {
+      if (!confirm('Bu cihazdaki kayıtlı Patron şifresi ve GitHub Token silinsin mi?')) return;
+      localStorage.removeItem(AUTH_STORAGE_KEY);
+      authState = { owner: 'turkuaz-akvaryum', repo: 'magaza', branch: 'main', token: '', pinHash: '' };
+      location.reload();
+    }
+
+    // ---------- GİTHUB CANLI YAYIN MOTORU ----------
+    function appendPublishLog(msg, tone) {
+      const box = document.getElementById('pubModalLog');
+      const div = document.createElement('div');
+      if (tone === 'ok') div.className = 'text-emerald-700';
+      else if (tone === 'err') div.className = 'text-rose-700';
+      else div.className = 'text-slate-700';
+      div.textContent = msg;
+      box.appendChild(div);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function closePublishModal() {
+      document.getElementById('publishModal').classList.add('hidden');
+    }
+
+    async function githubPutFile(path, base64Content, commitMsg, existingSha) {
+      const url = `https://api.github.com/repos/${encodeURIComponent(authState.owner)}/${encodeURIComponent(authState.repo)}/contents/${path}`;
+      const body = {
+        message: commitMsg,
+        content: base64Content,
+        branch: authState.branch
+      };
+      if (existingSha) body.sha = existingSha;
+
+      const res = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${authState.token}`,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+      const json = await res.json();
+      if (!res.ok) {
+        const err = new Error(json.message || `HTTP ${res.status}`);
+        err.status = res.status;
+        throw err;
+      }
+      return json;
+    }
+
+    async function githubPutWithShaRetry(path, textContent, commitMsg) {
+      const b64 = textToBase64Utf8(textContent);
+      const current = await githubGetContent(path);
+      const sha = current ? current.sha : undefined;
+      try {
+        return await githubPutFile(path, b64, commitMsg, sha);
+      } catch (err) {
+        if (err.status === 409) {
+          const fresh = await githubGetContent(path);
+          return await githubPutFile(path, b64, commitMsg, fresh ? fresh.sha : undefined);
+        }
+        throw err;
+      }
+    }
+
+    async function publishToGitHub() {
+      const uploadKeys = Object.keys(uploadQueue);
+      if (!catalogDirty && !configDirty && uploadKeys.length === 0) {
+        showToast('Yayınlanacak yeni bir değişiklik bulunmuyor.');
+        return;
+      }
+
+      if (isDemoMode || !authState.token) {
+        alert('Şu an "Demo Ön İzleme" modundasınız. Yaptığınız değişiklikler bu ekranda anlık olarak gösterilir.\n\nCanlı web sitesine ve APK’ya tek tıkla yayınlamak için "🔑 Bağlantı & Yedek" sekmesinden GitHub Fine-Grained Token girin veya JSON yedeğini indirin.');
+        switchPatronTab('sync');
+        return;
+      }
+
+      const modal = document.getElementById('publishModal');
+      document.getElementById('pubModalTitle').textContent = '🚀 Canlıya Yayınlanıyor...';
+      document.getElementById('pubModalLog').innerHTML = '';
+      document.getElementById('pubModalCloseBtn').classList.add('hidden');
+      document.getElementById('pubModalActions').classList.add('hidden');
+      modal.classList.remove('hidden');
+
+      try {
+        for (const imgPath of uploadKeys) {
+          appendPublishLog(`📸 Fotoğraf yükleniyor: ${imgPath}...`);
+          const existing = await githubGetContent(imgPath);
+          await githubPutFile(imgPath, uploadQueue[imgPath].base64NoHeader, `Patron panel: ${imgPath} yüklendi`, existing ? existing.sha : undefined);
+          delete uploadQueue[imgPath];
+          appendPublishLog(`✅ Yüklendi: ${imgPath}`, 'ok');
+        }
+
+        if (catalogDirty) {
+          appendPublishLog('📦 Ürün kataloğu (catalog.json) yayınlanıyor...');
+          await githubPutWithShaRetry('data/catalog.json', buildCleanCatalogJson(), 'Patron panel: ürün kataloğu güncellendi');
+          catalogDirty = false;
+          appendPublishLog('✅ Ürün kataloğu GitHub üzerine yazıldı!', 'ok');
+        }
+
+        if (configDirty) {
+          appendPublishLog('🏪 Mağaza ayarları (store-config.json) yayınlanıyor...');
+          await githubPutWithShaRetry('data/store-config.json', JSON.stringify(storeConfig, null, 2) + '\n', 'Patron panel: mağaza ayarları güncellendi');
+          configDirty = false;
+          appendPublishLog('✅ Mağaza ayarları güncellendi!', 'ok');
+        }
+
+        pendingActionsCount = 0;
+        updateDirtyUI();
+        document.getElementById('pubModalTitle').textContent = '✅ Canlıya Yayın Başarılı!';
+        appendPublishLog('🎉 Tüm değişiklikler 15–45 saniye içinde müşteri web sitesi ve mobil APK üzerinde aktif olacaktır.', 'ok');
+      } catch (err) {
+        document.getElementById('pubModalTitle').textContent = '❌ Yayın Sırasında Hata';
+        appendPublishLog(`Hata detayı: ${err.message}`, 'err');
+      } finally {
+        document.getElementById('pubModalCloseBtn').classList.remove('hidden');
+        document.getElementById('pubModalActions').classList.remove('hidden');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initAuthGate);
+  </script>
+</body>
+</html>

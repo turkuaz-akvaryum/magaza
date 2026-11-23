@@ -148,18 +148,6 @@
         </nav>
 
         <button
-          onclick="openAdminModal()"
-          class="hidden sm:flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-extrabold transition"
-          title="Ürün Ekle / Fiyat Düzenle / Mağaza Ayarları"
-        >
-          <svg class="w-4 h-4 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-          <span>Yönetim</span>
-        </button>
-
-        <button
           onclick="toggleCartDrawer(true)"
           class="relative flex items-center gap-2 px-3.5 py-2.5 rounded-2xl bg-slate-900 hover:bg-cyan-700 text-white text-xs font-black shadow-md transition active:scale-95"
         >
@@ -1023,23 +1011,14 @@
               </p>
             </div>
 
-            <div id="contactPhoneCard" class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1">
+            <div id="contactPhoneCard" class="hidden p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1">
               <div class="font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
                 <span>📞</span> <span>İletişim & Sipariş Hattı</span>
               </div>
-              <p id="contactPhoneText" class="text-slate-500 font-medium">
-                Mağaza iletişim numarası Yönetim Panelinden eklenebilir.
-              </p>
+              <p id="contactPhoneText" class="text-slate-600 font-medium"></p>
             </div>
           </div>
         </div>
-
-        <button
-          onclick="openAdminModal()"
-          class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200 transition"
-        >
-          ⚙️ Mağaza & Ürün Yönetim Paneli (Ürün Ekle / Fiyat Düzenle)
-        </button>
       </div>
 
       <!-- Sağ: Canlı Harita (Rami Yeni Mah., Reşadiye Cad. No:22 Koordinatları: 41.049292, 28.920110) -->
@@ -1104,11 +1083,6 @@
         <h4 class="text-white font-black uppercase tracking-wider">Mağaza Konumu</h4>
         <p>Rami Yeni Mah., Reşadiye Cad. No:22<br />Eyüpsultan / İstanbul</p>
         <p class="text-cyan-400 font-semibold">Pzt–Cmt: 09:00–20:00 · Pazar: 10:00–18:00</p>
-        <div class="pt-2">
-          <button onclick="openAdminModal()" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-cyan-300 border border-slate-800 text-[11px] font-bold">
-            ⚙️ Mağaza & Ürün Yönetimi
-          </button>
-        </div>
       </div>
     </div>
     <div class="border-t border-slate-800/80 py-4 text-center text-[11px] text-slate-500">
@@ -1279,115 +1253,6 @@
     </div>
   </div>
 
-  <!-- ================= GELİŞMİŞ MAĞAZA & ÜRÜN YÖNETİM (ADMIN) MODALI ================= -->
-  <div id="adminModal" onclick="if(event.target===this)closeAdminModal()" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-2xl rounded-3xl p-6 space-y-4 shadow-2xl max-h-[92vh] overflow-y-auto">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-        <div>
-          <span class="text-[11px] font-extrabold uppercase text-cyan-600">Turkuaz Akvaryum · Rami / Eyüpsultan</span>
-          <h3 class="text-base sm:text-lg font-black text-slate-900">⚙️ Mağaza & Ürün Yönetim Paneli</h3>
-        </div>
-        <button onclick="closeAdminModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 font-bold">✕</button>
-      </div>
-
-      <!-- Yönetim Sekmeleri -->
-      <div class="flex gap-2 border-b border-slate-200 pb-2 text-xs font-extrabold">
-        <button onclick="switchAdminTab('addProduct')" id="admTabBtn_addProduct" class="px-3.5 py-2 rounded-xl bg-slate-900 text-white">➕ Yeni Ürün / Balık Ekle</button>
-        <button onclick="switchAdminTab('settings')" id="admTabBtn_settings" class="px-3.5 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200">🏪 Mağaza İletişim Ayarları</button>
-      </div>
-
-      <!-- SEKME A: YENİ ÜRÜN / BALIK EKLEME -->
-      <form id="admPane_addProduct" onsubmit="handleAdminAddProduct(event)" class="space-y-3 text-xs">
-        <div class="p-3 rounded-2xl bg-cyan-50 border border-cyan-200 text-cyan-900">
-          Buradan mağazanıza yeni canlı balık, akvaryum, filtre, yem veya ekipman ekleyebilirsiniz. Fotoğrafı telefonunuzdan/bilgisayarınızdan seçebilir veya görsel linki yapıştırabilirsiniz.
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="font-bold text-slate-700 block mb-1">Ürün / Canlı Adı *</label>
-            <input id="newProdName" type="text" required placeholder="Örn: Turkuaz Discus XL (12 cm)" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
-          </div>
-          <div>
-            <label class="font-bold text-slate-700 block mb-1">Reyon / Kategori *</label>
-            <select id="newProdSrc" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2">
-              <option value="fish">🐠 Canlı Balıklar</option>
-              <option value="petshop">🐾 Kedi, Kuş, Köpek & PetShop</option>
-              <option value="aquariums">🏠 Ultra Clear Akvaryumlar</option>
-              <option value="equipment">⚙️ Filtre, Isıtıcı & Ekipman</option>
-              <option value="yemler">🍽️ Açık & Kapalı Yemler</option>
-              <option value="lighting">💡 LED Aydınlatma</option>
-              <option value="stone_products">🪨 Doğal Kaya, Kök & Kum</option>
-              <option value="plant_products">🌿 Canlı Bitki, Gübre & CO₂</option>
-              <option value="health">💊 İlaç & Balık Sağlığı</option>
-              <option value="aksesuarlar">📏 Ölçer & Aksesuar</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          <div>
-            <label class="font-bold text-slate-700 block mb-1">Satış Fiyatı (Opsiyonel)</label>
-            <input id="newProdPrice" type="number" step="0.01" placeholder="Boş bırakılabilir" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
-          </div>
-          <div>
-            <label class="font-bold text-slate-700 block mb-1">İndirim Öncesi Fiyat (Opsiyonel)</label>
-            <input id="newProdOldPrice" type="number" step="0.01" placeholder="Boş bırakılabilir" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
-          </div>
-          <div class="col-span-2 sm:col-span-1">
-            <label class="font-bold text-slate-700 block mb-1">Stok Kodu (Opsiyonel)</label>
-            <input id="newProdCode" type="text" placeholder="Örn: TRK-901" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="font-bold text-slate-700 block mb-1">Fotoğraf Yükle (Telefon / Bilgisayar)</label>
-            <input id="newProdFile" type="file" accept="image/*" onchange="handleNewProdImageFile(this)" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-1.5" />
-          </div>
-          <div>
-            <label class="font-bold text-slate-700 block mb-1">veya Görsel Linki (URL)</label>
-            <input id="newProdImgUrl" type="url" placeholder="https://..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
-          </div>
-        </div>
-
-        <div>
-          <label class="font-bold text-slate-700 block mb-1">Ürün Açıklaması / Su Değerleri</label>
-          <textarea id="newProdDesc" rows="2" placeholder="Ürün veya canlı balık hakkında kısa açıklama..." class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3"></textarea>
-        </div>
-
-        <button type="submit" class="w-full py-3 rounded-2xl bg-gradient-to-r from-cyan-600 to-teal-500 text-white font-black text-xs uppercase tracking-wider shadow-md">
-          ✅ Ürünü Mağazaya Ekle ve Yayınla
-        </button>
-      </form>
-
-      <!-- SEKME B: MAĞAZA İLETİŞİM AYARLARI -->
-      <div id="admPane_settings" class="hidden space-y-3 text-xs">
-        <div>
-          <label class="font-bold text-slate-700 block mb-1">Mağaza Adresi</label>
-          <input id="admAddress" type="text" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
-        </div>
-        <div>
-          <label class="font-bold text-slate-700 block mb-1">Telefon / WhatsApp Sipariş Numarası (Şu an boş bırakabilirsiniz)</label>
-          <input id="admPhone" type="text" placeholder="Örn: 0532 000 00 00 (Boş bırakılırsa sitede gizlenir)" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
-        </div>
-        <div>
-          <label class="font-bold text-slate-700 block mb-1">Çalışma Saatleri</label>
-          <input id="admHours" type="text" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2" />
-        </div>
-        <label class="flex items-center justify-between p-3.5 rounded-2xl bg-cyan-50 border border-cyan-200 cursor-pointer">
-          <div>
-            <div class="font-black text-slate-900">Sitede Ürün Fiyatlarını (₺) Göster</div>
-            <div class="text-[11px] text-slate-500">Kapalı olduğunda sitede hiçbir fiyat görünmez, sadece ürünler listelenir.</div>
-          </div>
-          <input id="admShowPrices" type="checkbox" class="w-5 h-5 accent-cyan-600 rounded" />
-        </label>
-        <button onclick="saveAdminSettings()" class="w-full py-3 rounded-2xl bg-cyan-600 hover:bg-cyan-700 text-white font-black text-xs">
-          Kaydet ve Siteye Uygula
-        </button>
-      </div>
-    </div>
-  </div>
-
   <!-- BİLDİRİM TOAST -->
   <div id="toastBox" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 hidden bg-slate-900 text-white px-5 py-3 rounded-2xl text-xs font-extrabold shadow-2xl border border-cyan-400/40"></div>
 
@@ -1399,12 +1264,8 @@
       address: 'Rami Yeni Mah., Reşadiye Cad. No:22, Eyüpsultan / İstanbul',
       hours: 'Pzt–Cmt 09:00–20:00 · Pazar 10:00–18:00',
       phone: '',
-      showPrices: false // Kullanıcı isteğiyle şu an sitede fiyatlar gizli
+      showPrices: false
     };
-    try {
-      const savedCfg = localStorage.getItem('turkuaz_magaza_cfg');
-      if (savedCfg) storeConfig = { ...storeConfig, ...JSON.parse(savedCfg), showPrices: Boolean(JSON.parse(savedCfg).showPrices) };
-    } catch (e) {}
 
     // 2. AKVARYUM BALIKLARI ANSİKLOPEDİ VERİTABANI (12 ANA FAMİLYA & GERÇEK TÜR GÖRSELLERİ)
     const FISH_ENCYCLOPEDIA = [
@@ -1652,11 +1513,6 @@
 
     const GRAMS = [50, 100, 250, 500, 1000];
     let allProducts = [];
-    let customProducts = [];
-    try {
-      const savedCustom = localStorage.getItem('turkuaz_magaza_custom_prods');
-      if (savedCustom) customProducts = JSON.parse(savedCustom) || [];
-    } catch (e) {}
 
     let activeCategory = 'all';
     let activeSubCategory = 'all';
@@ -1665,7 +1521,6 @@
     let showOutOfStock = true;
     let visibleCount = 16;
     let activeEncyGroup = 'all';
-    let uploadedProductDataUrl = '';
 
     // Sepet State
     let cart = {};
@@ -1722,18 +1577,38 @@
       return { temp: '24–27°C', ph: '6.8–7.6', minL: '40L+', temper: 'Barışçıl Akvaryum Balığı', compat: 'Lepistes, Moli, Plati, Tetra, Çöpçü, Vatoz' };
     }
 
-    // 4. KATALOG VERİSİNİ YÜKLE (APK İÇİN CANLI SENKRONİZASYON + OFFLINE YEDEK)
+    // 4. KATALOG VERİSİNİ YÜKLE (CANLI MAĞAZA AYARLARI & KATALOG)
     async function loadStoreCatalog() {
       // Android APK WebView içinde çalışıyorsa üst bildirim çubuğu boşluğu ekle
       if (window.AndroidNative || /wv|Capacitor/i.test(navigator.userAgent)) {
         const topBar = document.getElementById('topCorpBar');
         if (topBar) topBar.style.paddingTop = '28px';
       }
+      const isApkLocal = Boolean(window.AndroidNative) || location.hostname === 'localhost' || location.hostname === 'appassets.androidplatform.net';
+      try {
+        let cfg = null;
+        if (isApkLocal && navigator.onLine) {
+          try {
+            const cCtrl = new AbortController();
+            const cTid = setTimeout(() => cCtrl.abort(), 3000);
+            const liveCfg = await fetch('https://turkuaz-akvaryum.github.io/magaza/data/store-config.json?t=' + Date.now(), { signal: cCtrl.signal });
+            clearTimeout(cTid);
+            if (liveCfg.ok) cfg = await liveCfg.json();
+          } catch (e) {}
+        }
+        if (!cfg) {
+          const cfgUrl = isApkLocal ? 'data/store-config.json' : ('data/store-config.json?t=' + Date.now());
+          const cfgRes = await fetch(cfgUrl);
+          if (cfgRes.ok) cfg = await cfgRes.json();
+        }
+        if (cfg && typeof cfg === 'object') {
+          storeConfig = { ...storeConfig, ...cfg, showPrices: Boolean(cfg.showPrices) };
+        }
+      } catch (e) {}
       applyStoreConfigToDOM();
       updateWizardLiters(60);
       try {
         let raw = null;
-        const isApkLocal = Boolean(window.AndroidNative) || location.hostname === 'localhost';
         if (isApkLocal && navigator.onLine) {
           try {
             const ctrl = new AbortController();
@@ -1744,11 +1619,12 @@
           } catch (e) {}
         }
         if (!raw) {
-          const res = await fetch('data/catalog.json');
+          const catUrl = isApkLocal ? 'data/catalog.json' : ('data/catalog.json?t=' + Date.now());
+          const res = await fetch(catUrl);
           raw = await res.json();
         }
         const sources = ['fish', 'petshop', 'aquariums', 'equipment', 'yemler', 'lighting', 'stone_products', 'plant_products', 'plants', 'health', 'aksesuarlar'];
-        const list = [...customProducts];
+        const list = [];
 
         sources.forEach(src => {
           (raw[src] || []).forEach((item, idx) => {
@@ -1788,11 +1664,20 @@
       document.getElementById('contactHoursText').textContent = storeConfig.hours;
       const pfBar = document.getElementById('priceFilterBar');
       if (pfBar) pfBar.classList.toggle('hidden', !storeConfig.showPrices);
+      const phoneCard = document.getElementById('contactPhoneCard');
       const phoneTxt = document.getElementById('contactPhoneText');
-      if (storeConfig.phone && storeConfig.phone.trim()) {
-        phoneTxt.innerHTML = `<a href="tel:${storeConfig.phone}" class="text-cyan-600 font-black text-sm">${storeConfig.phone}</a>`;
-      } else {
-        phoneTxt.textContent = 'Telefon numarası henüz eklenmedi (Yönetim panelinden ekleyebilirsiniz).';
+      if (phoneCard && phoneTxt) {
+        if (storeConfig.phone && storeConfig.phone.trim()) {
+          const phoneClean = storeConfig.phone.trim();
+          const digits = phoneClean.replace(/\D/g, '');
+          const waNum = digits.startsWith('0') ? '90' + digits.slice(1) : digits;
+          phoneCard.classList.remove('hidden');
+          phoneTxt.innerHTML = `<a href="tel:${phoneClean}" class="text-cyan-700 font-black text-sm hover:underline">${phoneClean}</a>`
+            + (waNum.length >= 10 ? ` · <a href="https://wa.me/${waNum}" target="_blank" rel="noopener" class="text-emerald-600 font-black text-xs hover:underline">WhatsApp →</a>` : '');
+        } else {
+          phoneCard.classList.add('hidden');
+          phoneTxt.textContent = '';
+        }
       }
     }
 
@@ -1917,36 +1802,7 @@
       document.getElementById('urunler').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // 6. ÖNE ÇIKAN VİTRİN ŞERİDİ
-    function renderCampaignStrip() {
-      const discounted = allProducts.filter(p => !p.outOfStock && p.oldPrice && Number(p.oldPrice) > Number(p.price));
-      const box = document.getElementById('campaignHorizontalList');
-      if (discounted.length === 0) {
-        document.getElementById('kampanyaStripSection').classList.add('hidden');
-        return;
-      }
-      box.innerHTML = discounted.slice(0, 12).map(p => {
-        const discPct = Math.round((1 - Number(p.price) / Number(p.oldPrice)) * 100);
-        return `
-          <div onclick="openProductDetail('${p._id}')" class="w-64 shrink-0 bg-slate-50 hover:bg-cyan-50/50 border border-slate-200 hover:border-cyan-400 rounded-2xl p-2.5 flex items-center gap-3 cursor-pointer transition">
-            <img src="${p.img || ''}" alt="${p.name}" class="w-14 h-14 object-contain bg-white rounded-xl border border-slate-200 p-1 shrink-0" loading="lazy" />
-            <div class="min-w-0 flex-1">
-              ${storeConfig.showPrices
-                ? `<span class="inline-block px-1.5 py-0.5 rounded bg-rose-600 text-white text-[10px] font-black">-%${discPct}</span>`
-                : `<span class="inline-block px-1.5 py-0.5 rounded bg-cyan-600 text-white text-[10px] font-black">${p.code}</span>`
-              }
-              <div class="text-xs font-extrabold text-slate-900 truncate mt-0.5">${p.name}</div>
-              ${storeConfig.showPrices
-                ? `<div class="text-xs font-black text-cyan-700"><s class="text-slate-400 font-semibold mr-1">${formatTL(p.oldPrice)}</s> ${formatTL(p.price)}</div>`
-                : `<div class="text-[11px] font-bold text-cyan-700">${getSubLabel(p)}</div>`
-              }
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    // 7. KATEGORİ BENTO KUTULARI
+    // 6. KATEGORİ BENTO KUTULARI
     function renderCategoryBento() {
       const grid = document.getElementById('categoryBentoGrid');
       const displayCats = CATEGORIES.filter(c => c.id !== 'all');
@@ -2581,89 +2437,6 @@
       `;
     }
 
-    // 13. YÖNETİM PANELİ VE YENİ ÜRÜN EKLEME
-    function openAdminModal() {
-      document.getElementById('admAddress').value = storeConfig.address;
-      document.getElementById('admPhone').value = storeConfig.phone;
-      document.getElementById('admHours').value = storeConfig.hours;
-      const spChk = document.getElementById('admShowPrices');
-      if (spChk) spChk.checked = Boolean(storeConfig.showPrices);
-      document.getElementById('adminModal').classList.remove('hidden');
-    }
-
-    function closeAdminModal() {
-      document.getElementById('adminModal').classList.add('hidden');
-    }
-
-    function switchAdminTab(tab) {
-      document.getElementById('admPane_addProduct').classList.toggle('hidden', tab !== 'addProduct');
-      document.getElementById('admPane_settings').classList.toggle('hidden', tab !== 'settings');
-      document.getElementById('admTabBtn_addProduct').className = tab === 'addProduct'
-        ? 'px-3.5 py-2 rounded-xl bg-slate-900 text-white'
-        : 'px-3.5 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200';
-      document.getElementById('admTabBtn_settings').className = tab === 'settings'
-        ? 'px-3.5 py-2 rounded-xl bg-slate-900 text-white'
-        : 'px-3.5 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200';
-    }
-
-    function handleNewProdImageFile(input) {
-      const file = input.files && input.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = e => {
-        uploadedProductDataUrl = e.target.result;
-        showToast('📸 Fotoğraf yüklendi ve hazır!');
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function handleAdminAddProduct(e) {
-      e.preventDefault();
-      const name = document.getElementById('newProdName').value.trim();
-      const src = document.getElementById('newProdSrc').value;
-      const price = Number(document.getElementById('newProdPrice').value) || 0;
-      const oldPrice = Number(document.getElementById('newProdOldPrice').value) || null;
-      const code = document.getElementById('newProdCode').value.trim() || `TRK-${Math.floor(100 + Math.random() * 899)}`;
-      const imgUrl = document.getElementById('newProdImgUrl').value.trim();
-      const desc = document.getElementById('newProdDesc').value.trim();
-
-      const newProd = {
-        _id: `custom_${Date.now()}`,
-        _src: src,
-        name,
-        price,
-        oldPrice,
-        code,
-        img: uploadedProductDataUrl || imgUrl || 'img/hero-luxury.jpg',
-        desc,
-        outOfStock: false
-      };
-
-      customProducts.unshift(newProd);
-      try { localStorage.setItem('turkuaz_magaza_custom_prods', JSON.stringify(customProducts)); } catch (err) {}
-      allProducts.unshift(newProd);
-      uploadedProductDataUrl = '';
-      e.target.reset();
-      renderCategoryBento();
-      renderProductsGrid();
-      closeAdminModal();
-      showToast(`✅ "${name}" mağaza vitrinine eklendi!`);
-    }
-
-    function saveAdminSettings() {
-      storeConfig.address = document.getElementById('admAddress').value.trim() || storeConfig.address;
-      storeConfig.phone = document.getElementById('admPhone').value.trim();
-      storeConfig.hours = document.getElementById('admHours').value.trim() || storeConfig.hours;
-      const spChk = document.getElementById('admShowPrices');
-      if (spChk) storeConfig.showPrices = Boolean(spChk.checked);
-      try { localStorage.setItem('turkuaz_magaza_cfg', JSON.stringify(storeConfig)); } catch (e) {}
-      applyStoreConfigToDOM();
-      renderProductsGrid();
-      updateCartUI();
-      closeAdminModal();
-      showToast('✅ Mağaza ayarları güncellendi!');
-    }
-
     // 14. OTOMATİK CANLI BALIK UYUM KONTROL MOTORU
     function classifyFishGroup(name) {
       const n = (name || '').toLocaleLowerCase('tr-TR');
@@ -2858,7 +2631,6 @@
         closeProductDetail();
         toggleCartDrawer(false);
         closeCheckoutModal();
-        closeAdminModal();
       }
     });
 
