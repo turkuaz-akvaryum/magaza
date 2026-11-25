@@ -68,6 +68,8 @@
     html[data-theme="dark"] header .text-slate-950, html[data-theme="dark"] header .text-slate-900, html[data-theme="dark"] header .text-slate-800 { color: #F0F9FF !important; }
     html[data-theme="dark"] .bg-teal-50\/80 { background-color: rgba(13, 148, 136, 0.22) !important; color: #5EEAD4 !important; border-color: rgba(45, 212, 191, 0.35) !important; }
     html[data-theme="dark"] .studio-akv-bg { background-color: #FFFFFF !important; }
+    html[data-theme="dark"] #mobileBottomNav { background-color: rgba(6, 22, 38, 0.96) !important; border-color: rgba(34, 211, 238, 0.25) !important; }
+    html[data-theme="dark"] #mobileBottomNav button, html[data-theme="dark"] #mobileBottomNav a { color: #BAE6FD !important; }
   </style>
 </head>
 <body class="antialiased selection:bg-cyan-500 selection:text-white pb-20 md:pb-0">
@@ -145,15 +147,15 @@
             </svg>
           </div>
         </div>
-        <div>
-          <div class="flex items-center gap-1.5">
-            <span class="text-base sm:text-xl font-black tracking-tight text-slate-950 leading-none">TURKUAZ</span>
-            <span class="text-base sm:text-xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 via-teal-500 to-emerald-500 leading-none">AKVARYUM</span>
+        <div class="min-w-0">
+          <div class="flex items-center gap-1">
+            <span class="text-sm sm:text-xl font-black tracking-tight text-slate-950 leading-none">TURKUAZ</span>
+            <span class="text-sm sm:text-xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 via-teal-500 to-emerald-500 leading-none">AKVARYUM</span>
           </div>
-          <div class="flex items-center gap-1.5 mt-1">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
-            <span class="text-[10px] sm:text-[11px] font-extrabold text-slate-500 tracking-wider uppercase">
-              RAMİ · EYÜPSULTAN · AQUA & PET STUDIO
+          <div class="flex items-center gap-1 mt-0.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-500 shrink-0"></span>
+            <span class="text-[9px] sm:text-[11px] font-extrabold text-slate-500 tracking-wide uppercase truncate">
+              RAMİ · EYÜPSULTAN
             </span>
           </div>
         </div>
@@ -191,7 +193,7 @@
           id="themeToggleBtn"
           type="button"
           onclick="toggleSiteTheme()"
-          class="flex items-center gap-1.5 px-3 py-2.5 rounded-2xl bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border border-cyan-200 text-xs font-extrabold transition shrink-0"
+          class="flex items-center gap-1 px-2.5 sm:px-3 py-2 rounded-xl sm:rounded-2xl bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border border-cyan-200 text-xs font-extrabold transition shrink-0"
           title="Aydınlık / Koyu Okyanus Tema Değiştir"
         >
           <span>🌊</span><span class="hidden lg:inline">Koyu Okyanus</span>
@@ -199,13 +201,13 @@
 
         <button
           onclick="toggleCartDrawer(true)"
-          class="relative flex items-center gap-2 px-3.5 py-2.5 rounded-2xl bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white text-xs font-black shadow-md transition active:scale-95 shrink-0"
+          class="relative flex items-center gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-xl sm:rounded-2xl bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white text-xs font-black shadow-md transition active:scale-95 shrink-0"
         >
           <svg class="w-4 h-4 text-cyan-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
           <span class="hidden sm:inline">Sepetim</span>
-          <span id="headerCartBadge" class="px-2 py-0.5 rounded-full bg-white text-cyan-900 text-[11px] font-black">0</span>
+          <span id="headerCartBadge" class="px-1.5 py-0.5 rounded-full bg-white text-cyan-900 text-[11px] font-black">0</span>
         </button>
       </div>
     </div>
@@ -2794,11 +2796,30 @@
 
     document.addEventListener('DOMContentLoaded', loadStoreCatalog);
   </script>
+  <!-- Mobil Uygulama Alt Sekme Çubuğu (Native App Bar) -->
+  <nav id="mobileBottomNav" class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-t border-cyan-200/80 shadow-[0_-6px_24px_rgba(2,10,19,0.12)] px-2 py-1.5 grid grid-cols-5 gap-1">
+    <button type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="flex flex-col items-center justify-center py-1 rounded-xl text-[10px] font-extrabold text-cyan-700">
+      <span class="text-lg leading-none">🏠</span><span class="mt-0.5">Vitrin</span>
+    </button>
+    <button type="button" onclick="selectCategory('fish')" class="flex flex-col items-center justify-center py-1 rounded-xl text-[10px] font-extrabold text-slate-600">
+      <span class="text-lg leading-none">🐠</span><span class="mt-0.5">Balıklar</span>
+    </button>
+    <button type="button" onclick="selectCategory('akvaryumlar')" class="flex flex-col items-center justify-center py-1 rounded-xl text-[10px] font-extrabold text-slate-600">
+      <span class="text-lg leading-none">🧊</span><span class="mt-0.5">Akvaryum</span>
+    </button>
+    <a href="blog.html" class="flex flex-col items-center justify-center py-1 rounded-xl text-[10px] font-extrabold text-slate-600">
+      <span class="text-lg leading-none">📰</span><span class="mt-0.5">Blog</span>
+    </a>
+    <button type="button" onclick="toggleCartDrawer(true)" class="relative flex flex-col items-center justify-center py-1 rounded-xl text-[10px] font-extrabold text-slate-600">
+      <span class="text-lg leading-none">🛒</span><span class="mt-0.5">Sepetim</span>
+    </button>
+  </nav>
+
   <!-- Sabit Sağ Alt WhatsApp Hızlı Bilgi Butonu -->
   <button
     type="button"
     onclick="askWhatsAppGeneral()"
-    class="fixed right-4 bottom-20 md:bottom-5 z-40 flex items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-black text-xs shadow-xl shadow-emerald-600/30 transition active:scale-95"
+    class="fixed right-3 bottom-20 md:bottom-5 z-40 flex items-center gap-2 px-3.5 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-black text-xs shadow-xl shadow-emerald-600/30 transition active:scale-95"
     title="WhatsApp'tan Fiyat ve Stok Sor"
   >
     <span class="text-base">💬</span>
@@ -2806,6 +2827,11 @@
   </button>
 
   <script>
+    // APK / Uygulama modunda üst kurumsal web barını gizleyip tam uygulama hissi ver
+    if (/TurkuazApp/i.test(navigator.userAgent) || new URLSearchParams(location.search).get('app') === '1') {
+      const topBar = document.getElementById('topCorpBar');
+      if (topBar) topBar.style.display = 'none';
+    }
     function applySiteTheme(theme) {
       document.documentElement.setAttribute('data-theme', theme);
       try { localStorage.setItem('turkuaz_theme', theme); } catch(e) {}
