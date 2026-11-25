@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Turkuaz Blog & Uzman Bakım Rehberi | Turkuaz Akvaryum & PetShop</title>
+  <meta name="description" content="Akvaryum balıkları, Ultra Clear akvaryum kurulumu, muhabbet kuşu, sultan papağanı ve kedi bakımı üzerine Turkuaz Akvaryum uzman rehberleri." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: #F1F7FA; color: #0F172A; }
+    .card-hover { transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 36px -14px rgba(6, 182, 212, 0.26); }
+
+    /* Tema B: Koyu Okyanus */
+    html[data-theme="dark"] body { background: #04101D !important; color: #F0F9FF !important; }
+    html[data-theme="dark"] header { background: rgba(6, 22, 38, 0.94) !important; border-color: rgba(34, 211, 238, 0.2) !important; }
+    html[data-theme="dark"] .bg-white, html[data-theme="dark"] .bg-slate-50 { background: #0A1D31 !important; border-color: rgba(56, 189, 248, 0.2) !important; }
+    html[data-theme="dark"] .text-slate-950, html[data-theme="dark"] .text-slate-900, html[data-theme="dark"] .text-slate-800 { color: #F0F9FF !important; }
+    html[data-theme="dark"] .text-slate-700, html[data-theme="dark"] .text-slate-600, html[data-theme="dark"] .text-slate-500 { color: #CBD5E1 !important; }
+    html[data-theme="dark"] input { background: #0B2239 !important; color: #F0F9FF !important; border-color: rgba(56, 189, 248, 0.28) !important; }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <a href="index.html" class="flex items-center gap-3 shrink-0">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-600 to-teal-600 flex items-center justify-center text-white font-black shadow-md">🐠</div>
+        <div>
+          <div class="flex items-center gap-1">
+            <span class="text-base sm:text-lg font-black text-slate-950 leading-none">TURKUAZ</span>
+            <span class="text-base sm:text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-teal-500 leading-none">BLOG</span>
+          </div>
+          <div class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mt-0.5">Uzman Bakım & Akvaryum Rehberi</div>
+        </div>
+      </a>
+
+      <div class="flex items-center gap-2">
+        <button id="blogThemeBtn" type="button" onclick="toggleBlogTheme()" class="px-3 py-2 rounded-xl bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border border-cyan-200 text-xs font-extrabold transition">
+          🌊 Koyu Okyanus
+        </button>
+        <a href="index.html" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white text-xs font-black shadow transition">
+          ← Mağaza Vitrinine Dön
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-[#020A13] via-[#061D30] to-[#0A3142] text-white py-10 border-b border-cyan-500/20">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="space-y-2 max-w-2xl">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-400/30 text-cyan-300 text-xs font-extrabold uppercase tracking-wider">
+          📰 Turkuaz Akvaryum & PetShop Dergisi
+        </span>
+        <h1 class="text-2xl sm:text-4xl font-black tracking-tight">
+          Akvaryum, Muhabbet Kuşu & <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-emerald-300">Evcil Dost Rehberleri</span>
+        </h1>
+        <p class="text-xs sm:text-sm text-slate-300">
+          Doğru bilgi, sağlıklı canlılar. Tür bakımı, su kimyası, kuş eğitimi ve kedi beslenmesi hakkında uzman notlarımızı keşfedin.
+        </p>
+      </div>
+      <div class="w-full md:w-72">
+        <input id="blogSearch" type="search" oninput="renderBlogList()" placeholder="Rehberlerde ara (Lepistes, Muhabbet, Kedi...)"
+               class="w-full px-4 py-2.5 rounded-2xl bg-white/10 border border-cyan-400/30 text-white placeholder-slate-300 text-xs font-semibold outline-none focus:border-cyan-300" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto w-full px-4 py-8 flex-1 space-y-6">
+    <!-- Category Filter Bar -->
+    <div id="blogCatBar" class="flex flex-wrap gap-2"></div>
+
+    <!-- Article Reader View (Hidden until a post is opened) -->
+    <article id="articleView" class="hidden bg-white rounded-3xl border border-cyan-200/70 overflow-hidden shadow-lg"></article>
+
+    <!-- Blog Cards Grid -->
+    <div id="blogGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#020A13] text-slate-400 text-xs py-6 border-t border-cyan-500/20 mt-8">
+    <div class="max-w-7xl mx-auto px-4 flex flex-wrap items-center justify-between gap-2">
+      <span><strong class="text-white">Turkuaz Akvaryum & PetShop</strong> · Rami Yeni Mah., Reşadiye Cad. No:22, Eyüpsultan / İstanbul</span>
+      <a href="index.html" class="text-cyan-400 font-bold hover:underline">Mağaza Kataloğu →</a>
+    </div>
+  </footer>
+
+  <script>
+    const BLOG_CATS = [
+      { id: 'all', label: '📚 Tüm Rehberler' },
+      { id: 'akvaryum', label: '🐠 Akvaryum Balıkları' },
+      { id: 'kurulum', label: '🌿 Kurulum & Su Kimyası' },
+      { id: 'kus', label: '🦜 Muhabbet Kuşu & Kuşlar' },
+      { id: 'kedi', label: '🐱 Kedi & Evcil Dostlar' }
+    ];
+
+    let allPosts = [];
+    let allCatalogItems = [];
+    let activeBlogCat = 'all';
+
+    function applyBlogTheme(t) {
+      document.documentElement.setAttribute('data-theme', t);
+      try { localStorage.setItem('turkuaz_theme', t); } catch(e) {}
+      const b = document.getElementById('blogThemeBtn');
+      if (b) b.textContent = t === 'dark' ? '☀️ Aydınlık' : '🌊 Koyu Okyanus';
+    }
+    function toggleBlogTheme() {
+      applyBlogTheme((document.documentElement.getAttribute('data-theme') || 'light') === 'dark' ? 'light' : 'dark');
+    }
+    applyBlogTheme((() => { try { return localStorage.getItem('turkuaz_theme') || 'light'; } catch(e) { return 'light'; } })());
+
+    function renderCatBar() {
+      document.getElementById('blogCatBar').innerHTML = BLOG_CATS.map(c => {
+        const cnt = c.id === 'all' ? allPosts.length : allPosts.filter(p => p.category === c.id).length;
+        const active = activeBlogCat === c.id;
+        return `<button type="button" onclick="selectBlogCat('${c.id}')" class="px-4 py-2 rounded-2xl text-xs font-extrabold border transition ${
+          active
+            ? 'bg-gradient-to-r from-cyan-600 to-teal-600 text-white border-transparent shadow'
+            : 'bg-white text-slate-700 border-cyan-200/70 hover:border-cyan-400'
+        }">${c.label} <span class="opacity-75">(${cnt})</span></button>`;
+      }).join('');
+    }
+
+    function selectBlogCat(catId) {
+      activeBlogCat = catId;
+      closeArticle();
+      renderCatBar();
+      renderBlogList();
+    }
+
+    function renderBlogList() {
+      const q = (document.getElementById('blogSearch').value || '').trim().toLowerCase();
+      const filtered = allPosts.filter(p => {
+        if (activeBlogCat !== 'all' && p.category !== activeBlogCat) return false;
+        if (q) {
+          const hay = `${p.title} ${p.excerpt} ${p.categoryLabel} ${(p.sections || []).map(s => s.heading + ' ' + s.body).join(' ')}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+      const grid = document.getElementById('blogGrid');
+      if (!filtered.length) {
+        grid.innerHTML = `<div class="col-span-full text-center py-12 bg-white rounded-3xl border border-cyan-200/70 text-sm text-slate-500 font-bold">Aramanıza uygun rehber bulunamadı.</div>`;
+        return;
+      }
+      grid.innerHTML = filtered.map(p => `
+        <article onclick="openArticle('${p.slug}')" class="cursor-pointer group bg-white rounded-3xl border border-cyan-200/70 overflow-hidden shadow-sm card-hover flex flex-col">
+          <div class="aspect-[16/10] bg-slate-100 overflow-hidden relative">
+            <img src="${p.image}" alt="${p.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-slate-950/75 text-cyan-300 text-[10.5px] font-extrabold backdrop-blur">${p.categoryLabel}</span>
+          </div>
+          <div class="p-5 flex flex-col flex-1 gap-2">
+            <div class="text-[11px] font-bold text-slate-400">⏱️ ${p.readTime} · ${p.date}</div>
+            <h2 class="text-base font-black text-slate-900 group-hover:text-cyan-700 leading-snug">${p.title}</h2>
+            <p class="text-xs text-slate-500 leading-relaxed line-clamp-3">${p.excerpt}</p>
+            <span class="mt-auto pt-3 text-xs font-black text-cyan-700">Tamamını Oku →</span>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function openArticle(slug) {
+      const p = allPosts.find(x => x.slug === slug);
+      if (!p) return;
+      const related = (p.relatedCodes || []).map(code => allCatalogItems.find(x => x.code === code)).filter(Boolean);
+
+      const view = document.getElementById('articleView');
+      view.innerHTML = `
+        <div class="relative aspect-[21/8] max-h-[360px] w-full bg-slate-900 overflow-hidden">
+          <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover opacity-85" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+          <button type="button" onclick="closeArticle()" class="absolute top-4 left-4 px-3.5 py-2 rounded-xl bg-white/90 hover:bg-white text-slate-900 text-xs font-black shadow">
+            ← Tüm Yazılar
+          </button>
+          <div class="absolute bottom-5 left-5 right-5 text-white space-y-1.5">
+            <span class="inline-block px-3 py-1 rounded-full bg-cyan-500/25 border border-cyan-300/40 text-cyan-200 text-[11px] font-extrabold">${p.categoryLabel} · ⏱️ ${p.readTime}</span>
+            <h2 class="text-xl sm:text-3xl font-black leading-tight">${p.title}</h2>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8 space-y-6">
+          ${p.quickFacts && p.quickFacts.length ? `
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              ${p.quickFacts.map(f => `
+                <div class="p-3.5 rounded-2xl bg-slate-50 border border-cyan-200/70">
+                  <span class="text-[10.5px] font-extrabold uppercase text-cyan-700 block">${f.label}</span>
+                  <strong class="text-xs sm:text-sm font-black text-slate-900">${f.value}</strong>
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+
+          <div class="space-y-5">
+            ${(p.sections || []).map(s => `
+              <section class="space-y-1.5">
+                <h3 class="text-base sm:text-lg font-black text-slate-900">${s.heading}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">${s.body}</p>
+              </section>
+            `).join('')}
+          </div>
+
+          ${p.mistakes && p.mistakes.length ? `
+            <div class="p-5 rounded-2xl bg-rose-500/10 border border-rose-400/30 space-y-2">
+              <h4 class="text-sm font-black text-rose-600">⚠️ Sık Yapılan Hatalar</h4>
+              <ul class="text-xs sm:text-sm text-slate-700 space-y-1.5 list-disc pl-5">
+                ${p.mistakes.map(m => `<li>${m}</li>`).join('')}
+              </ul>
+            </div>
+          ` : ''}
+
+          ${p.expertTip ? `
+            <div class="p-5 rounded-2xl bg-cyan-500/10 border border-cyan-400/35 space-y-1.5">
+              <h4 class="text-sm font-black text-cyan-700">💎 Turkuaz Akvaryum Uzman İpucu</h4>
+              <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">${p.expertTip}</p>
+            </div>
+          ` : ''}
+
+          ${related.length ? `
+            <div class="pt-4 border-t border-cyan-200/50 space-y-3">
+              <h4 class="text-sm font-black text-slate-900">🛒 Bu Rehberle İlgili Mağaza Ürünleri</h4>
+              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+                ${related.map(item => `
+                  <a href="index.html#urunler" class="p-2.5 rounded-2xl bg-slate-50 border border-cyan-200/70 hover:border-cyan-500 transition flex flex-col gap-1.5">
+                    <div class="aspect-square bg-white rounded-xl overflow-hidden p-1.5">
+                      <img src="${item.img}" alt="${item.name}" class="w-full h-full object-contain" />
+                    </div>
+                    <span class="text-[10px] font-mono font-bold text-cyan-700">${item.code}</span>
+                    <span class="text-[11px] font-extrabold text-slate-900 line-clamp-2 leading-tight">${item.name}</span>
+                  </a>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+        </div>
+      `;
+
+      view.classList.remove('hidden');
+      document.getElementById('blogGrid').classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      history.replaceState(null, '', `?yazi=${encodeURIComponent(slug)}`);
+    }
+
+    function closeArticle() {
+      document.getElementById('articleView').classList.add('hidden');
+      document.getElementById('blogGrid').classList.remove('hidden');
+      history.replaceState(null, '', 'blog.html');
+    }
+
+    async function initBlog() {
+      try {
+        const [bRes, cRes] = await Promise.all([
+          fetch('data/blog.json?t=' + Date.now()),
+          fetch('data/catalog.json?t=' + Date.now())
+        ]);
+        allPosts = await bRes.json();
+        const cat = await cRes.json();
+        Object.values(cat).forEach(arr => { if (Array.isArray(arr)) allCatalogItems.push(...arr); });
+
+        renderCatBar();
+        renderBlogList();
+
+        const slug = new URLSearchParams(window.location.search).get('yazi');
+        if (slug) openArticle(slug);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    initBlog();
+  </script>
+</body>
+</html>

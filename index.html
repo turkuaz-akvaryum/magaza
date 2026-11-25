@@ -18,8 +18,20 @@
                   radial-gradient(circle at 85% 75%, rgba(20, 184, 166, 0.28), transparent 50%),
                   linear-gradient(135deg, #020A13 0%, #061A28 55%, #09293A 100%);
     }
-    .card-hover { transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1); }
-    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 38px -15px rgba(6, 182, 212, 0.24); }
+    .card-hover { transition: all 0.28s cubic-bezier(0.2, 0.8, 0.2, 1); border-color: rgba(8, 145, 178, 0.16); }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 38px -14px rgba(6, 182, 212, 0.28); border-color: rgba(6, 182, 212, 0.55) !important; }
+    @keyframes causticsDrift {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.34; }
+      50% { transform: translate3d(18px, -12px, 0) scale(1.06); opacity: 0.52; }
+    }
+    .caustics-layer {
+      background:
+        radial-gradient(ellipse 42% 28% at 22% 26%, rgba(34, 211, 238, 0.22), transparent 65%),
+        radial-gradient(ellipse 36% 24% at 72% 38%, rgba(45, 212, 191, 0.18), transparent 65%),
+        radial-gradient(ellipse 30% 20% at 48% 72%, rgba(56, 189, 248, 0.16), transparent 65%);
+      animation: causticsDrift 11s ease-in-out infinite;
+      pointer-events: none;
+    }
     @keyframes floatSlow {
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-6px); }
@@ -33,6 +45,29 @@
     .bubble-1 { animation: riseBubble 6s ease-in infinite; }
     .bubble-2 { animation: riseBubble 8s ease-in infinite 2s; }
     .bubble-3 { animation: riseBubble 7s ease-in infinite 4s; }
+
+    /* Tema B: Koyu Okyanus Stüdyo Modu */
+    html[data-theme="dark"] body { background-color: #04101D !important; color: #F0F9FF !important; }
+    html[data-theme="dark"] header { background-color: rgba(6, 22, 38, 0.94) !important; border-color: rgba(34, 211, 238, 0.2) !important; }
+    html[data-theme="dark"] header nav a { color: #E0F2FE !important; }
+    html[data-theme="dark"] header nav a[class*="bg-"],
+    html[data-theme="dark"] #themeToggleBtn {
+      background-color: rgba(8, 145, 178, 0.22) !important;
+      border-color: rgba(56, 189, 248, 0.35) !important;
+      color: #E0F2FE !important;
+    }
+    html[data-theme="dark"] header nav a[class*="bg-"]:hover,
+    html[data-theme="dark"] #themeToggleBtn:hover {
+      background-color: rgba(6, 182, 212, 0.35) !important;
+    }
+    html[data-theme="dark"] header input { background-color: #0B2239 !important; color: #F0F9FF !important; border-color: rgba(56, 189, 248, 0.25) !important; }
+    html[data-theme="dark"] .bg-white, html[data-theme="dark"] .bg-slate-50 { background-color: #0A1D31 !important; border-color: rgba(56, 189, 248, 0.18) !important; }
+    html[data-theme="dark"] .text-slate-900, html[data-theme="dark"] .text-slate-800 { color: #F0F9FF !important; }
+    html[data-theme="dark"] .text-slate-600, html[data-theme="dark"] .text-slate-500 { color: #94B8D0 !important; }
+    html[data-theme="dark"] .border-slate-200, html[data-theme="dark"] .border-slate-200\/80 { border-color: rgba(56, 189, 248, 0.2) !important; }
+    html[data-theme="dark"] header .text-slate-950, html[data-theme="dark"] header .text-slate-900, html[data-theme="dark"] header .text-slate-800 { color: #F0F9FF !important; }
+    html[data-theme="dark"] .bg-teal-50\/80 { background-color: rgba(13, 148, 136, 0.22) !important; color: #5EEAD4 !important; border-color: rgba(45, 212, 191, 0.35) !important; }
+    html[data-theme="dark"] .studio-akv-bg { background-color: #FFFFFF !important; }
   </style>
 </head>
 <body class="antialiased selection:bg-cyan-500 selection:text-white pb-20 md:pb-0">
@@ -53,6 +88,10 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <span id="topBarHours">Pzt–Cmt 09:00–20:00 · Pazar 10:00–18:00</span>
+        </span>
+        <span id="liveOpenBadge" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-400/35 text-emerald-300 text-[11px] font-extrabold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Şu An Açığız</span>
         </span>
       </div>
       <div class="flex items-center gap-4">
@@ -141,21 +180,32 @@
         <nav class="hidden xl:flex items-center gap-3.5 text-xs font-extrabold uppercase tracking-wider text-slate-700 mr-2">
           <a href="#kategoriler" class="hover:text-cyan-600 transition">Reyonlar</a>
           <a href="#urunler" onclick="selectCategory('fish')" class="text-cyan-600 hover:text-cyan-700 transition">Canlı Balıklar</a>
-          <a href="#urunler" onclick="selectCategory('petshop')" class="px-2.5 py-1.5 rounded-xl bg-teal-50 text-teal-800 hover:bg-teal-100 border border-teal-200/80 transition">🐾 Kedi · Kuş · Pet</a>
-          <a href="#setTopla" class="px-2.5 py-1.5 rounded-xl bg-amber-50 text-amber-800 hover:bg-amber-100 border border-amber-200/80 transition">🛠️ Akvaryum Topla</a>
-          <a href="#ansiklopedi" class="px-2.5 py-1.5 rounded-xl bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200/80 transition">📖 Ansiklopedi</a>
+          <a href="#urunler" onclick="selectCategory('petshop')" class="px-2.5 py-1.5 rounded-xl bg-teal-50 text-teal-800 hover:bg-teal-100 border border-teal-200/80 whitespace-nowrap transition">🐾 Pet</a>
+          <a href="#setTopla" class="px-2.5 py-1.5 rounded-xl bg-amber-50 text-amber-800 hover:bg-amber-100 border border-amber-200/80 whitespace-nowrap transition">🛠️ Topla</a>
+          <a href="#ansiklopedi" class="px-2.5 py-1.5 rounded-xl bg-cyan-50 text-cyan-700 hover:bg-cyan-100 border border-cyan-200/80 whitespace-nowrap transition">📖 Ansiklopedi</a>
+          <a href="blog.html" class="px-2.5 py-1.5 rounded-xl bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200/80 whitespace-nowrap transition">📰 Blog</a>
           <a href="#iletisim" class="hover:text-cyan-600 transition">İletişim</a>
         </nav>
 
         <button
-          onclick="toggleCartDrawer(true)"
-          class="relative flex items-center gap-2 px-3.5 py-2.5 rounded-2xl bg-slate-900 hover:bg-cyan-700 text-white text-xs font-black shadow-md transition active:scale-95"
+          id="themeToggleBtn"
+          type="button"
+          onclick="toggleSiteTheme()"
+          class="flex items-center gap-1.5 px-3 py-2.5 rounded-2xl bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border border-cyan-200 text-xs font-extrabold transition shrink-0"
+          title="Aydınlık / Koyu Okyanus Tema Değiştir"
         >
-          <svg class="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+          <span>🌊</span><span class="hidden lg:inline">Koyu Okyanus</span>
+        </button>
+
+        <button
+          onclick="toggleCartDrawer(true)"
+          class="relative flex items-center gap-2 px-3.5 py-2.5 rounded-2xl bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white text-xs font-black shadow-md transition active:scale-95 shrink-0"
+        >
+          <svg class="w-4 h-4 text-cyan-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
           <span class="hidden sm:inline">Sepetim</span>
-          <span id="headerCartBadge" class="px-2 py-0.5 rounded-full bg-cyan-400 text-slate-950 text-[11px] font-black">0</span>
+          <span id="headerCartBadge" class="px-2 py-0.5 rounded-full bg-white text-cyan-900 text-[11px] font-black">0</span>
         </button>
       </div>
     </div>
@@ -192,6 +242,7 @@
       <!-- Sadece sol yazı alanını okunaklı kılan, sağdaki canlı balıkları ve bitkileri net bırakan akıllı degrade -->
       <div class="absolute inset-0 bg-gradient-to-r from-[#020B14] via-[#031322]/80 to-transparent"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-[#020A13] via-transparent to-[#020A13]/40"></div>
+      <div class="absolute inset-0 caustics-layer"></div>
     </div>
 
     <!-- Canlı Su Kabarcığı Animasyonları -->
@@ -276,7 +327,7 @@
             onclick="selectCategory('fish')"
             class="px-5 py-3.5 rounded-2xl bg-[#041829]/85 hover:bg-[#072640] border border-cyan-400/50 text-white font-extrabold text-xs sm:text-sm backdrop-blur-md transition active:scale-95"
           >
-            Canlı Balık Vitrini (87+)
+            Canlı Balık Vitrini →
           </a>
           <a
             href="#ansiklopedi"
@@ -347,7 +398,7 @@
               <span class="text-lg font-black text-emerald-300">45° Rodaj</span>
               <span class="text-xs font-extrabold text-white">Ultra Clear</span>
             </div>
-            <p class="text-[10px] text-slate-300/90 mt-0.5">Ekstra şeffaf & mobilyalı</p>
+            <p class="text-[10px] text-slate-300/90 mt-0.5">Ekstra şeffaf cam tanklar</p>
           </div>
         </div>
 
@@ -375,7 +426,7 @@
         <h2 class="text-xl sm:text-2xl font-black text-slate-900">Kategorilere Göre Keşfet</h2>
       </div>
       <span id="totalCatalogBadge" class="text-xs font-extrabold text-cyan-800 bg-cyan-50 px-3.5 py-1.5 rounded-xl border border-cyan-200">
-        440+ Ürün Hazır
+        Güncel Mağaza Vitrini
       </span>
     </div>
 
@@ -402,6 +453,14 @@
             <button onclick="setPriceRange('500-1500')" data-pr="500-1500" class="pr-btn px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900">500–1500 ₺</button>
             <button onclick="setPriceRange('1500-999999')" data-pr="1500-999999" class="pr-btn px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-slate-900">1500 ₺+</button>
           </div>
+
+          <button
+            type="button"
+            onclick="selectCategory('all'); onGlobalSearch('');"
+            class="px-3 py-2 rounded-xl bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border border-cyan-200 text-xs font-extrabold transition"
+          >
+            ✕ Tüm Ürünler
+          </button>
 
           <label class="flex items-center gap-1.5 text-xs font-bold text-slate-600 bg-slate-100 px-3 py-2 rounded-xl cursor-pointer">
             <input id="showOutOfStockChk" type="checkbox" checked onchange="onToggleOutOfStock(this.checked)" class="accent-cyan-600 w-4 h-4 rounded" />
@@ -963,6 +1022,83 @@
     </div>
   </section>
 
+  <!-- ================= 9.4 ÖNCE / SONRA AQUASCAPE DÖNÜŞÜM VİTRİNİ ================= -->
+  <section id="donusumVitrini" class="max-w-7xl mx-auto px-4 py-10">
+    <div class="bg-white rounded-3xl border border-cyan-200/70 p-5 sm:p-8 shadow-md grid grid-cols-1 lg:grid-cols-12 gap-7 items-center">
+      <div class="lg:col-span-5 space-y-4">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-700 text-[11px] font-extrabold uppercase tracking-wider">
+          ↔️ İnteraktif Dönüşüm Vitrini
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+          Boş Ultra Clear Camdan <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-teal-500">Canlı Aquascape Dünyasına</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+          Ortadaki kaydırma çubuğunu sola veya sağa sürükleyin; 45° rodajlı boş Ultra Clear cam tankın doğal Dragonstone kayalar, canlı bitkiler, OrionLed aydınlatma ve sağlıklı balıklarla nasıl yaşam alanına dönüştüğünü anında görün.
+        </p>
+        <div class="flex flex-wrap gap-2.5 pt-1">
+          <a href="#urunler" onclick="selectCategory('akvaryumlar')" class="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white text-xs font-black shadow-md transition">
+            🧊 Ultra Clear Tankları Gör
+          </a>
+          <a href="#iletisim" class="px-4 py-2.5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-extrabold transition">
+            📍 Mağazada Danış
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7">
+        <div id="baContainer" class="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border-2 border-cyan-400/40 shadow-xl select-none bg-[#031322] cursor-ew-resize">
+          <!-- SONRA (Kurulu Aquascape - Sağ / Alt Katman) -->
+          <img src="img/hero-luxury.jpg" alt="Kurulu Aquascape Akvaryum" class="absolute inset-0 w-full h-full object-cover pointer-events-none" />
+          <span class="absolute top-3 right-3 z-10 px-3 py-1 rounded-full bg-slate-950/75 text-cyan-300 text-[10.5px] font-black backdrop-blur border border-cyan-400/30 pointer-events-none">
+            ✨ KURULU AQUASCAPE
+          </span>
+
+          <!-- ÖNCE (Boş Ultra Clear Cam - Sol / Üst Katman) -->
+          <div id="baBeforeWrap" class="absolute inset-0 overflow-hidden bg-white" style="clip-path: inset(0 50% 0 0);">
+            <img src="img/akv-60x40x40.jpg" alt="Boş Ultra Clear Akvaryum" class="w-full h-full object-contain p-4 bg-white pointer-events-none" />
+            <span class="absolute top-3 left-3 z-10 px-3 py-1 rounded-full bg-cyan-600 text-white text-[10.5px] font-black shadow pointer-events-none">
+              🧊 BOŞ ULTRA CLEAR CAM
+            </span>
+          </div>
+
+          <!-- Kaydırma Çizgisi & Tutacak -->
+          <div id="baHandle" class="absolute top-0 bottom-0 z-20 w-0.5 bg-cyan-400 shadow-[0_0_16px_rgba(34,211,238,0.9)] pointer-events-none" style="left: 50%;">
+            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-11 h-11 rounded-full bg-gradient-to-br from-cyan-500 to-teal-600 text-white border-2 border-white shadow-xl flex items-center justify-center font-black text-base">
+              ↔
+            </div>
+          </div>
+
+          <!-- Erişilebilir Görünmez Range Slider -->
+          <input
+            id="baRange"
+            type="range"
+            min="2"
+            max="98"
+            value="50"
+            aria-label="Önce ve Sonra karşılaştırma kaydırıcısı"
+            oninput="updateBeforeAfter(this.value)"
+            class="absolute inset-0 z-30 w-full h-full opacity-0 cursor-ew-resize"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 9.5 TURKUAZ BLOG & UZMAN REHBERLER VİTRİNİ ================= -->
+  <section id="blogVitrin" class="max-w-7xl mx-auto px-4 py-10 space-y-5">
+    <div class="flex flex-wrap items-end justify-between gap-3">
+      <div>
+        <span class="text-[11px] font-extrabold uppercase tracking-widest text-cyan-600 block">Turkuaz Dergi & Bilgi Merkezi</span>
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900">Uzman Bakım Rehberleri & Blog</h2>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1">Akvaryum balıkları, Ultra Clear kurulum, muhabbet kuşu, papağan ve kedi bakımı üzerine güncel rehberler.</p>
+      </div>
+      <a href="blog.html" class="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white text-xs font-black shadow-md transition">
+        📰 Tüm Blog Yazılarını Gör →
+      </a>
+    </div>
+    <div id="homeBlogGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+  </section>
+
   <!-- ================= 10. HARİTALI İLETİŞİM & MAĞAZA KONUMU (RAMİ · EYÜPSULTAN) ================= -->
   <section id="iletisim" class="max-w-7xl mx-auto px-4 py-10">
     <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-md grid grid-cols-1 lg:grid-cols-12">
@@ -1022,10 +1158,10 @@
       </div>
 
       <!-- Sağ: Canlı Harita (Rami Yeni Mah., Reşadiye Cad. No:22 Koordinatları: 41.049292, 28.920110) -->
-      <div class="lg:col-span-7 min-h-[340px] bg-slate-100">
+      <div class="lg:col-span-7 min-h-[340px] bg-slate-100 relative">
         <iframe
           title="Turkuaz Akvaryum & PetShop Rami Eyüpsultan Harita"
-          src="https://yandex.com.tr/map-widget/v1/?ll=28.920110%2C41.049292&z=17&pt=28.920110,41.049292,pm2rdm"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=28.9135%2C41.0455%2C28.9265%2C41.0530&layer=mapnik&marker=41.049292%2C28.920110"
           width="100%"
           height="100%"
           style="min-height: 360px; border: 0;"
@@ -1150,7 +1286,7 @@
           <div id="pdDescription" class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80 max-h-44 overflow-y-auto whitespace-pre-line"></div>
         </div>
 
-        <div class="flex items-center gap-2.5 pt-2">
+        <div class="flex flex-wrap items-center gap-2.5 pt-2">
           <div class="flex items-center border border-slate-300 rounded-2xl bg-slate-50">
             <button onclick="changePdQty(-1)" class="w-10 h-11 font-black text-base text-slate-700">−</button>
             <span id="pdQty" class="w-8 text-center font-black text-sm">1</span>
@@ -1158,6 +1294,9 @@
           </div>
           <button id="pdAddBtn" onclick="addFromDetailModal()" class="flex-1 py-3.5 px-4 rounded-2xl bg-gradient-to-r from-cyan-600 to-teal-500 hover:from-cyan-500 hover:to-teal-400 text-white font-black text-xs uppercase tracking-wider shadow-lg transition active:scale-95">
             🛒 Sepete Ekle
+          </button>
+          <button type="button" onclick="askWhatsAppDetail()" class="py-3.5 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs shadow-lg transition active:scale-95">
+            💬 WhatsApp'tan Sor
           </button>
         </div>
       </div>
@@ -1480,7 +1619,7 @@
       { id: 'all', title: 'Tüm Ürünler', icon: '🛍️', desc: 'Tüm mağaza kataloğu', filter: () => true },
       { id: 'fish', title: 'Canlı Balıklar', icon: '🐠', desc: '90+ seçkin canlı balık ırkı', filter: p => p._src === 'fish' },
       { id: 'petshop', title: 'Kedi · Kuş · Pet', icon: '🐾', desc: 'Kedi, kuş, köpek mama & aksesuar', filter: p => p._src === 'petshop' },
-      { id: 'akvaryumlar', title: 'Akvaryumlar', icon: '🏠', desc: 'Ultra Clear & mobilyalı setler', filter: p => p._src === 'aquariums' },
+      { id: 'akvaryumlar', title: 'Akvaryumlar', icon: '🏠', desc: '45° rodaj Ultra Clear cam tanklar', filter: p => p._src === 'aquariums' },
       { id: 'filtreler', title: 'Filtreler', icon: '⚙️', desc: 'Dış, iç, askı ve pipo filtreler', filter: p => p._src === 'equipment' && ['dis_filtre','aski_filtre','ic_filtre','pipo_filtre','sunger_filtre','tepe_filtre','uv_filtre','filtre_malzeme'].includes(p.subcategory) },
       { id: 'ekipman', title: 'Isıtıcı & Ekipman', icon: '🌡️', desc: 'Isıtıcı, hava & dalga motoru', filter: p => p._src === 'equipment' && !['dis_filtre','aski_filtre','ic_filtre','pipo_filtre','sunger_filtre','tepe_filtre','uv_filtre','filtre_malzeme','su_duzenleyici','ec_olcer','ph_olcer','ic_termostat'].includes(p.subcategory) },
       { id: 'yemler', title: 'Balık Yemleri', icon: '🍽️', desc: 'Açık gramajlı & kutu yemler', filter: p => p._src === 'yemler' },
@@ -1584,7 +1723,7 @@
         const topBar = document.getElementById('topCorpBar');
         if (topBar) topBar.style.paddingTop = '28px';
       }
-      const isApkLocal = Boolean(window.AndroidNative) || location.hostname === 'localhost' || location.hostname === 'appassets.androidplatform.net';
+      const isApkLocal = Boolean(window.AndroidNative) || location.hostname === 'appassets.androidplatform.net';
       try {
         let cfg = null;
         if (isApkLocal && navigator.onLine) {
@@ -1809,24 +1948,33 @@
       grid.innerHTML = displayCats.map(c => {
         const count = allProducts.filter(c.filter).length;
         const isActive = activeCategory === c.id;
+        const isEmpty = count === 0;
         return `
           <button
             onclick="selectCategory('${c.id}')"
             class="p-3.5 rounded-2xl border text-left transition flex flex-col justify-between gap-2 card-hover ${
               isActive
-                ? 'bg-slate-900 text-white border-slate-900 shadow-lg'
-                : 'bg-white text-slate-800 border-slate-200/90 hover:border-cyan-400'
+                ? 'bg-gradient-to-br from-cyan-700 to-teal-700 text-white border-cyan-500 shadow-lg shadow-cyan-600/20'
+                : isEmpty
+                ? 'bg-white/80 text-slate-500 border-dashed border-cyan-200/80 hover:border-cyan-400 opacity-85'
+                : 'bg-white text-slate-800 border-cyan-200/60 hover:border-cyan-400'
             }"
           >
-            <div class="flex items-center justify-between w-full">
-              <span class="text-2xl">${c.icon}</span>
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-black ${
-                isActive ? 'bg-cyan-400 text-slate-950' : 'bg-slate-100 text-slate-600'
-              }">${count}</span>
+            <div class="flex items-center justify-between w-full gap-1">
+              <span class="text-2xl ${isEmpty && !isActive ? 'grayscale-[40%]' : ''}">${c.icon}</span>
+              ${isEmpty ? `
+                <span class="px-2 py-0.5 rounded-full text-[9.5px] font-extrabold ${
+                  isActive ? 'bg-white/25 text-white' : 'bg-amber-50 text-amber-700 border border-amber-200'
+                }">Yakında Stokta</span>
+              ` : `
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-black ${
+                  isActive ? 'bg-white text-cyan-900' : 'bg-cyan-50 text-cyan-800 border border-cyan-200/70'
+                }">${count}</span>
+              `}
             </div>
             <div>
               <div class="text-xs font-black leading-snug">${c.title}</div>
-              <div class="text-[10px] ${isActive ? 'text-slate-300' : 'text-slate-400'} line-clamp-1 mt-0.5">${c.desc}</div>
+              <div class="text-[10px] ${isActive ? 'text-cyan-100' : 'text-slate-400'} line-clamp-1 mt-0.5">${c.desc}</div>
             </div>
           </button>
         `;
@@ -1963,15 +2111,18 @@
                   ? `<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-lg bg-slate-800 text-white text-[10px] font-black uppercase">Stokta Yok</span>`
                   : (hasDisc && storeConfig.showPrices)
                   ? `<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-lg bg-rose-600 text-white text-[10px] font-black uppercase">-%${discPct} İndirim</span>`
-                  : p._src === 'fish'
-                  ? `<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-lg bg-cyan-600 text-white text-[10px] font-black uppercase">Canlı Balık</span>`
-                  : `<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-lg bg-teal-600 text-white text-[10px] font-black uppercase">Mağaza Ürünü</span>`
+                  : ''
                 }
-                <span class="absolute top-3 right-3 z-10 px-2 py-0.5 rounded-md bg-slate-100 text-slate-500 font-mono text-[10px] font-bold">
+                <span class="absolute top-3 right-3 z-10 px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 font-mono text-[10px] font-bold">
                   ${p.code}
                 </span>
+                ${p._src === 'aquariums' && p.badge ? `
+                  <span class="absolute bottom-2.5 left-2.5 right-2.5 z-10 px-2.5 py-1 rounded-xl bg-gradient-to-r from-cyan-600/95 to-teal-600/95 text-white text-[10.5px] font-extrabold text-center shadow">
+                    🧊 ${p.badge}
+                  </span>
+                ` : ''}
                 ${p.img
-                  ? `<img src="${p.img}" alt="${p.name}" loading="lazy" class="w-full h-full object-contain group-hover:scale-105 transition duration-300" />`
+                  ? `<img src="${p.img}" alt="${p.name}" loading="lazy" class="w-full h-full ${(p._src === 'aquariums' || (p.img && p.img.startsWith('img/products/'))) ? 'object-contain p-2 studio-akv-bg' : 'object-cover'} group-hover:scale-105 transition duration-300" />`
                   : `<div class="text-xs text-slate-400 font-bold">Görsel Yakında</div>`
                 }
               </div>
@@ -2022,10 +2173,7 @@
                   </div>
                 </div>
               ` : `
-                <div id="cardPrice_${p._id}" class="text-[11px] font-extrabold text-teal-700 bg-teal-50/80 border border-teal-200/70 px-2.5 py-1.5 rounded-xl flex items-center justify-between">
-                  <span>${isOut ? 'Stok Tükendi' : '✓ Mağaza Vitrini'}</span>
-                  <span class="text-slate-500 font-mono text-[10px]">${openFeed ? '250g Paket' : p.code}</span>
-                </div>
+                <div id="cardPrice_${p._id}" class="${isOut ? 'text-[11px] font-extrabold text-rose-600 bg-rose-50 border border-rose-200 px-2.5 py-1.5 rounded-xl' : 'hidden'}">${isOut ? 'Stok Tükendi' : ''}</div>
               `}
 
               ${isOut ? `
@@ -2033,13 +2181,23 @@
                   Geçici Olarak Tükendi
                 </button>
               ` : `
-                <button
-                  onclick="addCardToCart('${p._id}')"
-                  class="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-cyan-600 active:scale-95 text-white font-black text-xs transition flex items-center justify-center gap-1.5 shadow-sm"
-                >
-                  <span>🛒</span>
-                  <span>Sepete Ekle</span>
-                </button>
+                <div class="flex gap-1.5">
+                  <button
+                    onclick="addCardToCart('${p._id}')"
+                    class="flex-1 py-2.5 px-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 active:scale-95 text-white font-black text-xs transition flex items-center justify-center gap-1 shadow-sm"
+                  >
+                    <span>🛒</span>
+                    <span>Sepete Ekle</span>
+                  </button>
+                  <button
+                    type="button"
+                    onclick="askWhatsAppProduct('${p._id}')"
+                    title="WhatsApp'tan Fiyat & Stok Sor"
+                    class="py-2.5 px-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white border border-emerald-200 font-extrabold text-xs transition flex items-center justify-center gap-1 shrink-0"
+                  >
+                    <span>💬</span><span class="hidden sm:inline">Sor</span>
+                  </button>
+                </div>
               `}
             </div>
           </article>
@@ -2635,6 +2793,116 @@
     });
 
     document.addEventListener('DOMContentLoaded', loadStoreCatalog);
+  </script>
+  <!-- Sabit Sağ Alt WhatsApp Hızlı Bilgi Butonu -->
+  <button
+    type="button"
+    onclick="askWhatsAppGeneral()"
+    class="fixed right-4 bottom-20 md:bottom-5 z-40 flex items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-black text-xs shadow-xl shadow-emerald-600/30 transition active:scale-95"
+    title="WhatsApp'tan Fiyat ve Stok Sor"
+  >
+    <span class="text-base">💬</span>
+    <span class="hidden sm:inline">WhatsApp'tan Sor</span>
+  </button>
+
+  <script>
+    function applySiteTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      try { localStorage.setItem('turkuaz_theme', theme); } catch(e) {}
+      const btn = document.getElementById('themeToggleBtn');
+      if (btn) btn.innerHTML = theme === 'dark' ? '<span>☀️</span><span class="hidden lg:inline">Aydınlık</span>' : '<span>🌊</span><span class="hidden lg:inline">Koyu Okyanus</span>';
+    }
+    function toggleSiteTheme() {
+      const cur = document.documentElement.getAttribute('data-theme') || 'light';
+      applySiteTheme(cur === 'dark' ? 'light' : 'dark');
+    }
+    applySiteTheme((() => { try { return localStorage.getItem('turkuaz_theme') || 'light'; } catch(e) { return 'light'; } })());
+
+    function buildWhatsAppUrl(msg) {
+      const raw = ((typeof storeConfig !== 'undefined' && (storeConfig.whatsapp || storeConfig.phone)) || '').replace(/\D/g, '');
+      const base = raw ? `https://wa.me/${raw}` : 'https://wa.me/';
+      return `${base}?text=${encodeURIComponent(msg)}`;
+    }
+    function askWhatsAppGeneral() {
+      window.open(buildWhatsAppUrl('Merhaba Turkuaz Akvaryum, mağazanızdaki canlı balık ve akvaryum ürünleri hakkında bilgi alabilir miyim?'), '_blank', 'noopener');
+    }
+    function askWhatsAppProduct(prodId) {
+      const p = (typeof allProducts !== 'undefined' ? allProducts : []).find(x => x._id === prodId);
+      if (!p) return askWhatsAppGeneral();
+      const msg = `Merhaba Turkuaz Akvaryum, vitrininizdeki "${p.name}" (${p.code}) hakkında güncel fiyat ve stok bilgisi alabilir miyim?`;
+      window.open(buildWhatsAppUrl(msg), '_blank', 'noopener');
+    }
+    function askWhatsAppDetail() {
+      if (typeof currentDetailProduct !== 'undefined' && currentDetailProduct) {
+        return askWhatsAppProduct(currentDetailProduct._id);
+      }
+      askWhatsAppGeneral();
+    }
+
+    // 1. Önce / Sonra Aquascape Slider
+    function updateBeforeAfter(val) {
+      const pct = Math.max(2, Math.min(98, Number(val) || 50));
+      const wrap = document.getElementById('baBeforeWrap');
+      const handle = document.getElementById('baHandle');
+      if (wrap) wrap.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+      if (handle) handle.style.left = pct + '%';
+    }
+
+    // 2. Canlı Mağaza Açık / Kapalı Durumu (İstanbul Saati)
+    function updateLiveOpenStatus() {
+      const badge = document.getElementById('liveOpenBadge');
+      if (!badge) return;
+      try {
+        const now = new Date();
+        const trParts = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Europe/Istanbul', weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false
+        }).formatToParts(now);
+        const wd = trParts.find(p => p.type === 'weekday')?.value || 'Mon';
+        const hr = Number(trParts.find(p => p.type === 'hour')?.value || 12);
+        const mn = Number(trParts.find(p => p.type === 'minute')?.value || 0);
+        const mins = hr * 60 + mn;
+        const isSun = wd === 'Sun';
+        const openMin = isSun ? 10 * 60 : 9 * 60;
+        const closeMin = isSun ? 18 * 60 : 20 * 60;
+
+        if (mins >= openMin && mins < closeMin) {
+          const closeTxt = isSun ? "18:00'a kadar" : "20:00'a kadar";
+          badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-400/35 text-emerald-300 text-[11px] font-extrabold';
+          badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span>Şu An Açığız · ${closeTxt}</span>`;
+        } else {
+          const nextTxt = mins < openMin ? (isSun ? "Bugün 10:00'da" : "Bugün 09:00'da") : (wd === 'Sat' ? "Yarın 10:00'da" : "Yarın 09:00'da");
+          badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/15 border border-amber-400/35 text-amber-300 text-[11px] font-extrabold';
+          badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400"></span><span>Kapalı · ${nextTxt} Açılıyoruz</span>`;
+        }
+      } catch (e) {}
+    }
+    updateLiveOpenStatus();
+    setInterval(updateLiveOpenStatus, 60000);
+
+    // Ana Sayfa Blog Şeridi Yükleyici
+    (async function loadHomeBlog() {
+      const grid = document.getElementById('homeBlogGrid');
+      if (!grid) return;
+      try {
+        const r = await fetch('data/blog.json?t=' + Date.now());
+        if (!r.ok) return;
+        const posts = await r.json();
+        grid.innerHTML = posts.slice(0, 4).map(p => `
+          <a href="blog.html?yazi=${encodeURIComponent(p.slug)}" class="group bg-white rounded-3xl border border-cyan-200/70 overflow-hidden shadow-sm card-hover flex flex-col">
+            <div class="aspect-[16/10] bg-slate-100 overflow-hidden relative">
+              <img src="${p.image}" alt="${p.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+              <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-full bg-slate-950/75 text-cyan-300 text-[10px] font-extrabold backdrop-blur">${p.categoryLabel}</span>
+            </div>
+            <div class="p-4 flex flex-col flex-1 gap-1.5">
+              <div class="text-[10px] font-bold text-slate-400">⏱️ ${p.readTime} · ${p.date}</div>
+              <h3 class="text-sm font-black text-slate-900 group-hover:text-cyan-700 leading-snug line-clamp-2">${p.title}</h3>
+              <p class="text-xs text-slate-500 line-clamp-2 mt-0.5">${p.excerpt}</p>
+              <span class="mt-auto pt-2 text-xs font-extrabold text-cyan-700">Rehberi Oku →</span>
+            </div>
+          </a>
+        `).join('');
+      } catch (e) {}
+    })();
   </script>
 </body>
 </html>

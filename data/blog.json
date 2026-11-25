@@ -1,0 +1,298 @@
+[
+  {
+    "slug": "ultra-clear-akvaryum-kurulumu-ve-azot-dongusu",
+    "title": "İlk Kez Ultra Clear Akvaryum Kurulumu & Azot Döngüsü Rehberi",
+    "category": "kurulum",
+    "categoryLabel": "🌿 Kurulum & Su Kimyası",
+    "date": "25 Kasım 2026",
+    "readTime": "5 dk okuma",
+    "image": "img/akv-60x40x40.jpg",
+    "excerpt": "45° rodaj Ultra Clear akvaryumunuzu sıfırdan sağlıklı kurmak, suyu berrak tutmak ve ilk gün balık kaybı yaşamamak için adım adım azot döngüsü rehberi.",
+    "quickFacts": [
+      { "label": "İdeal Kurulum Süresi", "value": "7 – 14 Gün (Bakteri Oturumu)" },
+      { "label": "Su Değişimi", "value": "Haftada %25 – %30" },
+      { "label": "Önerilen Taban", "value": "4–6 cm Doğal / Bitki Kumu" },
+      { "label": "Aydınlatma", "value": "Günde 6–8 Saat Sabit" }
+    ],
+    "sections": [
+      {
+        "heading": "1. Zemin Matı ve Konum Seçimi",
+        "body": "Ultra Clear cam tankları doğrudan güneş ışığı almayan, kalorifer peteğinden uzak ve teraziye alınmış düz bir yüzey üzerine yerleştirin. Cam tabanın altına mutlaka ince köpük/kauçuk leveling matı serin; bu sayede camdaki mikro basınç noktaları önlenir."
+      },
+      {
+        "heading": "2. Kum, Dragonstone ve Ekipman Yerleşimi",
+        "body": "Taban kumunu (ReeFlowers veya Vitasand) soğuk suda bulanıklığı gidene kadar durulayıp arka kısma doğru hafif eğimli serin. Dragonstone kayalarınızı yerleştirdikten sonra şelale veya dış filtrenizi, ısıtıcınızı ve OrionLed aydınlatmanızı takıp suyu yavaşça doldurun."
+      },
+      {
+        "heading": "3. Azot Döngüsü Neden Hayati Önem Taşır?",
+        "body": "Çeşme suyuna mutlaka klor giderici su düzenleyici (Tropical Supreme / Crystalpro Aqua Conditioner) ve canlı bakteri kültürü (Tropical BactoActive) ekleyin. Faydalı bakteriler balık atığından oluşan zehirli amonyağı önce nitrite, ardından çok daha zararsız olan nitrata dönüştürür. İlk balıkları eklemeden önce filtrenin en az 5–7 gün çalışması kayıpları sıfıra indirir."
+      }
+    ],
+    "mistakes": [
+      "Aynı gün suyu doldurup hemen tüm balıkları akvaryuma koymak",
+      "Filtre süngerlerini çeşme suyu altında sabunla veya sıcak suyla yıkamak (faydalı bakterileri öldürür)",
+      "Akvaryumu doğrudan pencere önüne koyarak yoğun yeşil yosun patlamasına yol açmak"
+    ],
+    "expertTip": "Filtre süngerlerinizi her zaman akvaryumdan çektiğiniz kendi suyunda hafifçe sıkarak temizleyin; böylece bakteri koloniniz bozulmaz ve suyunuz cam gibi berrak kalır.",
+    "relatedCodes": ["AKV-005", "TAS-001", "KUM-001", "SU-002", "SU-003", "FLT-001"]
+  },
+  {
+    "slug": "lepistes-bakimi-uretimi-ve-uyumlu-turler",
+    "title": "Lepistes Bakımı, Doğum Belirtileri ve Uyumlu Tank Arkadaşları",
+    "category": "akvaryum",
+    "categoryLabel": "🐠 Akvaryum Balıkları",
+    "date": "25 Kasım 2026",
+    "readTime": "4 dk okuma",
+    "image": "img/fish/guppy.jpg",
+    "excerpt": "Canlı renkleri ve kolay bakımıyla akvaryum hobisinin yıldızı Lepisteslerin ideal su değerleri, hamilelik süreci, yavru koruma ve uyumlu türler rehberi.",
+    "quickFacts": [
+      { "label": "Sıcaklık", "value": "23 – 27 °C" },
+      { "label": "pH Aralığı", "value": "6.8 – 8.0" },
+      { "label": "Min. Akvaryum", "value": "40 Litre+" },
+      { "label": "Erkek / Dişi Oranı", "value": "1 Erkek : 2–3 Dişi" }
+    ],
+    "sections": [
+      {
+        "heading": "Doğru Sürü Dengesi ve Akvaryum Ortamı",
+        "body": "Lepistesler sosyal ve hareketli balıklardır. Erkekler sürekli dişileri kovaladığı için akvaryumda mutlaka 1 erkeğe karşılık en az 2–3 dişi bulundurulmalıdır. 40×40×40 veya 50×30×30 Ultra Clear bir tankta Anubias ve yosun bitkileriyle harika bir koloni kurabilirsiniz."
+      },
+      {
+        "heading": "Hamilelik ve Yavru Bakımı",
+        "body": "Dişi Lepisteslerde anüs bölgesindeki koyu renkli gebelik lekesi büyüdüğünde ve karın köşeli form aldığında doğum yaklaşmıştır (ortalama 26–30 gün). Doğum stresini azaltmak için dar yavruluklar yerine bol bitkili bir alan oluşturmak yavruların çok daha sağlıklı büyümesini sağlar."
+      },
+      {
+        "heading": "Beslenme ve Renk Canlılığı",
+        "body": "Günde 2 kez, 1–2 dakikada tüketebilecekleri kadar kaliteli mikro granül ve kurutulmuş artemia/su piresi (Sera Artemia FD / Sera Daphnia) vermek hem bağışıklığı hem kuyruk parlaklığını belirgin şekilde artırır."
+      }
+    ],
+    "mistakes": [
+      "Tek bir dişinin yanına birden fazla erkek koyarak dişiyi strese sokmak",
+      "Lepistesleri kuyruk ısıran Betta, Tetrazon veya büyük Cichlid türleriyle aynı tanka koymak",
+      "Aşırı yemleme yaparak tabanda amonyak birikmesine neden olmak"
+    ],
+    "expertTip": "Farklı özel ırk Lepisteslerin (Full Red, Blue Grass, Full Black) saflığını korumak istiyorsanız her ırkı ayrı akvaryumda beslemeniz gerekir.",
+    "relatedCodes": ["AKV-003", "YEM-004", "YEM-003", "IST-002", "FLT-005"]
+  },
+  {
+    "slug": "muhabbet-kusu-ele-alistirma-ve-konusturma-rehberi",
+    "title": "Muhabbet Kuşu Ele Alıştırma, Güven Kazanma ve Konuşturma Rehberi",
+    "category": "kus",
+    "categoryLabel": "🦜 Muhabbet Kuşu & Kuşlar",
+    "date": "25 Kasım 2026",
+    "readTime": "5 dk okuma",
+    "image": "img/blog/muhabbet-kusu-2.jpg",
+    "excerpt": "Yeni sahiplendiğiniz muhabbet kuşunun size hızla alışması, parmağınıza gelmesi ve kelimeleri taklit etmeye başlaması için sabırlı ve bilimsel eğitim adımları.",
+    "quickFacts": [
+      { "label": "Ortalama Ömür", "value": "8 – 12 Yıl" },
+      { "label": "En İyi Eğitim Yaşı", "value": "1.5 – 4 Aylık Yavru" },
+      { "label": "Günlük İlgi", "value": "En Az 30–45 Dakika" },
+      { "label": "İdeal Oda Isısı", "value": "20 – 25 °C (Cereyansız)" }
+    ],
+    "sections": [
+      {
+        "heading": "İlk 3 Gün: Ortama Alışma ve Güven",
+        "body": "Eve yeni gelen muhabbet kuşu tamamen yabancı bir ortamdadır. İlk 2–3 gün kafesin içine el sokmadan, kafesin yanında alçak ve yumuşak bir ses tonuyla konuşarak sesinize alışmasını sağlayın. Kafesi mutlaka göz hizasında, cereyan almayan ve mutfak buharından uzak bir köşeye yerleştirin."
+      },
+      {
+        "heading": "Dal Darı ile Ele Alıştırma Tekniği",
+        "body": "Kuşunuz kafes yanındayken sakinleştiğinde elinizi yavaşça kafes içine uzatın ve sevdiği dal darıyı avucunuzda sunun. Asla yukarıdan avuçlayarak yakalamayın; bu hareket doğadaki avcı refleksini tetikler. Parmağınızı göğsüne hafifçe yaklaştırıp 'gel' komutuyla adım atmasını ödüllendirin."
+      },
+      {
+        "heading": "Konuşturma Eğitiminin Altın Kuralları",
+        "body": "Özellikle tek bakılan genç erkek muhabbet kuşları konuşmaya çok yatkındır. Her gün sabah ve akşam sessiz bir ortamda 10–15 dakika boyunca 'cici kuş', 'babacık', 'aşkım' gibi P, Ç, Ş, K harflerini içeren tek bir kelimeyi aynı net tonda tekrarlayın. İlk kelimeyi söyledikten sonra diğer kelimeleri çok daha hızlı öğrenir."
+      }
+    ],
+    "mistakes": [
+      "Kuşu avuçlayarak tutmaya çalışmak ve güvenini kırmak",
+      "Kafese ayna takmak (kuş aynadaki yansımaya bağlanır ve insanla iletişimi keser)",
+      "Kafesi pencere önü cereyanına veya doğrudan klima karşısına koymak"
+    ],
+    "expertTip": "Plastik tünekler yerine farklı kalınlıklarda doğal ahşap tünek kullanmak, muhabbet kuşunun ayak sağlığını korur ve tırnakların doğal törpülenmesini sağlar.",
+    "relatedCodes": []
+  },
+  {
+    "slug": "muhabbet-kusu-beslenme-ve-tuy-dokumu-bakimi",
+    "title": "Muhabbet Kuşlarında Doğru Beslenme & Tüy Dökümü Dönemi Bakımı",
+    "category": "kus",
+    "categoryLabel": "🦜 Muhabbet Kuşu & Kuşlar",
+    "date": "25 Kasım 2026",
+    "readTime": "4 dk okuma",
+    "image": "img/blog/muhabbet-kusu-1.jpg",
+    "excerpt": "Muhabbet kuşunun uzun ve sağlıklı yaşaması için günlük yem dengesi, yasak gıdalar, kalamar kemiği önemi ve tüy dökümü döneminde dikkat edilmesi gerekenler.",
+    "quickFacts": [
+      { "label": "Ana Besin", "value": "Taze Darı & Aspur Karışımı" },
+      { "label": "Su Değişimi", "value": "Her Gün Taze İçme Suyu" },
+      { "label": "Mineral Desteği", "value": "Kalamar Kemiği & Kuş Kumu" },
+      { "label": "Tüy Dökümü", "value": "Yılda 2 Kez (Mevsimsel)" }
+    ],
+    "sections": [
+      {
+        "heading": "Dengeli Günlük Beslenme Programı",
+        "body": "Tozdan arındırılmış taze muhabbet kuşu yemi temel besindir; ancak tek başına yeterli değildir. Haftada 2–3 kez iyi yıkanmış ve kurulanmış brokoli, havuç rendesi, marul veya elma (çekirdeksiz) gibi taze sebze-meyveler bağışıklığı ciddi şekilde güçlendirir."
+      },
+      {
+        "heading": "Tüy Dökümü Döneminde Ne Yapmalı?",
+        "body": "Kuşunuzun kafasında beyaz kapsül tüyler (tüy tüpleri) gördüğünüzde tüy dökümü dönemindedir. Bu dönemde kuş biraz durgun ve hassas olabilir. B vitamini kompleksi, haftada 1–2 kez haşlanmış yumurta maması ve ılık banyoluk suyu bu süreci ağrısız ve hızlı atlatmasını sağlar."
+      },
+      {
+        "heading": "Kuşlara Kesinlikle Verilmemesi Gereken Gıdalar",
+        "body": "Avokado, çikolata, kafein, soğan, sarımsak, tuzlu/yağlı ev yemekleri, süt ürünleri ve meyve çekirdekleri muhabbet kuşları için zehirlidir ve kesinlikle verilmemelidir."
+      }
+    ],
+    "mistakes": [
+      "Yem kabındaki boş kabukları dolu sanıp yem eklemeyi unutmak (kabukları her gün üfleyip temizleyin)",
+      "Kafeste kalamar kemiği ve gaga taşı bulundurmamak",
+      "Musluk suyunu günlerce sulukta bekletmek"
+    ],
+    "expertTip": "Sulukları haftada en az 2 kez fırçayla iyice temizleyin; suluk içindeki kaygan biyofilm tabakası kuşlarda kursak enfeksiyonunun en yaygın sebebidir.",
+    "relatedCodes": []
+  },
+  {
+    "slug": "sultan-papagani-bakimi-kafes-duzeni-ve-davranislari",
+    "title": "Sultan Papağanı (Cockatiel) Bakımı, Kafes Düzeni ve Islık Eğitimi",
+    "category": "kus",
+    "categoryLabel": "🦜 Muhabbet Kuşu & Kuşlar",
+    "date": "25 Kasım 2026",
+    "readTime": "4 dk okuma",
+    "image": "img/blog/sultan-papagani.jpg",
+    "excerpt": "Sevecen karakteri, melodik ıslıkları ve tepeli görünümüyle evlerin neşesi Sultan Papağanlarının kafes ölçüsü, uyku düzeni ve beslenme rehberi.",
+    "quickFacts": [
+      { "label": "Ortalama Ömür", "value": "15 – 20 Yıl" },
+      { "label": "Min. Kafes Ölçüsü", "value": "En Az 60×45×60 cm" },
+      { "label": "Uyku İhtiyacı", "value": "Günde 10–12 Saat" },
+      { "label": "Karakter", "value": "Çok Sosyal & Melodik" }
+    ],
+    "sections": [
+      {
+        "heading": "Ferah Kafes ve Yatay Tel Önemi",
+        "body": "Sultan papağanları tırmanmayı çok sever; bu nedenle dikey yerine yatay telli, kanatlarını rahatça açabileceği genişlikte bir kafes seçilmelidir. Kafes içinde çiğneyebileceği doğal ahşap oyuncaklar, kalamar kemiği ve mineral blok mutlaka bulunmalıdır."
+      },
+      {
+        "heading": "Gece Korkusu (Night Fright) Nasıl Önlenir?",
+        "body": "Sultan papağanları zifiri karanlıkta ani gölge veya seslerden ürküp kafes içinde çırpınabilir. Bulunduğu odada çok loş bir gece lambası bırakmak gece korkusunu ve kanat yaralanmalarını büyük ölçüde önler."
+      },
+      {
+        "heading": "Beslenme ve Yağlanmadan Korunma",
+        "body": "Ayçekirdeği Sultan papağanlarının en sevdiği tohumdur ancak fazla verildiğinde karaciğer yağlanmasına yol açar. Çekirdek oranı dengeli özel papağan karışımları, pelet yemler ve taze yeşilliklerle dengeli besleyin."
+      }
+    ],
+    "mistakes": [
+      "Sadece bol ayçekirdekli yemle beslemek",
+      "Küçük muhabbet kuşu kafesinde uzun süre tutmak",
+      "Gece uyku saatinde yüksek sesli TV veya parlak ışık altında bırakmak"
+    ],
+    "expertTip": "Sultan papağanının tepe tüyleri ruh halini anlatır: Hafif yatık ve yumuşak duruyorsa çok mutlu, dimdik öne doğruysa heyecanlı veya tedirgin demektir.",
+    "relatedCodes": []
+  },
+  {
+    "slug": "betta-baligi-bakimi-fanus-neden-zararlidir",
+    "title": "Betta Balığı Bakımı: Fanus Neden Zararlıdır & İdeal Nano Tank Kurulumu",
+    "category": "akvaryum",
+    "categoryLabel": "🐠 Akvaryum Balıkları",
+    "date": "25 Kasım 2026",
+    "readTime": "4 dk okuma",
+    "image": "img/fish/betta.jpg",
+    "excerpt": "Halfmoon, Crown Tail ve Plakat Betta balıklarının sağlıklı yaşaması, yüzgeç erimesinden korunması ve canlı renklerini göstermesi için doğru nano akvaryum rehberi.",
+    "quickFacts": [
+      { "label": "İdeal Hacim", "value": "16 – 30 Litre (25×25 / 30×30)" },
+      { "label": "Sıcaklık", "value": "25 – 28 °C (Isıtıcı Şart)" },
+      { "label": "Akıntı", "value": "Çok Düşük / Yumuşak" },
+      { "label": "Mizaç", "value": "Tek Bakım (Erkekler Ayrı)" }
+    ],
+    "sections": [
+      {
+        "heading": "Neden Fanus Yerine 25×25 veya 30×30 Ultra Clear Küp?",
+        "body": "Betta balıkları tropikal iklim balıklarıdır; küçük fanuslarda su sıcaklığı gece hızla düşer ve amonyak kısa sürede birikir. 25×25×25 (16L) veya 30×30×30 (27L) bir Ultra Clear küp akvaryumda 50W sabit ısıtıcı ve düşük debili şelale/pipo filtre ile Betta'nız 3–5 yıl canlı renklerle yaşar."
+      },
+      {
+        "heading": "Yüzgeç Sağlığı ve Dekor Seçimi",
+        "body": "Uzun tül kuyruklu Betta'ların yüzgeçleri keskin plastik bitkilerle kolayca yırtılabilir. Anubias Nana gibi yumuşak yapraklı canlı bitkiler hem yüzgeçleri korur hem Betta'nın üzerinde dinleneceği doğal yataklar oluşturur."
+      },
+      {
+        "heading": "Doğru Yemleme",
+        "body": "Betta'nın midesi gözü büyüklüğündedir. Günde 2 kez 3–4 adet yüksek proteinli granül veya haftada 2 gün kurutulmuş kan kurdu (Sera Bloodworms FD) vermek kabızlığı önler ve renkleri parlatır."
+      }
+    ],
+    "mistakes": [
+      "İki erkek Betta'yı aynı akvaryuma koymak",
+      "Isıtıcısız soğuk suda beslemek (hareketsizleşir ve beyaz beneğe yakalanır)",
+      "Çok güçlü akıntılı iç filtre kullanarak balığı yormak"
+    ],
+    "expertTip": "Betta akvaryumunda haftalık %25 su değişimini mutlaka akvaryumla aynı sıcaklıkta ve klor giderici eklenmiş suyla yapın.",
+    "relatedCodes": ["AKV-001", "AKV-002", "IST-003", "FLT-007", "YEM-002", "BTK-001"]
+  },
+  {
+    "slug": "discus-ve-tropikal-akvaryumlarda-su-kimyasi-rehberi",
+    "title": "Discus & Tropikal Akvaryumlarda Su Kimyası, pH ve Güçlü Filtreleme",
+    "category": "kurulum",
+    "categoryLabel": "🌿 Kurulum & Su Kimyası",
+    "date": "25 Kasım 2026",
+    "readTime": "5 dk okuma",
+    "image": "img/fish/discus.jpg",
+    "excerpt": "Akvaryumların kralı Discus ve hassas Amazon türleri için sabit sıcaklık, yumuşak su dengesi, UV destekli dış filtre seçimi ve probiyotikli beslenme ipuçları.",
+    "quickFacts": [
+      { "label": "Sıcaklık", "value": "28 – 30 °C" },
+      { "label": "İdeal pH", "value": "6.0 – 6.8" },
+      { "label": "Filtre Debisi", "value": "Hacmin 4–5 Katı / Saat" },
+      { "label": "Sürü", "value": "En Az 5–6 Adet" }
+    ],
+    "sections": [
+      {
+        "heading": "Stabilite Mükemmel Değerden Önemlidir",
+        "body": "Discus ve benzeri hassas tropikal balıklar ani pH ve sıcaklık dalgalanmalarından stres yaşar. 200W kaliteli elektronik termostatlı ısıtıcı (Tetra HT 200W) ve düzenli haftalık dinlendirilmiş su değişimleri en kritik başarı faktörüdür."
+      },
+      {
+        "heading": "Biyolojik Kapasitesi Yüksek Dış Filtre",
+        "body": "Büyük hacimli tanklarda Aquael Ultra 900/1200 veya UV lambalı Sobo 905F gibi yüksek medya hacimli dış filtreler, sudaki serbest patojenleri ve bulanıklığı minimumda tutar."
+      },
+      {
+        "heading": "Probiyotik Destekli Beslenme",
+        "body": "Sindirim sağlığını korumak için Sera Discus Probiotic Granules ve bağışıklık destekli granül yemleri dönüşümlü kullanmak bağırsak paraziti riskini azaltır."
+      }
+    ],
+    "mistakes": [
+      "Tek başına 1 adet Discus beslemek (sürü balığıdır, strese girer)",
+      "Soğuk su balıkları veya agresif Malawi cichlidleri ile aynı tanka koymak",
+      "Su değişimlerinde doğrudan soğuk çeşme suyu eklemek"
+    ],
+    "expertTip": "80×40×40 ve üzeri tanklarda su sıcaklığını dijital/cam termometre (Jeneca AT-03) ile ısıtıcıdan bağımsız kontrol etmeniz güvenliği iki katına çıkarır.",
+    "relatedCodes": ["AKV-007", "FLT-002", "FLT-003", "IST-001", "YEM-006", "AKS-001"]
+  },
+  {
+    "slug": "ev-kedilerinde-mama-tuy-yumagi-ve-kum-secimi",
+    "title": "Ev Kedilerinde Doğru Mama, Tüy Yumağı Önleme ve Kedi Kumu Seçimi",
+    "category": "kedi",
+    "categoryLabel": "🐱 Kedi & Evcil Dostlar",
+    "date": "25 Kasım 2026",
+    "readTime": "4 dk okuma",
+    "image": "img/blog/kedi-bakim.jpg",
+    "excerpt": "Kısırlaştırılmış ve ev içinde yaşayan kedilerin böbrek sağlığı için mama seçimi, günlük su tüketimini artırma yolları ve tozsuz bentonit kum kullanım rehberi.",
+    "quickFacts": [
+      { "label": "Su Tüketimi", "value": "Günde ~50 ml / kg" },
+      { "label": "Malt Kullanımı", "value": "Haftada 2–3 Kez" },
+      { "label": "Kum Yüksekliği", "value": "7 – 8 cm İdeal Derinlik" },
+      { "label": "Tarama", "value": "Haftada 2–3 Kez" }
+    ],
+    "sections": [
+      {
+        "heading": "Kısır Kedilerde İdrar Yolu ve Kilo Dengesi",
+        "body": "Kısırlaştırma sonrası kedilerin metabolizması yavaşlar ve idrar yolu hassasiyeti artar. Düşük magnezyum-fosfor dengeli, yüksek kaliteli protein içeren kısır kedi mamaları seçilmeli ve mama kabı ile su kabı birbirinden biraz ayrı konumlandırılmalıdır."
+      },
+      {
+        "heading": "Tüy Yumağı (Hairball) Sorununu Önleme",
+        "body": "Kediler kendilerini temizlerken yuttukları tüyler midede birikebilir. Düzenli tarama ve haftada 2–3 kez kaliteli anti-hairball malt macunu vermek sindirim kanalını rahatlatır."
+      },
+      {
+        "heading": "Tozsuz Bentonit Kedi Kumu Neden Önemlidir?",
+        "body": "Aşırı tozlu kumlar kedilerde solunum yolu tahrişine yol açabilir. %99.5 tozsuz, hızlı topaklaşan doğal bentonit kumları 7–8 cm derinlikte sermek hem koku kontrolü sağlar hem de kumun kabın tabanına yapışmasını engeller."
+      }
+    ],
+    "mistakes": [
+      "Kedi mamasını ani şekilde tek günde değiştirmek (7 günlük kademeli geçiş yapılmalı)",
+      "Su kabını tuvalet kabının hemen yanına koymak",
+      "Kum kabını haftalarca tamamen yenilemeden sadece üzerine ekleme yapmak"
+    ],
+    "expertTip": "Kedinizin daha fazla su içmesini sağlamak için seramik veya çelik geniş bir su kabı kullanın; bıyıkları kenara değmeyen kaplardan çok daha severek su içerler.",
+    "relatedCodes": []
+  }
+]

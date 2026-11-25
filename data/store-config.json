@@ -1,7 +1,11 @@
 {
   "name": "Turkuaz Akvaryum & PetShop",
+  "tagline": "Rami · Eyüpsultan · Canlı Akvaryum & Pet Stüdyosu",
   "address": "Rami Yeni Mah., Reşadiye Cad. No:22, Eyüpsultan / İstanbul",
   "hours": "Pzt–Cmt 09:00–20:00 · Pazar 10:00–18:00",
-  "phone": "",
+  "whatsapp": "",
+  "phoneDisplay": "WhatsApp / Mağaza Hattı",
+  "instagram": "",
+  "mapsQuery": "Rami Yeni Mah., Reşadiye Cad. No:22, Eyüpsultan, İstanbul",
   "showPrices": false
 }

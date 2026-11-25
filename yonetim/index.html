@@ -1278,7 +1278,7 @@
       document.getElementById('cfgName').value = storeConfig.name || '';
       document.getElementById('cfgAddress').value = storeConfig.address || '';
       document.getElementById('cfgHours').value = storeConfig.hours || '';
-      document.getElementById('cfgPhone').value = storeConfig.phone || '';
+      document.getElementById('cfgPhone').value = storeConfig.whatsapp || storeConfig.phone || '';
     }
 
     function saveSettingsToQueue() {
@@ -1286,7 +1286,9 @@
       storeConfig.name = document.getElementById('cfgName').value.trim() || 'Turkuaz Akvaryum & PetShop';
       storeConfig.address = document.getElementById('cfgAddress').value.trim() || storeConfig.address;
       storeConfig.hours = document.getElementById('cfgHours').value.trim() || storeConfig.hours;
-      storeConfig.phone = document.getElementById('cfgPhone').value.trim();
+      const ph = document.getElementById('cfgPhone').value.trim();
+      storeConfig.phone = ph;
+      storeConfig.whatsapp = ph;
       markDirty('config');
       showToast('💾 Mağaza ayarları kuyruğa alındı! Canlıya yayınlamak için 🚀 Yayınla butonuna basın.');
     }
