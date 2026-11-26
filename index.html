@@ -108,7 +108,8 @@
   </div>
 
   <!-- ================= 2. ANA NAVİGASYON BARI (MODERN VEKTÖR LOGOLU) ================= -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-sm">
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-sm relative">
+    <div id="scrollProgressBar" class="absolute bottom-0 left-0 h-[2.5px] w-0 bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 transition-[width] duration-100 pointer-events-none"></div>
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
       
       <!-- Özel Tasarım Vektör SVG Logo: Turkuaz Akvaryum -->
@@ -1252,9 +1253,10 @@
   <!-- ================= ÜRÜN DETAY & CANLI BAKIM KARNESİ MODALI ================= -->
   <div id="productDetailModal" onclick="if(event.target===this)closeProductDetail()" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
     <div class="bg-white w-full max-w-3xl rounded-t-3xl sm:rounded-3xl max-h-[92vh] overflow-y-auto shadow-2xl grid grid-cols-1 md:grid-cols-12 overflow-hidden">
-      <div class="md:col-span-6 bg-slate-50 p-6 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-slate-200 relative">
+      <div class="md:col-span-6 bg-slate-50 p-6 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-slate-200 relative group cursor-zoom-in" onclick="openLightboxFromDetail()">
         <span id="pdBadge" class="absolute top-4 left-4 px-2.5 py-1 rounded-lg bg-cyan-600 text-white text-[10px] font-black uppercase"></span>
-        <img id="pdImage" src="" alt="" class="max-h-72 w-full object-contain rounded-2xl" />
+        <span class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-slate-900/75 text-white text-[10px] font-extrabold backdrop-blur group-hover:bg-cyan-600 transition">🔍 Tam Ekran Büyüt</span>
+        <img id="pdImage" src="" alt="" class="max-h-72 w-full object-contain rounded-2xl transition duration-300 group-hover:scale-[1.03]" />
       </div>
       <div class="md:col-span-6 p-5 sm:p-6 flex flex-col justify-between space-y-4">
         <div class="space-y-2.5">
@@ -2115,6 +2117,25 @@
                   ? `<span class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-lg bg-rose-600 text-white text-[10px] font-black uppercase">-%${discPct} İndirim</span>`
                   : ''
                 }
+                <div class="absolute top-2.5 left-2.5 z-10 flex items-center gap-1">
+                  <button
+                    type="button"
+                    onclick="event.stopPropagation(); openLightboxById('${p._id}')"
+                    title="Fotoğrafı Tam Ekran Büyüt"
+                    class="w-7 h-7 rounded-lg bg-white/90 hover:bg-cyan-600 hover:text-white text-slate-700 border border-slate-200/80 shadow-sm flex items-center justify-center text-xs transition"
+                  >🔍</button>
+                  <button
+                    type="button"
+                    data-cmp-btn="${p._id}"
+                    onclick="event.stopPropagation(); toggleCompare('${p._id}')"
+                    title="Yan Yana Karşılaştır"
+                    class="w-7 h-7 rounded-lg border shadow-sm flex items-center justify-center text-xs transition ${
+                      (window.compareIds || []).includes(p._id)
+                        ? 'bg-cyan-600 text-white border-cyan-600'
+                        : 'bg-white/90 hover:bg-cyan-600 hover:text-white text-slate-700 border-slate-200/80'
+                    }"
+                  >⚖️</button>
+                </div>
                 <span class="absolute top-3 right-3 z-10 px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 font-mono text-[10px] font-bold">
                   ${p.code}
                 </span>
@@ -2796,6 +2817,53 @@
 
     document.addEventListener('DOMContentLoaded', loadStoreCatalog);
   </script>
+  <!-- Tam Ekran Fotoğraf Büyüteci (Lightbox) -->
+  <div id="lightboxModal" onclick="if(event.target===this)closeLightbox()" class="fixed inset-0 z-[70] hidden bg-slate-950/92 backdrop-blur-md flex items-center justify-center p-4">
+    <button type="button" onclick="closeLightbox()" class="absolute top-4 right-4 w-11 h-11 rounded-full bg-white/15 hover:bg-white/25 text-white text-xl font-black flex items-center justify-center transition">✕</button>
+    <div class="max-w-4xl w-full flex flex-col items-center gap-3">
+      <div class="bg-white rounded-3xl p-3 sm:p-5 shadow-2xl max-h-[78vh] flex items-center justify-center overflow-hidden">
+        <img id="lightboxImg" src="" alt="" class="max-h-[72vh] max-w-full object-contain rounded-2xl" />
+      </div>
+      <div class="text-center text-white space-y-0.5">
+        <div id="lightboxTitle" class="text-sm sm:text-base font-black"></div>
+        <div id="lightboxSub" class="text-xs text-cyan-300 font-bold"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Yüzen Karşılaştırma Çubuğu (2 Ürün Seçilince) -->
+  <div id="compareBar" class="hidden fixed left-1/2 -translate-x-1/2 bottom-20 md:bottom-5 z-50 bg-[#031322]/95 text-white border border-cyan-400/40 backdrop-blur-xl rounded-2xl shadow-2xl px-4 py-2.5 flex items-center gap-3 max-w-[94vw]">
+    <span class="text-base">⚖️</span>
+    <span id="compareBarText" class="text-xs font-extrabold whitespace-nowrap">1/2 Ürün Seçildi</span>
+    <button id="compareOpenBtn" type="button" onclick="openCompareModal()" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-cyan-500 to-teal-400 text-slate-950 text-xs font-black transition disabled:opacity-40">
+      Karşılaştır
+    </button>
+    <button type="button" onclick="clearCompare()" class="text-slate-400 hover:text-white text-xs font-bold px-1" title="Temizle">✕</button>
+  </div>
+
+  <!-- 2 Ürünü Yan Yana Karşılaştırma Modalı -->
+  <div id="compareModal" onclick="if(event.target===this)closeCompareModal()" class="fixed inset-0 z-[65] hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-5">
+    <div class="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border border-cyan-200/80 shadow-2xl p-5 sm:p-6 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div>
+          <span class="text-[10.5px] font-extrabold uppercase tracking-wider text-cyan-600 block">Turkuaz Akvaryum</span>
+          <h3 class="text-lg font-black text-slate-900">⚖️ Yan Yana Ürün Karşılaştırma</h3>
+        </div>
+        <button type="button" onclick="closeCompareModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-black">✕</button>
+      </div>
+      <div id="compareGrid" class="grid grid-cols-2 gap-3 sm:gap-5"></div>
+    </div>
+  </div>
+
+  <!-- Yukarı Çık Butonu -->
+  <button
+    id="backToTopBtn"
+    type="button"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    title="Yukarı Çık"
+    class="hidden fixed left-4 bottom-20 md:bottom-5 z-40 w-10 h-10 rounded-full bg-[#031322]/90 hover:bg-cyan-600 text-cyan-300 hover:text-white border border-cyan-400/35 shadow-lg backdrop-blur flex items-center justify-center font-black text-base transition"
+  >↑</button>
+
   <!-- Mobil Uygulama Alt Sekme Çubuğu (Native App Bar) -->
   <nav id="mobileBottomNav" class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-t border-cyan-200/80 shadow-[0_-6px_24px_rgba(2,10,19,0.12)] px-2 py-1.5 grid grid-cols-5 gap-1">
     <button type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="flex flex-col items-center justify-center py-1 rounded-xl text-[10px] font-extrabold text-cyan-700">
@@ -2864,6 +2932,115 @@
       }
       askWhatsAppGeneral();
     }
+
+    // Scroll İlerleme Çizgisi & Yukarı Çık Butonu
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      const max = Math.max(1, h.scrollHeight - h.clientHeight);
+      const pct = Math.min(100, (window.scrollY / max) * 100);
+      const bar = document.getElementById('scrollProgressBar');
+      if (bar) bar.style.width = pct + '%';
+      const topBtn = document.getElementById('backToTopBtn');
+      if (topBtn) topBtn.classList.toggle('hidden', window.scrollY < 420);
+    }, { passive: true });
+
+    // #2 Tam Ekran Fotoğraf Büyüteci (Lightbox)
+    function openLightbox(imgSrc, title, sub) {
+      if (!imgSrc) return;
+      document.getElementById('lightboxImg').src = imgSrc;
+      document.getElementById('lightboxTitle').textContent = title || '';
+      document.getElementById('lightboxSub').textContent = sub || '';
+      document.getElementById('lightboxModal').classList.remove('hidden');
+    }
+    function openLightboxById(prodId) {
+      const p = (typeof allProducts !== 'undefined' ? allProducts : []).find(x => x._id === prodId);
+      if (!p || !p.img) return;
+      openLightbox(p.img, p.name, [p.code, p.badge || p.size || ''].filter(Boolean).join(' · '));
+    }
+    function openLightboxFromDetail() {
+      const img = document.getElementById('pdImage');
+      const title = document.getElementById('pdTitle');
+      const meta = document.getElementById('pdMeta');
+      if (img && img.src) openLightbox(img.src, title ? title.textContent : '', meta ? meta.textContent : '');
+    }
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.add('hidden');
+    }
+
+    // #3 2 Ürünü Yan Yana Karşılaştır
+    window.compareIds = [];
+    function toggleCompare(prodId) {
+      const idx = window.compareIds.indexOf(prodId);
+      if (idx > -1) {
+        window.compareIds.splice(idx, 1);
+      } else {
+        if (window.compareIds.length >= 2) {
+          window.compareIds.shift();
+        }
+        window.compareIds.push(prodId);
+      }
+      updateCompareUI();
+    }
+    function clearCompare() {
+      window.compareIds = [];
+      updateCompareUI();
+    }
+    function updateCompareUI() {
+      document.querySelectorAll('[data-cmp-btn]').forEach(btn => {
+        const active = window.compareIds.includes(btn.getAttribute('data-cmp-btn'));
+        btn.className = 'w-7 h-7 rounded-lg border shadow-sm flex items-center justify-center text-xs transition ' + (
+          active ? 'bg-cyan-600 text-white border-cyan-600' : 'bg-white/90 hover:bg-cyan-600 hover:text-white text-slate-700 border-slate-200/80'
+        );
+      });
+      const bar = document.getElementById('compareBar');
+      const txt = document.getElementById('compareBarText');
+      const openBtn = document.getElementById('compareOpenBtn');
+      if (!bar) return;
+      if (!window.compareIds.length) {
+        bar.classList.add('hidden');
+      } else {
+        bar.classList.remove('hidden');
+        txt.textContent = window.compareIds.length === 1 ? '1/2 Seçildi (1 ürün daha seçin)' : '2/2 Ürün Karşılaştırmaya Hazır';
+        openBtn.disabled = window.compareIds.length < 2;
+      }
+    }
+    function openCompareModal() {
+      if (window.compareIds.length < 2) return;
+      const items = window.compareIds.map(id => (allProducts || []).find(x => x._id === id)).filter(Boolean);
+      if (items.length < 2) return;
+      const grid = document.getElementById('compareGrid');
+      grid.innerHTML = items.map(p => {
+        const care = (p._src === 'fish' && typeof getFishQuickCare === 'function') ? getFishQuickCare(p) : null;
+        return `
+          <div class="rounded-2xl border border-cyan-200/80 bg-slate-50 p-3.5 sm:p-4 flex flex-col gap-3">
+            <div class="aspect-square bg-white rounded-2xl p-2 overflow-hidden flex items-center justify-center cursor-zoom-in" onclick="openLightboxById('${p._id}')">
+              <img src="${p.img || ''}" alt="${p.name}" class="w-full h-full object-contain" />
+            </div>
+            <div>
+              <span class="text-[10px] font-mono font-bold text-cyan-700">${p.code}</span>
+              <h4 class="text-xs sm:text-sm font-black text-slate-900 leading-snug mt-0.5">${p.name}</h4>
+            </div>
+            <div class="space-y-1.5 text-[11px] sm:text-xs">
+              ${p.badge ? `<div class="p-2 rounded-xl bg-white border border-cyan-200/70"><span class="text-slate-400 block text-[10px] font-bold">Özellik</span><strong class="text-cyan-700">${p.badge}</strong></div>` : ''}
+              ${p.size ? `<div class="p-2 rounded-xl bg-white border border-slate-200"><span class="text-slate-400 block text-[10px] font-bold">Ölçü / Boyut</span><strong>${p.size}</strong></div>` : ''}
+              ${care ? `<div class="p-2 rounded-xl bg-white border border-slate-200"><span class="text-slate-400 block text-[10px] font-bold">Bakım</span><strong>🌡️ ${care.temp} · pH ${care.ph} · ${care.minL}</strong></div>` : ''}
+              ${p.note || p.desc ? `<div class="p-2 rounded-xl bg-white border border-slate-200 text-slate-600 leading-relaxed">${p.note || p.desc}</div>` : ''}
+            </div>
+            <div class="mt-auto pt-2 flex gap-1.5">
+              <button type="button" onclick="addCardToCart('${p._id}'); closeCompareModal();" class="flex-1 py-2 rounded-xl bg-gradient-to-r from-cyan-600 to-teal-600 text-white text-xs font-black">🛒 Sepete Ekle</button>
+              <button type="button" onclick="askWhatsAppProduct('${p._id}')" class="px-2.5 py-2 rounded-xl bg-emerald-600 text-white text-xs font-black">💬</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+      document.getElementById('compareModal').classList.remove('hidden');
+    }
+    function closeCompareModal() {
+      document.getElementById('compareModal').classList.add('hidden');
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { closeLightbox(); closeCompareModal(); }
+    });
 
     // 1. Önce / Sonra Aquascape Slider
     function updateBeforeAfter(val) {
